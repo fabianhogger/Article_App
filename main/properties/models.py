@@ -4,7 +4,14 @@ from phone_field import PhoneField
 
 
 class Property(models.Model):
-    code = models.CharField(unique=True, max_length=255, null=False)
+    name=models.CharField(max_length=100,default="")
+    url=models.CharField(max_length=100,default="")
+    body=models.CharField(max_length=10000,default="")
+
+    def __str__(self):
+        return self.code
+
+"""    code = models.CharField(unique=True, max_length=255, null=False)
     price = models.CharField(max_length=255, null=False)
     location = models.CharField(max_length=255, null=False)
     district = models.CharField(max_length=255, null=False)
@@ -17,6 +24,4 @@ class Property(models.Model):
     agent_email = models.EmailField(max_length = 255)
     agent_company = models.CharField(max_length=255)
     date = models.DateTimeField(default=timezone.now)
-
-    def __str__(self):
-        return self.code
+"""
