@@ -31,3 +31,15 @@ Download the html file [here]( https://github.com/fabianhoegger/Article_App/blob
 After removing some non english documents I retrained the model on about 350 documents with the same parameters.Here I selected one of the topics to show how the html file works
 ![lda10clean](images/lda10cleaned.jpg)
 Download the html file [here]( https://github.com/fabianhoegger/Article_App/blob/main/main/properties/lda/lda10/lda10_cleaned/ldavis10clean.html)
+
+Below is the result of the model with the same 500 articles but 20 topics
+![lda20](images/lda20.png)
+Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/main/main/properties/lda/lda20/ldavis20.html)
+
+Finally I tried training on all the english files I had Scraped
+first dividing them in 10 topics and then 20.
+![lda20](images/lda10_1835.png)
+Download the html file [here](hhttps://github.com/fabianhoegger/Article_App/blob/main/main/properties/lda/lda_1835/lda_10_1835/ldavisall.html)
+![lda20](images/lda20_1835.png)
+Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/main/main/properties/lda/lda_1835/lda_20_1835/ldavisall20.html)
+## Scraping
