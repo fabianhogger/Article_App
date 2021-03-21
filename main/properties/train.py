@@ -15,12 +15,11 @@ def sent_to_words(sentences):
 class train_defs():
 
     def start(django_data):
-
         stop_words.extend(['from', 'subject', 're', 'edu', 'use'])
-        #newsgroups_train = fetch_20newsgroups(subset='train')
         def check_latin(text):
             pattern = re.compile("^[a-zA-Z]+$")
             check=[]
+            removed=[]
             for i in range(len(text)):
                 check=[]
                 for char in text[i]:
@@ -30,14 +29,18 @@ class train_defs():
                         check.append(0)
                 print('Article number {} has {} percent latin characters'.format(i,(sum(check)/len(check))*100))
                 if ((sum(check)/len(check))*100)<=3:
-                    print(text[i])
-        check_latin(django_data)
+                    removed.append(text[i])
+            for j in range(len(removed)):
+                text.remove(removed[j])
+            return text
+        print('list length before removal  ',len(django_data))
+        django_data=check_latin(django_data)
+        print('list length after removal  ',len(django_data))
         data = django_data
-        """
         data = [re.sub('\S*@\S*\s?', '', sent) for sent in data]
         data = [re.sub('\s+', ' ', sent) for sent in data]
         data = [re.sub("\'", "", sent) for sent in data]
-        print('DATA AFTER FIRST PART  ',data)
+        #print('DATA AFTER FIRST PART  ',data)
         data_words = list(sent_to_words(data))
         #bigrams,trigrams
         bigram = gensim.models.Phrases(data_words, min_count=5, threshold=100)
@@ -68,7 +71,7 @@ class train_defs():
         corpus = [diction.doc2bow(text) for text in data_lemmatized]
         #Create a model
         lda_model = gensim.models.ldamodel.LdaModel(
-           corpus=corpus, id2word=diction, num_topics=1x`0, random_state=100,
+           corpus=corpus, id2word=diction, num_topics=10, random_state=100,
            update_every=1, chunksize=100, passes=10, alpha='auto'
         )
         lda_model.save('model10')
@@ -77,4 +80,3 @@ class train_defs():
         import pyLDAvis.gensim
         vis = pyLDAvis.gensim.prepare(lda_model, corpus, dictionary=diction)
         pyLDAvis.save_html(vis,'ldavis10.html')
-        """
