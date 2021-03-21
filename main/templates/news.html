@@ -9,7 +9,7 @@
   <div class="jumbotron">
     <center>
       <h1>Scraped News</h1>
-      <a href="{% url 'scrape' %}" class="btn btn-success">Get my morning news</a>
+      <a href="{% url 'scrape' %}" class="btn btn-success">Train LDA</a>
       <a class="btn btn-success">scrape bbc</a>
       <form action='scrape_article' method='post'>
           {% csrf_token%}
