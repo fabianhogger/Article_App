@@ -25,4 +25,4 @@ As mentioned above for the creation of the lda model I used the gensim library. 
 ### Results
 
 Initially I used 500 articles for my first model and as parameters I set it to num_topics=20, random_state=100,update_every=1, chunksize=100, passes=10, alpha='auto'
-![lda10]('images/lda10.jpg')
+![lda10](images/lda10.jpg)
