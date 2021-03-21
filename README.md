@@ -53,3 +53,35 @@ Data is stored to a Django postgresql database.
 
 After gathering the articles I created a small website where you can view some article titles and click a button that starts training an lda model.
 ![website](images/website.png)
+
+## Links
+
+
+
+https://www.analyticsvidhya.com/blog/2016/08/beginners-guide-to-topic-modeling-in-python/
+https://datascience.aero/topic-modelling/
+http://qpleple.com/perplexity-to-evaluate-topic-models/
+
+
+https://www.machinelearningplus.com/nlp/topic-modeling-gensim-python/#17howtofindtheoptimalnumberoftopicsforlda
+
+
+https://www.machinelearningplus.com/nlp/topic-modeling-gensim-python/
+https://towardsdatascience.com/lets-build-an-article-recommender-using-lda-f22d71b7143e
+https://radimrehurek.com/gensim/similarities/docsim.html
+https://radimrehurek.com/gensim/auto_examples/core/run_similarity_queries.html
+
+https://radimrehurek.com/gensim/auto_examples/core/run_corpora_and_vector_spaces.html#sphx-glr-auto-examples-core-run-corpora-and-vector-spaces-py
+
+https://towardsdatascience.com/topic-modelling-in-python-with-nltk-and-gensim-4ef03213cd21
+
+https://medium.com/analytics-vidhya/gensim-lda-topic-modeling-for-article-discovery-9707237e4f0d
+
+https://medium.com/analytics-vidhya/web-scraping-with-scrapy-and-django-94a77386ac1b
+
+
+https://www.machinelearningplus.com/nlp/topic-modeling-visualization-how-to-present-results-lda-models/
+
+https://miningthedetails.com/blog/python/lda/GensimLDA/
+https://groups.google.com/g/gensim
+https://rare-technologies.com/what-is-topic-coherence/
