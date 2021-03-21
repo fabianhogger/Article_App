@@ -43,3 +43,7 @@ Download the html file [here](hhttps://github.com/fabianhoegger/Article_App/blob
 ![lda20](images/lda20_1835.png)
 Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/main/main/properties/lda/lda_1835/lda_20_1835/ldavisall20.html)
 ## Scraping
+
+To scrap bbc and aljazeera I used scrapy's SitemapSpider class that automatically crawls a websites sitemap which is really usefull.
+Currently For each article the scraper downloads the page url,title and text body.
+[Click here to view the scripts](https://github.com/fabianhoegger/Article_App/tree/main/main/scraper/scraper/spiders)
