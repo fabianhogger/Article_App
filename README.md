@@ -46,4 +46,10 @@ Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/
 
 To scrap bbc and aljazeera I used scrapy's SitemapSpider class that automatically crawls a websites sitemap which is really usefull.
 Currently For each article the scraper downloads the page url,title and text body.
-[Click here to view the scripts](https://github.com/fabianhoegger/Article_App/tree/main/main/scraper/scraper/spiders)
+[Click here to view the scripts](https://github.com/fabianhoegger/Article_App/tree/main/main/scraper/scraper/spiders).
+The scrapy project is connected to my django app and the
+Data is stored to a Django postgresql database.
+## Website
+
+After gathering the articles I created a small website where you can view some article titles and click a button that starts training an lda model.
+![website](images/website.png)
