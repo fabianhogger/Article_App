@@ -20,7 +20,7 @@ The algorithm should be trained on text without special characters and commonly 
 LDA can't be evaluated like using common metrics like accuracy so we would have to test the model ourselves and also use some other metrics unique to the model it self. One of them is the  Jenshen-Shannon Distance as a similarity metric.
 ## Visualization
 
-As mentioned above for the creation of the lda model I used the gensim library. For the visualization of the resulting model there is a great library called pyLDAvis.
+As mentioned above for the creation of the lda model I used the gensim library. For the visualization of the resulting model there is a great library called pyLDAvis.This tool creates an interactive html page with various important data about the model.
 
 ### Results
 
