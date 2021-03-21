@@ -18,7 +18,22 @@ class train_defs():
 
         stop_words.extend(['from', 'subject', 're', 'edu', 'use'])
         #newsgroups_train = fetch_20newsgroups(subset='train')
+        def check_latin(text):
+            pattern = re.compile("^[a-zA-Z]+$")
+            check=[]
+            for i in range(len(text)):
+                check=[]
+                for char in text[i]:
+                    if pattern.match(char):
+                        check.append(1)
+                    else:
+                        check.append(0)
+                print('Article number {} has {} percent latin characters'.format(i,(sum(check)/len(check))*100))
+                if ((sum(check)/len(check))*100)<=3:
+                    print(text[i])
+        check_latin(django_data)
         data = django_data
+        """
         data = [re.sub('\S*@\S*\s?', '', sent) for sent in data]
         data = [re.sub('\s+', ' ', sent) for sent in data]
         data = [re.sub("\'", "", sent) for sent in data]
@@ -53,9 +68,13 @@ class train_defs():
         corpus = [diction.doc2bow(text) for text in data_lemmatized]
         #Create a model
         lda_model = gensim.models.ldamodel.LdaModel(
-           corpus=corpus, id2word=diction, num_topics=5, random_state=100,
+           corpus=corpus, id2word=diction, num_topics=1x`0, random_state=100,
            update_every=1, chunksize=100, passes=10, alpha='auto'
         )
-        lda_model.save('model2')
-        open_file = open('corpus2', "wb")
+        lda_model.save('model10')
+        open_file = open('corpus10', "wb")
         pickle.dump(corpus, open_file)
+        import pyLDAvis.gensim
+        vis = pyLDAvis.gensim.prepare(lda_model, corpus, dictionary=diction)
+        pyLDAvis.save_html(vis,'ldavis10.html')
+        """
