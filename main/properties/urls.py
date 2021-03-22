@@ -18,5 +18,6 @@ from django.urls import path,include
 from . import views
 urlpatterns = [
     path('',views.news_list,name='news'),
-    path('scrape',views.train,name='scrape')
+    path('scrape',views.train,name='scrape'),
+    path('get_similar',views.get_similar,name='get_similar')
 ]
