@@ -63,7 +63,7 @@ class train_defs():
         data_words_bigrams =make_bigrams(data_words_nostops)
 
         data_lemmatized = lemmatization(data_words_bigrams, allowed_postags=[
-           'NOUN', 'ADJ', 'v ', 'ADV'
+           'NOUN', 'ADJ', 'VERB', 'ADV'
         ])
         diction = corpora.Dictionary(data_lemmatized)
 
