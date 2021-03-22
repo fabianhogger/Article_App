@@ -63,20 +63,20 @@ class train_defs():
         data_words_bigrams =make_bigrams(data_words_nostops)
 
         data_lemmatized = lemmatization(data_words_bigrams, allowed_postags=[
-           'NOUN', 'ADJ', 'VERB', 'ADV'
+           'NOUN', 'ADJ', 'v ', 'ADV'
         ])
-        print('DATA AFTER lemmatization  ',data_lemmatized)
         diction = corpora.Dictionary(data_lemmatized)
 
         corpus = [diction.doc2bow(text) for text in data_lemmatized]
+
         #Create a model
         lda_model = gensim.models.ldamodel.LdaModel(
-           corpus=corpus, id2word=diction, num_topics=10, random_state=100,
+           corpus=corpus, id2word=diction, num_topics=20, random_state=100,
            update_every=1, chunksize=100, passes=10, alpha='auto'
         )
-        lda_model.save('model10')
-        open_file = open('corpus10', "wb")
+        lda_model.save('modeltitles')
+        open_file = open('corpustitle', "wb")
         pickle.dump(corpus, open_file)
         import pyLDAvis.gensim
         vis = pyLDAvis.gensim.prepare(lda_model, corpus, dictionary=diction)
-        pyLDAvis.save_html(vis,'ldavis10.html')
+        pyLDAvis.save_html(vis,'ldavistitle.html')
