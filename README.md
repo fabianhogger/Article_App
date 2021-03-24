@@ -42,6 +42,19 @@ first dividing them in 10 topics and then 20.
 Download the html file [here](hhttps://github.com/fabianhoegger/Article_App/blob/main/main/properties/lda/lda_1835/lda_10_1835/ldavisall.html)
 ![lda20](images/lda20_1835.png)
 Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/main/main/properties/lda/lda_1835/lda_20_1835/ldavisall20.html)
+
+### Results
+
+|Model | Perplexity | Coherence| Articles
+| -----| ----------  | ---------|----
+| LDA10 | -8.270  | -9.366|500
+| LDA20 | -13.652 |  -8.049|500
+|lda_10_1835|-8.488| -5.999|1835
+|lda_20_1835 | -12.778  | -8.678|1835
+
+
+
+
 ## Scraping
 
 To scrap bbc and aljazeera I used scrapy's SitemapSpider class that automatically crawls a websites sitemap which is really usefull.
