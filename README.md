@@ -27,7 +27,7 @@ There is actually more than one topic coherence kind.
 - C_npmi
 - C_a
 ### Similarity
- 
+
 For Finding similar documents gensim has a similarity class that uses cosine similarity but we will have to see what kind of results it produces.Many people also recommend Jensen-Shannon distance metric.
 Some of the possible  similarity metrics are
 - Jensen-Shannon
@@ -62,19 +62,18 @@ Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/
 
 ### Results
 
-|Model | Perplexity |  U-mass Coherence| Articles |Topics
+|Model | Perplexity |  U-mass Coherence|C-V Coherence Articles |Topics
 | -----| ----------  | ---------|----|----|
-| LDA10 | -8.270   | -9.366|500|10|
-| LDA20 | -13.652  |  -8.049|500|20|
-|lda_10_1835|-8.488| -5.999|1835|10|
-|lda_20_1835 | -12.778| -8.678|1835|20|
-|lda_5_2000|-8.133    | -20.233|2000|5|
-|lda_2450|-8.128      | -19.412|2450|5|
-|lda10_2450|-8.785  |-19.537|2450|10|
-|lda15_2450|-15.156 |-18|2450|15|
-|lda_20_2450|-24.223 |-17.727|2450|20|
-|lda30_2450|-33.610| -18.760|2450|30|
-|
+| LDA10 | -8.270   | -9.366|---|500|10|
+| LDA20 | -13.652  |  -8.049|--|500|20|
+|lda_10_1835|-8.488| -5.999|---|1835|10|
+|lda_20_1835 | -12.778| -8.678|---|1835|20|
+|lda_5_2000|-8.133    | -20.233|---|2000|5|
+|lda_2450|-8.128      | -19.412|0.694| 2450|5|
+|lda10_2450|-8.785  |-19.537|0.672|2450|10|
+|lda15_2450|-15.156 |-18|0.555|2450|15|
+|lda_20_2450|-24.223 |-17.727| 0.556|2450|20|
+|lda30_2450|-33.610| -18.760| 0.639 |2450|30|
 
 ## Scraping
 
