@@ -17,7 +17,22 @@ The algorithm should be trained on text without special characters and commonly 
 
 ### Evaluation
 
-LDA can't be evaluated like using common metrics like accuracy so we would have to test the model ourselves and also use some other metrics unique to the model it self. One of them is the  Jenshen-Shannon Distance as a similarity metric.
+LDA can't be evaluated like using common metrics like accuracy so we would have to test the model ourselves and also use some other metrics unique to the model itself.  Below we are going to be using perplexity and topic coherence to evaluate our models.
+There is actually more than one topic coherence kind.
+- U-mass
+- C_v
+- C_p
+- C_uci
+- C_umass
+- C_npmi
+- C_a  
+For Finding similar documents gensim has a similarity class that uses cosine similarity but we will have to see what kind of results it produces.Many people also recommend Jensen-Shannon distance metric.
+Some of the possible  similarity metrics are
+- Jensen-Shannon
+- Hellinger distance
+- Kullback–Leibler
+- Jaccard
+
 ## Visualization
 
 As mentioned above for the creation of the lda model I used the gensim library. For the visualization of the resulting model there is a great library called pyLDAvis.This tool creates an interactive html page with various important data about the model.
