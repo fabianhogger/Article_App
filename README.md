@@ -61,19 +61,25 @@ Download the html file [here](hhttps://github.com/fabianhoegger/Article_App/blob
 Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/main/main/properties/lda/lda_1835/lda_20_1835/ldavisall20.html)
 
 ### Results
+>On the first table there are various models with different number of articles and their corresponding perplexity, U-mass coherence and number of topics.
 
-|Model | Perplexity |  U-mass Coherence|C-V Coherence Articles |Topics
-| -----| ----------  | ---------|----|----|---|
-| LDA10 | -8.270   | -9.366|---|500|10|
-| LDA20 | -13.652  |  -8.049|--|500|20|
-|lda_10_1835|-8.488| -5.999|---|1835|10|
-|lda_20_1835 | -12.778| -8.678|---|1835|20|
-|lda_5_2000|-8.133    | -20.233|---|2000|5|
-|lda_2450|-8.128      | -19.412|0.694| 2450|5|
-|lda10_2450|-8.785  |-19.537|0.672|2450|10|
-|lda15_2450|-15.156 |-18|0.555|2450|15|
-|lda_20_2450|-24.223 |-17.727| 0.556|2450|20|
-|lda30_2450|-33.610| -18.760| 0.639 |2450|30|
+|Model | Perplexity |  U-mass Coherence| Articles |Topics
+| -----| ----------  | ----------------|----------|------|
+| LDA10 | -8.270   | -9.366|         500|10|
+| LDA20 | -13.652  |  -8.049|      500|20|
+|lda_10_1835|-8.488| -5.999|      1835|10|
+|lda_20_1835 | -12.778| -8.678|   1835|20|
+|lda_5_2000|-8.133    | -20.233|   2000|5|
+
+> Because  using U-mass coherence didn't help to distinguish the perfomance of the models for 2450 articles I started using  C-V coherence which immediately made things clearer.
+
+|Model | Perplexity |  U-mass Coherence| C-V Coherence|Topics
+| -----| ----------  | ----------------|----------|----|
+|lda_2450|-8.128     | -19.412|0.694| 5|
+|lda10_2450|-8.785   |-19.537|0.672|10|
+|lda15_2450|-15.156 |-18|0.555|15|
+|lda_20_2450|-24.223 |-17.727| 0.556|20|
+|lda30_2450|-33.610| -18.760| 0.639 |30|
 
 ## Scraping
 
