@@ -63,7 +63,7 @@ Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/
 ### Results
 
 |Model | Perplexity |  U-mass Coherence|C-V Coherence Articles |Topics
-| -----| ----------  | ---------|----|----|
+| -----| ----------  | ---------|----|----|---|
 | LDA10 | -8.270   | -9.366|---|500|10|
 | LDA20 | -13.652  |  -8.049|--|500|20|
 |lda_10_1835|-8.488| -5.999|---|1835|10|
