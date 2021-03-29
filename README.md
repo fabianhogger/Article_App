@@ -25,7 +25,9 @@ There is actually more than one topic coherence kind.
 - C_uci
 - C_umass
 - C_npmi
-- C_a  
+- C_a
+### Similarity
+ 
 For Finding similar documents gensim has a similarity class that uses cosine similarity but we will have to see what kind of results it produces.Many people also recommend Jensen-Shannon distance metric.
 Some of the possible  similarity metrics are
 - Jensen-Shannon
@@ -69,7 +71,7 @@ Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/
 |lda_5_2000|-8.133    | -20.233|2000|5|
 |lda_2450|-8.128      | -19.412|2450|5|
 |lda10_2450|-8.785  |-19.537|2450|10|
-|lda15_2450|-15.156 |-18|2450|15
+|lda15_2450|-15.156 |-18|2450|15|
 |lda_20_2450|-24.223 |-17.727|2450|20|
 |lda30_2450|-33.610| -18.760|2450|30|
 |
