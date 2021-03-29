@@ -45,7 +45,7 @@ Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/
 
 ### Results
 
-|Model | Perplexity | Coherence| Articles |Topics
+|Model | Perplexity |  U-mass Coherence| Articles |Topics
 | -----| ----------  | ---------|----|----|
 | LDA10 | -8.270   | -9.366|500|10|
 | LDA20 | -13.652  |  -8.049|500|20|
@@ -54,9 +54,8 @@ Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/
 |lda_5_2000|-8.133    | -20.233|2000|5|
 |lda_2450|-8.128      | -19.412|2450|5|
 |lda10_2450|-8.785  |-19.537|2450|10|
-
-
-
+|lda_20_2450|-24.223 |-17.727|2450|20|
+|lda30_2450|-33.610| -18.760|2450|30|
 
 ## Scraping
 
