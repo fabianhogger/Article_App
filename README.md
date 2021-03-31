@@ -62,6 +62,7 @@ Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/
 
 ### Results
 >On the first table there are various models with different number of articles and their corresponding perplexity, U-mass coherence and number of topics.
+U-mass coherence is better when close to zero and perplexity is optimal at its lowest. 
 
 |Model | Perplexity |  U-mass Coherence| Articles |Topics
 | -----| ----------  | ----------------|----------|------|
