@@ -80,7 +80,9 @@ Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/
 |lda15_2450|-15.156 |-18|0.555|15|
 |lda_20_2450|-24.223 |-17.727| 0.556|20|
 |lda30_2450|-33.610| -18.760| 0.639 |30|
+|lda40_2450|-50.990| -19.720| 0.735|40|
 
+![c-v_graph](images/c_v_coherence1to50.png)
 ## Scraping
 
 To scrap bbc and aljazeera I used scrapy's SitemapSpider class that automatically crawls a websites sitemap which is really usefull.
