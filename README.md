@@ -62,7 +62,7 @@ Download the html file [here](https://github.com/fabianhoegger/Article_App/blob/
 
 ### Results
 >On the first table there are various models with different number of articles and their corresponding perplexity, U-mass coherence and number of topics.
-U-mass coherence is better when close to zero and perplexity is optimal at its lowest. 
+U-mass coherence is better when close to zero and perplexity is optimal at its lowest.
 
 |Model | Perplexity |  U-mass Coherence| Articles |Topics
 | -----| ----------  | ----------------|----------|------|
@@ -72,9 +72,9 @@ U-mass coherence is better when close to zero and perplexity is optimal at its l
 |lda_20_1835 | -12.778| -8.678|   1835|20|
 |lda_5_2000|-8.133    | -20.233|   2000|5|
 
-> Because  using U-mass coherence didn't help to distinguish the perfomance of the models for 2450 articles I started using  C-V coherence which immediately made things clearer.
+> Because  using U-mass coherence didn't help to distinguish the perfomance of the models for 2450 articles I started using  CV coherence which immediately made things clearer.The higher the cv coherence the better. 
 
-|Model | Perplexity |  U-mass Coherence| C-V Coherence|Topics
+|Model | Perplexity |  U-mass Coherence| CV Coherence|Topics
 | -----| ----------  | ----------------|----------|----|
 |lda_2450|-8.128     | -19.412|0.694| 5|
 |lda10_2450|-8.785   |-19.537|0.672|10|
