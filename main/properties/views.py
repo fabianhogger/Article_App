@@ -8,6 +8,7 @@ import gensim
 import gensim.corpora as corpora
 from gensim import models, similarities
 
+
 def news_list(request):
     print("news_list called")
     headlines=Property.objects.all()[:10]
@@ -26,26 +27,34 @@ def train(request):
     return redirect("news")
 
 def get_similar(request):
-    lda=lda = gensim.models.ldamodel.LdaModel.load('properties/lda/lda_1835/lda_10_1835/modelall')
-    queryobject=Property.objects.filter(id=500).values()
-    dic=queryobject[0]
-    body=[]
-    body.append(dic['body'])
-    print("DATA BEFORE ANYTHING",body[0])
-    clean_body=clean.clean_text(body)
-    print('clean body',clean_body[0])
-    vector1=lda[clean_body[0]]
-    sims=clean.get_similarity(lda,vector1)
-    sims = sorted(enumerate(sims), key=lambda item: -item[1])
-    tens=sims[10:]
-    articles=[]
-    for i in range(10):
-        id_=tens[i][0]
-        queryobject_article=Property.objects.filter(id=id_).values()
-        similar_article=queryobject_article[0]#getting the dictionary from the object
-        articles.append(similar_article['name'])
-    print('initial article',dic['name'])
-    print(articles)
+    lda=gensim.models.ldamodel.LdaModel.load('properties/lda/lda2450_30/model30')
+    for j in range(1501,1504):
+        queryobject=Property.objects.filter(id=j).values()
+        dic=queryobject[0]
+        body=[]
+        body.append(dic['body'])
+        #print("DATA BEFORE ANYTHING",body[0])
+        clean_body=clean.clean_text(body)
+        #print('clean body',clean_body[0])
+        vector1=lda[clean_body[0]]
+        #sims=clean.get_similarity(lda,vector1)
+        sims=clean.get_jensen_shannon(lda,vector1)
+        print("ENUMERATED  ",enumerate(sims))
+        sims = sorted(enumerate(sims), key=lambda item: item[1])
+        tens=sims[:10]
+        articles=[]
+        all_ids=Property.objects.values_list('id')
+        all_ids=[tupleitem for item in all_ids for tupleitem in item]
+        print(all_ids)
+        for i in range(10):
+            id_=tens[i][0]
+            print('OK ',id_)
+            if id_ in all_ids:
+                queryobject_article=Property.objects.filter(id=id_).values()
+                similar_article=queryobject_article[0]#getting the dictionary from the object
+                articles.append(similar_article['name'])
+        print('initial article',dic['name'])
+        print(articles)
     return redirect("news")
 """
 def update_lda(article_body):
