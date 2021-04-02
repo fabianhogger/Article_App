@@ -70,9 +70,9 @@ U-mass coherence is better when close to zero and perplexity is optimal at its l
 | LDA20 | -13.652  |  -8.049|      500|20|
 |lda_10_1835|-8.488| -5.999|      1835|10|
 |lda_20_1835 | -12.778| -8.678|   1835|20|
-|lda_5_2000|-8.133    | -20.233|   2000|5|
 
-> Because  using U-mass coherence didn't help to distinguish the perfomance of the models for 2450 articles I started using  CV coherence which immediately made things clearer.The higher the cv coherence the better. 
+#### Models based on Articles names.
+> Because  using U-mass coherence didn't help to distinguish the perfomance of the models for 2450 articles I started using  CV coherence which immediately made things clearer.The higher the cv coherence the better.
 
 |Model | Perplexity |  U-mass Coherence| CV Coherence|Topics
 | -----| ----------  | ----------------|----------|----|
@@ -81,9 +81,37 @@ U-mass coherence is better when close to zero and perplexity is optimal at its l
 |lda15_2450|-15.156 |-18|0.555|15|
 |lda_20_2450|-24.223 |-17.727| 0.556|20|
 |lda30_2450|-33.610| -18.760| 0.639 |30|
-|lda40_2450|-50.990| -19.720| 0.735|40|
+|lda40_2450|-50.990| -19.720| **0.735**|40|
+
+
 
 ![c-v_graph](images/c_v_coherence1to50.png)
+
+>Coherence along with perplexity
+
+![c-v_graph](images/cv_coherence_perplexity1to50names.png)
+#### Models trained with all the Articles
+
+|Model | Perplexity | CV Coherence|Topics
+| -----| ---------- | ------------|------|
+|lda_2450|-7.921   |0.352| 5|
+|lda10_2450|-8.337 |0.401|10|
+|lda15_2450|-11.174 |**0.479**|15|
+|lda_20_2450|-12.674|0.467|20|
+|lda30_2450|-15.047 |0.401|30|
+|lda40_2450|-17.387 |0.418|40|
+|lda50_2450|-19.784 |0.420|50|
+>As we see model coherence maximizes at 15 topics
+but the difference is quite minimal. WE might consider trying a model with 50 or more topics since the perplexity seems to be steadily decreasing. In general we see that the
+value of **Perplexity** is not as low as in the models trained only on the article names and **Coherence** is also lower. That might be explained by the fact that now the models are trained on a much bigger corpus.
+
+
+![c-v_graph](images/c_v_coherence1to50correct.png)
+
+>Coherence along with perplexity shows that perplexity keeps decreasing so we have to try an increased number of topics to see if it ever bottoms out.
+
+![c-v_graph](images/cv_coherence_perplexity1to50.png)
+
 ## Scraping
 
 To scrap bbc and aljazeera I used scrapy's SitemapSpider class that automatically crawls a websites sitemap which is really usefull.
