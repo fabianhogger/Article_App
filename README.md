@@ -150,8 +150,9 @@ Article given:**Pakistan-Afghan fighting ‘ends’**
 
 
 
-MODEL 1 had  7 **irrelevant**, 2 **slightly relevant**, 1 **relevant**
-MODEL 2 had  7  **irrelevant**, 2 **slightly relevant**, 1 **relevant**
+>MODEL 1 had  7 **irrelevant**, 2 **slightly relevant**, 1 **relevant**
+
+>MODEL 2 had  7  **irrelevant**, 2 **slightly relevant**, 1 **relevant**
 
 Article given: **Rights groups attack Hebron exodus**
 1. 'కరోనా వైరస్\u200c సోకినవారిలో కనిపించే లక్షణాలు ఏంటి? ఈ లక్షణాలు కనిపిస్తే ఏం చేయాలి? - BBC News తెలుగు',   **irrelevant**
