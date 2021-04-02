@@ -155,6 +155,8 @@ Article given:**Pakistan-Afghan fighting ‘ends’**
 >MODEL 2 had  7  **irrelevant**, 2 **slightly relevant**, 1 **relevant**
 
 Article given: **Rights groups attack Hebron exodus**
+**MODEL 1**
+
 1. 'కరోనా వైరస్\u200c సోకినవారిలో కనిపించే లక్షణాలు ఏంటి? ఈ లక్షణాలు కనిపిస్తే ఏం చేయాలి? - BBC News తెలుగు',   **irrelevant**
 2.  'Gul faces second presidency vote | News News | Al Jazeera',  **irrelevant**
 3.  'David Cameron becomes British PM | News News | Al Jazeera',   **slightly relevant**
@@ -166,7 +168,7 @@ Article given: **Rights groups attack Hebron exodus**
 9.   'Real Madrid v Atalanta - BBC Sport',  **irrelevant**
 10. "Mozambik'te 'IŞİD bağlantılı cihatçı militanlar çocukların başlarını kesiyor' - BBC News Türkçe"]  **irrelevant**
 
-
+**MODEL 2**
 1. 'Jersey Constable Chris Taylor must resign, court rules - BBC News', **slightly relevant**
 2. UN doctors killed in Afghanistan | News News | Al Jazeera' **slightly relevant**
 3. 'Egypt condemns Israeli assassination attempt | News News | Al Jazeera', **slightly relevant**
@@ -177,8 +179,9 @@ Article given: **Rights groups attack Hebron exodus**
 8. Iran rejects US nuclear censure | News News | Al Jazeera **slightly relevant**
 9. Firms battle for Iraq contracts | News News | Al Jazeera'  **slightly relevant**
 
-MODEL 1 had  5 **irrelevant**, 4 **slightly relevant**, 1 **relevant**
-MODEL 2 had  1 **irrelevant**, 9 **slightly relevant**, 0 **relevant**
+>MODEL 1 had  5 **irrelevant**, 4 **slightly relevant**, 1 **relevant**
+
+>MODEL 2 had  1 **irrelevant**, 9 **slightly relevant**, 0 **relevant**
 
 
 ## Scraping
