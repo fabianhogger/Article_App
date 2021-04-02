@@ -115,9 +115,10 @@ value of **Perplexity** is not as low as in the models trained only on the artic
 
 #### Examples
 
-Below I ran some similarity tests using the same Articles for 2 different models.
+Below I ran some similarity tests using the same Articles for 3 different models.
 I classified the articles as **irrelevant** ,**slightly relevant** and **relevant**
-The first model was trained only on names and the second one was trained on whole articles.
+The first model was trained only on names. The second one was trained on whole articles with 15 number of topics (the one from the table above) .
+The 3rd was trained with 50 topics for the same articles as the second.
 
 Article given:**Pakistan-Afghan fighting ‘ends’**
 
@@ -148,11 +149,23 @@ Article given:**Pakistan-Afghan fighting ‘ends’**
 9. Germany expects economic growth | News News | Al Jazeera  **irrelevant**
 10. 'Bush tax-cut seen as short-term remedy | News News | Al Jazeera  **irrelevant**
 
+**MODEL 3**
 
+1. Turkey says civilians wounded in Syrian missile raids | Conflict News | Al Jazeera  **slightly relevant**
+2. Deaths in Baghdad car bomb | News News | Al Jazeera  **relevant**
+3. Pakistani intelligence foil aerial attack | News News | Al Jazeera  **relevant**
+4. Nine held in Spanish police raids | News News | Al Jazeera  **irrelevant**
+5. Islamists lead aid efforts in Algeria | News News | Al Jazeera **slightly relevant**
+6. Australia denies Solomons plot | News News | Al Jazeera  **irrelevant**
+7. 'Eight  killed in Algeria violence | News News | Al Jazeera **slightly relevant**
+8. Dyn anabl yn galw am gyllid personol i gael annibyniaeth - BBC Cymru Fy  **irrelevant**
+9. Beyonce won her 28th Grammy for Black Parade | Arts and Culture News | Al Jazeera **irrelevant**
+10. 'World’s poorest countries discuss poverty | News News | Al Jazeera **slightly relevant**
 
 >MODEL 1 had  7 **irrelevant**, 2 **slightly relevant**, 1 **relevant**
 
 >MODEL 2 had  7  **irrelevant**, 2 **slightly relevant**, 1 **relevant**
+ >MODEL 3 had  4  **irrelevant**, 4 **slightly relevant**, 2 **relevant**
 
 Article given: **Rights groups attack Hebron exodus**
 
@@ -180,10 +193,23 @@ Article given: **Rights groups attack Hebron exodus**
 8. Iran rejects US nuclear censure | News News | Al Jazeera **slightly relevant**
 9. Firms battle for Iraq contracts | News News | Al Jazeera'  **slightly relevant**
 
+**MODEL 3**
+
+1. 'Atletico Madrid win Europa final | News News | Al Jazeera **irrelevant**
+2. 'Fresh ambush against US troops in Iraq | News News | Al Jazeera **slightly relevant**
+3. Asean urged to put pressure on North Korea | News News | Al Jazeera
+4. 'Marine may go free in Haditha case | News News | Al Jazeera  **slightly relevant**
+5. Beyonce won her 28th Grammy for Black Parade | Arts and Culture News | Al Jazeera **irrelevant**
+6. 'Inside Story | Middle East News | Al Jazeera **irrelevant**
+7. Hamas: resistance will continue | News News | Al Jazeera **relevant**
+8. EU seeks cross-Atlantic rapprochement | News News | Al Jazeera **irrelevant**
+9. 'Palestinians want direct US aid | News News | Al Jazeera **relevant**
+10. US asks Iran to hand over al Qaeda suspects | News News | Al Jazeera' **relevant**
+
 >MODEL 1 had  5 **irrelevant**, 4 **slightly relevant**, 1 **relevant**
 
 >MODEL 2 had  1 **irrelevant**, 9 **slightly relevant**, 0 **relevant**
-
+>MODEL 3 had  5  **irrelevant**, 2 **slightly relevant**, 3 **relevant**
 
 ## Scraping
 
