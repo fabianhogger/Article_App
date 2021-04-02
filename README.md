@@ -112,6 +112,26 @@ value of **Perplexity** is not as low as in the models trained only on the artic
 
 ![c-v_graph](images/cv_coherence_perplexity1to50.png)
 
+
+#### Examples
+
+Below I ran some similarity tests using the same Articles for 2 different models.
+The first model was trained only on names and the second one was trained on whole articles.
+Article given:* Pakistan-Afghan fighting ‘ends’ | News News | Al Jazeera *
+1. Video: Main course with murderers | AJAM News | Al Jazeera
+2. NATO may send troops to Palestine | News News | Al Jazeera
+3. Protesters storm presidential palace in Yemen’s Aden | Protests News | Al Jazeera
+4. Liverpool Biennial: Outdoor artwork for Covid-safe festival - BBC News
+5. Baafin-09-Maarso-2021 - BBC News Somali
+6. Coronavirus: Boris Johnson tells reporters in March 2020 he 'shook hands with everybody' - BBC News
+7. The Duke of Edinburgh leaves King Edward VII's hospital after treatment - BBC News
+8. நந்திகிராமில் வாக்காளர்களை கவர புதிய அவதாரம் எடுத்த மமதா - BBC News தமிழ்
+9. Syria: Kurds fire upon police homes | News News | Al Jazeera
+10. TV bosses charged over al-Manar | News News | Al Jazeera
+
+
+
+
 ## Scraping
 
 To scrap bbc and aljazeera I used scrapy's SitemapSpider class that automatically crawls a websites sitemap which is really usefull.
