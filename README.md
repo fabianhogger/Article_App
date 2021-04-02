@@ -117,7 +117,8 @@ value of **Perplexity** is not as low as in the models trained only on the artic
 
 Below I ran some similarity tests using the same Articles for 2 different models.
 The first model was trained only on names and the second one was trained on whole articles.
-Article given:* Pakistan-Afghan fighting ‘ends’ | News News | Al Jazeera *
+
+Article given:**Pakistan-Afghan fighting ‘ends’**
 1. Video: Main course with murderers | AJAM News | Al Jazeera
 2. NATO may send troops to Palestine | News News | Al Jazeera
 3. Protesters storm presidential palace in Yemen’s Aden | Protests News | Al Jazeera
