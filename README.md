@@ -106,7 +106,7 @@ U-mass coherence is better when close to zero and perplexity is optimal at its l
 |lda70_2450|-24.631|0.349|70|
 |lda100_2450|-31.802|0.352|100|
 >As we see model coherence maximizes at 15 topics
-but the difference is quite minimal. WE might consider trying a model with 50 or more topics since the perplexity seems to be steadily decreasing. In general we see that the
+but the difference is quite minimal. In general we see that the
 value of **Perplexity** is not as low as in the models trained only on the article names and **Coherence** is also lower. That might be explained by the fact that now the models are trained on a much bigger corpus.
 
 
