@@ -155,8 +155,9 @@ Article given:**Pakistan-Afghan fighting ‘ends’**
 >MODEL 2 had  7  **irrelevant**, 2 **slightly relevant**, 1 **relevant**
 
 Article given: **Rights groups attack Hebron exodus**
-**MODEL 1**
 
+
+**MODEL 1**
 1. 'కరోనా వైరస్\u200c సోకినవారిలో కనిపించే లక్షణాలు ఏంటి? ఈ లక్షణాలు కనిపిస్తే ఏం చేయాలి? - BBC News తెలుగు',   **irrelevant**
 2.  'Gul faces second presidency vote | News News | Al Jazeera',  **irrelevant**
 3.  'David Cameron becomes British PM | News News | Al Jazeera',   **slightly relevant**
