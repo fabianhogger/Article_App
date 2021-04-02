@@ -116,21 +116,68 @@ value of **Perplexity** is not as low as in the models trained only on the artic
 #### Examples
 
 Below I ran some similarity tests using the same Articles for 2 different models.
+I classified the articles as **irrelevant** ,**slightly relevant** and **relevant**
 The first model was trained only on names and the second one was trained on whole articles.
 
 Article given:**Pakistan-Afghan fighting ‘ends’**
-1. Video: Main course with murderers | AJAM News | Al Jazeera
-2. NATO may send troops to Palestine | News News | Al Jazeera
-3. Protesters storm presidential palace in Yemen’s Aden | Protests News | Al Jazeera
-4. Liverpool Biennial: Outdoor artwork for Covid-safe festival - BBC News
-5. Baafin-09-Maarso-2021 - BBC News Somali
-6. Coronavirus: Boris Johnson tells reporters in March 2020 he 'shook hands with everybody' - BBC News
-7. The Duke of Edinburgh leaves King Edward VII's hospital after treatment - BBC News
-8. நந்திகிராமில் வாக்காளர்களை கவர புதிய அவதாரம் எடுத்த மமதா - BBC News தமிழ்
-9. Syria: Kurds fire upon police homes | News News | Al Jazeera
-10. TV bosses charged over al-Manar | News News | Al Jazeera
+
+**MODEL 1**
+1. Video: Main course with murderers | AJAM News | Al Jazeera  **irrelevant**
+2. NATO may send troops to Palestine | News News | Al Jazeera **slightly relevant**
+3. Protesters storm presidential palace in Yemen’s Aden | Protests News | Al Jazeera **relevant**
+4. Liverpool Biennial: Outdoor artwork for Covid-safe festival - BBC News  **irrelevant**
+5. Baafin-09-Maarso-2021 - BBC News Somali  **irrelevant**
+6. Coronavirus: Boris Johnson tells reporters in March 2020 he 'shook hands with everybody' - BBC News  **irrelevant**
+7. The Duke of Edinburgh leaves King Edward VII's hospital after treatment - BBC News  **irrelevant**
+8. நந்திகிராமில் வாக்காளர்களை கவர புதிய அவதாரம் எடுத்த மமதா - BBC News தமிழ்  **irrelevant**
+9. Syria: Kurds fire upon police homes | News News | Al Jazeera **slightly relevant**
+10. TV bosses charged over al-Manar | News News | Al Jazeera  **irrelevant**
 
 
+
+**MODEL 2**
+
+1. Turkey says civilians wounded in Syrian missile raids | Conflict News | Al Jazeera **slightly relevant**
+2. Deaths in Baghdad car bomb | News News | Al Jazeera', **relevant**
+3. 'Japan is greying fast | News News | Al Jazeera **irrelevant**
+4. Nine held in Spanish police raids | News News | Al Jazeera **irrelevant**
+5. السطو على منزل لاعبين في باريس سان جيرمان أثناء مباراة للفريق - BBC News عرب **irrelevant**
+6. Child migrants: What is happening at the US border? - BBC News **irrelevant**
+7. Sudan calls for rebel leader arrest | News News | Al Jazeera **slightly relevant**
+8. Finnish PM quits over leak | News News | Al Jazeera  **irrelevant**
+9. Germany expects economic growth | News News | Al Jazeera  **irrelevant**
+10. 'Bush tax-cut seen as short-term remedy | News News | Al Jazeera  **irrelevant**
+
+
+
+MODEL 1 had  7 **irrelevant**, 2 **slightly relevant**, 1 **relevant**
+MODEL 2 had  7  **irrelevant**, 2 **slightly relevant**, 1 **relevant**
+
+Article given: **Rights groups attack Hebron exodus**
+1. 'కరోనా వైరస్\u200c సోకినవారిలో కనిపించే లక్షణాలు ఏంటి? ఈ లక్షణాలు కనిపిస్తే ఏం చేయాలి? - BBC News తెలుగు',   **irrelevant**
+2.  'Gul faces second presidency vote | News News | Al Jazeera',  **irrelevant**
+3.  'David Cameron becomes British PM | News News | Al Jazeera',   **slightly relevant**
+4.   'Iraqis ignore  weapons ban | News News | Al Jazeera',   **slightly relevant**
+5. "Goldman Sachs boss says 'go extra mile' despite 95-hour week - BBC News",    **irrelevant**
+6.   'کشف بزرگترین گور دست جمعی جنگ جهانی اول - BBC News فارسی',   **irrelevant**
+7.   'Israel defends Abbas, undermines Arafat | News News | Al Jazeera', **relevant**
+8.   "Moira mother's anguish over parallels with Sarah Everard case - BBC News",    **irrelevant**
+9.   'Real Madrid v Atalanta - BBC Sport',  **irrelevant**
+10. "Mozambik'te 'IŞİD bağlantılı cihatçı militanlar çocukların başlarını kesiyor' - BBC News Türkçe"]  **irrelevant**
+
+
+1. 'Jersey Constable Chris Taylor must resign, court rules - BBC News', **slightly relevant**
+2. UN doctors killed in Afghanistan | News News | Al Jazeera' **slightly relevant**
+3. 'Egypt condemns Israeli assassination attempt | News News | Al Jazeera', **slightly relevant**
+4. 'Berlusconi faces fresh charges | News News | Al Jazeera',  **slightly relevant**
+5. Yemen holds elections | News News | Al Jazeera', **slightly relevant**
+6.  'Pentagon ‘delays’ release of Syrian guards | News News | Al Jazeera',  **slightly relevant**
+7. When is a shock not a shock? | Italy News | Al Jazeera' **irrelevant**
+8. Iran rejects US nuclear censure | News News | Al Jazeera **slightly relevant**
+9. Firms battle for Iraq contracts | News News | Al Jazeera'  **slightly relevant**
+
+MODEL 1 had  5 **irrelevant**, 4 **slightly relevant**, 1 **relevant**
+MODEL 2 had  1 **irrelevant**, 9 **slightly relevant**, 0 **relevant**
 
 
 ## Scraping
