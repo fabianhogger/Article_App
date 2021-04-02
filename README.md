@@ -165,7 +165,8 @@ Article given:**Pakistan-Afghan fighting ‘ends’**
 >MODEL 1 had  7 **irrelevant**, 2 **slightly relevant**, 1 **relevant**
 
 >MODEL 2 had  7  **irrelevant**, 2 **slightly relevant**, 1 **relevant**
- >MODEL 3 had  4  **irrelevant**, 4 **slightly relevant**, 2 **relevant**
+
+>MODEL 3 had  4  **irrelevant**, 4 **slightly relevant**, 2 **relevant**
 
 Article given: **Rights groups attack Hebron exodus**
 
@@ -209,6 +210,7 @@ Article given: **Rights groups attack Hebron exodus**
 >MODEL 1 had  5 **irrelevant**, 4 **slightly relevant**, 1 **relevant**
 
 >MODEL 2 had  1 **irrelevant**, 9 **slightly relevant**, 0 **relevant**
+
 >MODEL 3 had  5  **irrelevant**, 2 **slightly relevant**, 3 **relevant**
 
 ## Scraping
