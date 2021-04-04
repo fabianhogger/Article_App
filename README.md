@@ -119,10 +119,10 @@ value of **Perplexity** is not as low as in the models trained only on the artic
 
 #### Examples
 
-Below I ran some similarity tests using the same Articles for 3 different models.
+Below I ran some similarity tests using the same Articles for 2 different models.
 I classified the articles as **irrelevant** ,**slightly relevant** and **relevant**
-The first model was trained only on names. The second one was trained on whole articles with 15 number of topics (the one from the table above) .
-The 3rd was trained with 50 topics for the same articles as the second.
+The first model was trained  with 15 number of topics (the one from the table above) .
+The 2nd was trained with 50 topics for the same articles as the first.
 
 Article given: **Covid-19 in the UK: How many coronavirus cases are there in your area? - BBC News**
 
