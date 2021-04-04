@@ -7,36 +7,46 @@ from gensim.utils import simple_preprocess
 import spacy
 import gensim.corpora as corpora
 #data cleaning
+from gensim.models.coherencemodel import CoherenceModel
+
 stop_words = stopwords.words('english')
 nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
+stop_words.extend(['from', 'subject', 're', 'edu', 'use'])
 def sent_to_words(sentences):
     for sentence in sentences:
         yield(gensim.utils.simple_preprocess(str(sentence), deacc=True))
+#This function takes in a list of tuples with each id and its article body
+#It removes articles that have a certain percentage of non-latin characters
+
+def check_latin(text):
+    pattern = re.compile("^[a-zA-Z]+$")
+    toremove=[]
+    for i in range(len(text)):
+        check=[]
+        for char in text[i][1]:
+            if pattern.match(char):
+                check.append(1)
+            else:
+                check.append(0)
+        if ((sum(check)/len(check))*100)<=3:
+            print(text[i][0])
+            toremove.append(text[i])
+    for j in range(len(toremove)):
+        text.remove(toremove[j])
+    print("LENGTH",len(text))
+    return text
 class train_defs():
 
     def start(django_data):
-        stop_words.extend(['from', 'subject', 're', 'edu', 'use'])
-        def check_latin(text):
-            pattern = re.compile("^[a-zA-Z]+$")
-            check=[]
-            removed=[]
-            for i in range(len(text)):
-                check=[]
-                for char in text[i]:
-                    if pattern.match(char):
-                        check.append(1)
-                    else:
-                        check.append(0)
-                print('Article number {} has {} percent latin characters'.format(i,(sum(check)/len(check))*100))
-                if ((sum(check)/len(check))*100)<=3:
-                    removed.append(text[i])
-            for j in range(len(removed)):
-                text.remove(removed[j])
-            return text
-        print('list length before removal  ',len(django_data))
+
         django_data=check_latin(django_data)
-        print('list length after removal  ',len(django_data))
-        data = django_data
+        res = list(zip(*django_data))
+        """after removing some articles we have to save the ids and their order
+        to retrieve them later"""
+        print("List of ids",res[0])
+        with open('list_ids50.pkl', 'wb') as f:
+            pickle.dump(res[0], f)
+        data = res[1]
         data = [re.sub('\S*@\S*\s?', '', sent) for sent in data]
         data = [re.sub('\s+', ' ', sent) for sent in data]
         data = [re.sub("\'", "", sent) for sent in data]
@@ -68,15 +78,20 @@ class train_defs():
         diction = corpora.Dictionary(data_lemmatized)
 
         corpus = [diction.doc2bow(text) for text in data_lemmatized]
-
+        #dump_texts=open("texts3",'wb')
+        #texts=pickle.dump(data_lemmatized,dump_texts)
         #Create a model
         lda_model = gensim.models.ldamodel.LdaModel(
-           corpus=corpus, id2word=diction, num_topics=20, random_state=100,
-           update_every=1, chunksize=100, passes=10, alpha='auto'
-        )
-        lda_model.save('modeltitles')
-        open_file = open('corpustitle', "wb")
+               corpus=corpus, id2word=diction, num_topics=50, random_state=100,
+               update_every=1, chunksize=100, passes=10, alpha='auto'
+            )
+        lda_model.save('model50bodies')
+        open_file = open('corpus50bodies', "wb")
         pickle.dump(corpus, open_file)
-        import pyLDAvis.gensim
-        vis = pyLDAvis.gensim.prepare(lda_model, corpus, dictionary=diction)
-        pyLDAvis.save_html(vis,'ldavistitle.html')
+        Perplexity=lda_model.log_perplexity(corpus)
+        cm = CoherenceModel(model=lda_model, texts=data_lemmatized,dictionary=diction, coherence='c_v')
+        coherence = cm.get_coherence()  # get coherence value
+        print(" perp , coherence {},{}".format(Perplexity,coherence))
+        #import pyLDAvis.gensim
+        #vis = pyLDAvis.gensim.prepare(lda_model, corpus, dictionary=diction)
+        #pyLDAvis.save_html(vis,'ldavistrial70.html')

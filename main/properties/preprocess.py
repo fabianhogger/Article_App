@@ -58,15 +58,15 @@ class clean():
         data_lemmatized = lemmatization(data_words_nostops, allowed_postags=[
            'NOUN', 'ADJ', 'VERB', 'ADV'
         ])
-        print('data_lemmatized',data_lemmatized)
-        dict = corpora.Dictionary.load('properties/lda/lda2450_30/model30.id2word')
+        #print('data_lemmatized',data_lemmatized)
+        dict = corpora.Dictionary.load('properties/lda/lda_50_articles/model50bodies.id2word')
         converted = [dict.doc2bow(text) for text in data_lemmatized]
         #print('data ready ',converted)
         return converted
 
     def get_similarity(lda, query_vector):
         corpus=0
-        with open('properties/lda/lda2450_30/corpus30', 'rb') as f:
+        with open('properties/lda/lda_50_articles_wlist/corpus50bodies', 'rb') as f:
             corpus = pickle.load(f)
         index = similarities.MatrixSimilarity(lda[corpus])
         sims = index[query_vector]
@@ -74,7 +74,7 @@ class clean():
 
     def get_jensen_shannon(lda,vector):
         corpus=0
-        with open('properties/lda/lda2450_30/corpus30', 'rb') as f:
+        with open('properties/lda/lda_50_articles/corpus50bodies', 'rb') as f:
             corpus = pickle.load(f)
         vector=[item[1] for item in vector]
         print("VECTOR AFTER PROCESS")
