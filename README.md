@@ -124,98 +124,85 @@ I classified the articles as **irrelevant** ,**slightly relevant** and **relevan
 The first model was trained only on names. The second one was trained on whole articles with 15 number of topics (the one from the table above) .
 The 3rd was trained with 50 topics for the same articles as the second.
 
-Article given:**Pakistan-Afghan fighting ‘ends’**
+Article given: **Covid-19 in the UK: How many coronavirus cases are there in your area? - BBC News**
 
 **MODEL 1**
-1. Video: Main course with murderers | AJAM News | Al Jazeera  **irrelevant**
-2. NATO may send troops to Palestine | News News | Al Jazeera **slightly relevant**
-3. Protesters storm presidential palace in Yemen’s Aden | Protests News | Al Jazeera **relevant**
-4. Liverpool Biennial: Outdoor artwork for Covid-safe festival - BBC News  **irrelevant**
-5. Baafin-09-Maarso-2021 - BBC News Somali  **irrelevant**
-6. Coronavirus: Boris Johnson tells reporters in March 2020 he 'shook hands with everybody' - BBC News  **irrelevant**
-7. The Duke of Edinburgh leaves King Edward VII's hospital after treatment - BBC News  **irrelevant**
-8. நந்திகிராமில் வாக்காளர்களை கவர புதிய அவதாரம் எடுத்த மமதா - BBC News தமிழ்  **irrelevant**
-9. Syria: Kurds fire upon police homes | News News | Al Jazeera **slightly relevant**
-10. TV bosses charged over al-Manar | News News | Al Jazeera  **irrelevant**
+1. Newcastle city centre £50m revamp plan - BBC News **irrelevant**
+2. Covid: Guernsey leaves second pandemic lockdown - BBC News' **relevant**
+3. Gold rush threat to Amazon jungle | News News | Al Jazeera **irrelevant**
+4. Machine finds tantalising hints of new physics - BBC News **irrelevant**
+5. Seen from the sky: Polluted waters around the world | Gallery News | Al Jazeera **irrelevant**
+6. COVID jabs bring relief for vulnerable California farmworkers | Agriculture News | Al Jazeera **relevant**
+7. Dating agencies boom in China | Arts and Culture News | Al Jazeera **irrelevant**
+8. Jinxed Japanese space programme | News News | Al Jazeera **irrelevant**
+9. Munching your way through the afternoon | News News | Al Jazeera **irrelevant**
+10. Hot tub accidents triple in lockdown, says insurer - BBC News **slightly relevant**
+
 
 
 
 **MODEL 2**
 
-1. Turkey says civilians wounded in Syrian missile raids | Conflict News | Al Jazeera **slightly relevant**
-2. Deaths in Baghdad car bomb | News News | Al Jazeera', **relevant**
-3. 'Japan is greying fast | News News | Al Jazeera **irrelevant**
-4. Nine held in Spanish police raids | News News | Al Jazeera **irrelevant**
-5. السطو على منزل لاعبين في باريس سان جيرمان أثناء مباراة للفريق - BBC News عرب **irrelevant**
-6. Child migrants: What is happening at the US border? - BBC News **irrelevant**
-7. Sudan calls for rebel leader arrest | News News | Al Jazeera **slightly relevant**
-8. Finnish PM quits over leak | News News | Al Jazeera  **irrelevant**
-9. Germany expects economic growth | News News | Al Jazeera  **irrelevant**
-10. 'Bush tax-cut seen as short-term remedy | News News | Al Jazeera  **irrelevant**
+1. Canada quarantines 500 suspected SARS cases | News News | Al Jazeera  **slightly relevant**
+2. Covid: Five more in hospital on Isle of Man as 45 new cases confirmed - BBC News **relevant**
+3. How the COVID-19 pandemic is affecting mental health | News News | Al Jazeera **relevant**
+4. Japan is greying fast | News News | Al Jazeera **irrelevant**
+5. Covid: 17 patients treated after Ysbyty Gwynedd outbreak - BBC News' **relevant**
+6. 'Covid-19: Brazil to get fourth health minister since pandemic began - BBC News **relevant**
+7. Why is India staring at a ‘second peak’ of COVID cases? | Coronavirus pandemic News | Al Jazeera  **relevant**
+8. Covid-19: India reports record daily rise in new infections - BBC News **relevant**
+9. Russia identifies two cases of South African COVID variant | Coronavirus pandemic News | Al Jazeera **relevant**
+10. COVID jabs bring relief for vulnerable California farmworkers | Agriculture News | Al Jazeera **relevant**
 
-**MODEL 3**
 
-1. Turkey says civilians wounded in Syrian missile raids | Conflict News | Al Jazeera  **slightly relevant**
-2. Deaths in Baghdad car bomb | News News | Al Jazeera  **relevant**
-3. Pakistani intelligence foil aerial attack | News News | Al Jazeera  **relevant**
-4. Nine held in Spanish police raids | News News | Al Jazeera  **irrelevant**
-5. Islamists lead aid efforts in Algeria | News News | Al Jazeera **slightly relevant**
-6. Australia denies Solomons plot | News News | Al Jazeera  **irrelevant**
-7. 'Eight  killed in Algeria violence | News News | Al Jazeera **slightly relevant**
-8. Dyn anabl yn galw am gyllid personol i gael annibyniaeth - BBC Cymru Fy  **irrelevant**
-9. Beyonce won her 28th Grammy for Black Parade | Arts and Culture News | Al Jazeera **irrelevant**
-10. 'World’s poorest countries discuss poverty | News News | Al Jazeera **slightly relevant**
 
->MODEL 1 had  7 **irrelevant**, 2 **slightly relevant**, 1 **relevant**
 
->MODEL 2 had  7  **irrelevant**, 2 **slightly relevant**, 1 **relevant**
 
->MODEL 3 had  4  **irrelevant**, 4 **slightly relevant**, 2 **relevant**
 
-Article given: **Rights groups attack Hebron exodus**
+>MODEL 1 had  7 **irrelevant**, 1 **slightly relevant**, 2 **relevant**
+
+>MODEL 2 had  1  **irrelevant**, 2 **slightly relevant**, 7 **relevant**
+
+
+Article given: **School attendance back at high levels in England - BBC News**
+
 
 
 **MODEL 1**
-1. 'కరోనా వైరస్\u200c సోకినవారిలో కనిపించే లక్షణాలు ఏంటి? ఈ లక్షణాలు కనిపిస్తే ఏం చేయాలి? - BBC News తెలుగు',   **irrelevant**
-2.  'Gul faces second presidency vote | News News | Al Jazeera',  **irrelevant**
-3.  'David Cameron becomes British PM | News News | Al Jazeera',   **slightly relevant**
-4.   'Iraqis ignore  weapons ban | News News | Al Jazeera',   **slightly relevant**
-5. "Goldman Sachs boss says 'go extra mile' despite 95-hour week - BBC News",    **irrelevant**
-6.   'کشف بزرگترین گور دست جمعی جنگ جهانی اول - BBC News فارسی',   **irrelevant**
-7.   'Israel defends Abbas, undermines Arafat | News News | Al Jazeera', **relevant**
-8.   "Moira mother's anguish over parallels with Sarah Everard case - BBC News",    **irrelevant**
-9.   'Real Madrid v Atalanta - BBC Sport',  **irrelevant**
-10. "Mozambik'te 'IŞİD bağlantılı cihatçı militanlar çocukların başlarını kesiyor' - BBC News Türkçe"]  **irrelevant**
+1. We were the only people there to support them" - BBC News **irrelevant**
+2. Over 50 and overlooked for work' - BBC News **irrelevant**
+3. "Covid and cancer: 'It felt like the universe was out to get me' - BBC News **slightly relevant**
+4. Nurseries sent first official cyber-attack warning - BBC News  **irrelevant**
+5.  "Coronavirus: 'We got through lockdown by dancing' - BBC News"  **relevant**
+6. Online privacy: digitally exposed | Science and Technology News | Al Jazeera **irrelevant**
+7. Covid in Wales: More face-to-face university teaching after Easter - BBC News  **relevant**
+8. Covid-19: Lateral flow testing for years 12-14 pupils - BBC News **relevant**
+9. Watch: Freestyle Ski and Snowboarding World Championships - Snowboard Big Air finals - BBC Sport **irrelevant**
+10. Covid: Wales' school pupils 'excited and nervous' about return - BBC News  **relevant**
+
+
 
 **MODEL 2**
-1. 'Jersey Constable Chris Taylor must resign, court rules - BBC News', **slightly relevant**
-2. UN doctors killed in Afghanistan | News News | Al Jazeera' **slightly relevant**
-3. 'Egypt condemns Israeli assassination attempt | News News | Al Jazeera', **slightly relevant**
-4. 'Berlusconi faces fresh charges | News News | Al Jazeera',  **slightly relevant**
-5. Yemen holds elections | News News | Al Jazeera', **slightly relevant**
-6.  'Pentagon ‘delays’ release of Syrian guards | News News | Al Jazeera',  **slightly relevant**
-7. When is a shock not a shock? | Italy News | Al Jazeera' **irrelevant**
-8. Iran rejects US nuclear censure | News News | Al Jazeera **slightly relevant**
-9. Firms battle for Iraq contracts | News News | Al Jazeera'  **slightly relevant**
+1. Coronavirus: 'Everyone is excited to be back at school' - BBC News **relevant**
+2. Nurseries sent first official cyber-attack warning - BBC News **irrelevant**
+3. LIVE: Scottish Conservative Party conference speech by Douglas Ross - BBC News **irrelevant**
+4. Covid in Wales: More face-to-face university teaching after Easter - BBC News **relevant**
+5. Censors hold back Chinese cinema | News News | Al Jazeera **irrelevant**
+6. Guernsey's autism centre to move schools over space issue - BBC News **irrelevant**
+7. Covid: Outdoor education centres 'may not survive' - BBC News **relevant**
+8. Covid-19: Lateral flow testing for years 12-14 pupils - BBC News **relevant**
+9. Ipswich aims to become 'UK's first 15-minute' town - BBC News **irrelevant**
+10.  Cross-border workers call for home-working tax law - BBC News **irrelevant**
 
-**MODEL 3**
 
-1. 'Atletico Madrid win Europa final | News News | Al Jazeera **irrelevant**
-2. 'Fresh ambush against US troops in Iraq | News News | Al Jazeera **slightly relevant**
-3. Asean urged to put pressure on North Korea | News News | Al Jazeera
-4. 'Marine may go free in Haditha case | News News | Al Jazeera  **slightly relevant**
-5. Beyonce won her 28th Grammy for Black Parade | Arts and Culture News | Al Jazeera **irrelevant**
-6. 'Inside Story | Middle East News | Al Jazeera **irrelevant**
-7. Hamas: resistance will continue | News News | Al Jazeera **relevant**
-8. EU seeks cross-Atlantic rapprochement | News News | Al Jazeera **irrelevant**
-9. 'Palestinians want direct US aid | News News | Al Jazeera **relevant**
-10. US asks Iran to hand over al Qaeda suspects | News News | Al Jazeera' **relevant**
 
->MODEL 1 had  5 **irrelevant**, 4 **slightly relevant**, 1 **relevant**
 
->MODEL 2 had  1 **irrelevant**, 9 **slightly relevant**, 0 **relevant**
 
->MODEL 3 had  5  **irrelevant**, 2 **slightly relevant**, 3 **relevant**
+
+>MODEL 1 had  5 **irrelevant**, 1 **slightly relevant**, 4 **relevant**
+
+>MODEL 2 had  6 **irrelevant**, 0 **slightly relevant**, 4 **relevant**
+
 
 ## Scraping
 
