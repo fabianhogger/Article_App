@@ -124,8 +124,21 @@ I classified the articles as **irrelevant** ,**slightly relevant** and **relevan
 The first model was trained  with 15 number of topics (the one from the table above) .
 The 2nd was trained with 50 topics for the same articles as the first.
 
-Article given: **Covid-19 in the UK: How many coronavirus cases are there in your area? - BBC News**
 
+##### Model 1 Topics
+Following are some topics with the most frequent words along with a fitting title.
+1. Politics/Goverment--Government,say,country,year,also,make,would,leader,election,issue,political,state,
+support,lead,new,first,percent,deal,world,last,sanction,need,may,take,power,include,change,seek,public,decisiom
+2. Politics/Israel--say,would,year,israeli,tell,time,take,back,come,go,many,want,could,see,leave,palestinian,
+day,make,visit,still,know,last,people,peace,give,part,hold,place,also,live
+3. Police/Politics--say,woman,report,arrest,police,people,protest,attack,charge,man,official,
+group,violence,authority,release,accuse,protester,shoot,die,allegation,suspect,officer,member,detain,victim,intelligence,activist,journalist,kill,investigation
+Article given: **Covid-19 in the UK: How many coronavirus cases are there in your area? - BBC News**
+##### Model 2 Topics
+1. War --say,report,people,kill,attack,military,force,official,group,also,tell,member,call,security,region,war,
+leave,least,continue,take,several,statement,come,includee,arly,former,accord,fight,claim,government
+2. Politics--political,talk,deal,power,leader,foreign,meeting,peace,government,policy,agree,agreement,
+nuclear,seek,international,pressure,trade,reform,state,dispute,minister,maintain,criticise,secretary,labour,settlement,legislation,propose,influence,growth
 **MODEL 1**
 1. Newcastle city centre £50m revamp plan - BBC News **irrelevant**
 2. Covid: Guernsey leaves second pandemic lockdown - BBC News' **relevant**
