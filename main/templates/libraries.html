@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <title>Scraped News Central</title>
+    <title>Libraries</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -40,11 +40,7 @@ https://templatemo.com/tm-557-grad-school
     <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
     <nav id="menu" class="main-nav" role="navigation">
       <ul class="main-menu">
-        <li><a href="#section1">Home</a></li>
-        <li><a href="#section4">Topics</a></li>
-         <li><a href="#section5">Video</a></li>
-        <li><a href="{% url 'libraries' %}" class='external'>Libraries</a></li>
-        <li><a href="https://templatemo.com" class="external">Account</a></li>
+        <li><a href="index.html" class='external'>Home</a></li>
         <li class="has-submenu"><a href="#section2">About Us</a>
           <ul class="sub-menu">
             <li><a href="#section2">Who we are?</a></li>
@@ -53,6 +49,10 @@ https://templatemo.com/tm-557-grad-school
             <li><a href="https://templatemo.com/about" rel="sponsored" class="external">external url</a></li>
           </ul>
         </li>
+        <li><a href="#section4">Topics</a></li>
+        <!-- <li><a href="#section5">Video</a></li> -->
+        <li><a href="#section1" class="external">Libraries</a></li>
+        <li><a href="https://templatemo.com" class="external">Account</a></li>
       </ul>
     </nav>
   </header>
@@ -60,13 +60,13 @@ https://templatemo.com/tm-557-grad-school
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section main-banner" id="top" data-section="section1">
       <video autoplay muted loop id="bg-video">
-          <source src="{% static 'assets/images/course-video.mp4' %}" type="video/mp4" />
+          <source src="{% static 'assets/images/course-video.mp4'%}" type="video/mp4" />
       </video>
 
       <div class="video-overlay header-text">
           <div class="caption">
-              <h6>Top Story</h6>
-              <h2><em>Story</em> Title</h2>
+              <h6>Graduate School of Management</h6>
+              <h2><em>Your</em> Classroom</h2>
               <div class="main-button">
                   <div class="scroll-to-section"><a href="#section2">Discover more</a></div>
               </div>
@@ -74,6 +74,7 @@ https://templatemo.com/tm-557-grad-school
       </div>
   </section>
   <!-- ***** Main Banner Area End ***** -->
+
 
   <section class="features">
     <div class="container">
@@ -123,41 +124,35 @@ https://templatemo.com/tm-557-grad-school
       </div>
     </div>
   </section>
-
   <section class="section courses" data-section="section4">
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
           <div class="section-heading">
-            <h2>Related Stories</h2>
+            <h2>Choose Your Course</h2>
           </div>
         </div>
         <div class="owl-carousel owl-theme">
-        {% for object in object_list %}
           <div class="item">
-
-            <a  href="http://127.0.0.1:8000/article/{{object.id}}"> <img src="{% static 'assets/images/courses-01.jpg' %}" alt="Course #1">
-            </a>
+            <img src="{% static 'assets/images/courses-01.jpg' %}" alt="Course #1">
             <div class="down-content">
-              <h4>{{object.name}}</h4>
+              <h4>Digital Marketing</h4>
               <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
               <div class="author-image">
                 <img src="{% static 'assets/images/author-01.png' %}" alt="Author 1">
               </div>
               <div class="text-button-pay">
-                <a href="http://127.0.0.1:8000/article/{{object.id}}">View <i class="fa fa-angle-double-right"></i></a>
+                <a href="#">Pay <i class="fa fa-angle-double-right"></i></a>
               </div>
             </div>
           </div>
-          {% endfor %}
-      <!--    <div class="item">
-
-            <img src="assets/images/courses-02.jpg" alt="Course #2">
+          <div class="item">
+            <img src="{% static 'assets/images/courses-02.jpg' %}" alt="Course #2">
             <div class="down-content">
               <h4>Business World</h4>
               <p>Quisque cursus augue ut velit dictum, quis volutpat enim blandit. Maecenas a lectus ac ipsum porta.</p>
               <div class="author-image">
-                <img src="assets/images/author-02.png" alt="Author 2">
+                <img src="{% static 'assets/images/author-02.png' %}" alt="Author 2">
               </div>
               <div class="text-button-free">
                 <a href="#">Free <i class="fa fa-angle-double-right"></i></a>
@@ -165,12 +160,12 @@ https://templatemo.com/tm-557-grad-school
             </div>
           </div>
           <div class="item">
-            <img src="assets/images/courses-03.jpg" alt="Course #3">
+            <img src="{% static 'assets/images/courses-03.jpg' %}" alt="Course #3">
             <div class="down-content">
               <h4>Media Technology</h4>
               <p>Pellentesque ultricies diam magna, auctor cursus lectus pretium nec. Maecenas finibus lobortis enim.</p>
               <div class="author-image">
-                <img src="assets/images/author-03.png" alt="Author 3">
+                <img src="{% static 'assets/images/author-03.png' %}" alt="Author 3">
               </div>
               <div class="text-button-pay">
                 <a href="#">Pay <i class="fa fa-angle-double-right"></i></a>
@@ -178,12 +173,12 @@ https://templatemo.com/tm-557-grad-school
             </div>
           </div>
           <div class="item">
-            <img src="assets/images/courses-04.jpg" alt="Course #4">
+            <img src="{% static 'assets/images/courses-04.jpg' %}" alt="Course #4">
             <div class="down-content">
               <h4>Communications</h4>
               <p>Download free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
               <div class="author-image">
-                <img src="assets/images/author-04.png" alt="Author 4">
+                <img src="{% static 'assets/images/author-04.png' %}" alt="Author 4">
               </div>
               <div class="text-button-free">
                 <a href="#">Free <i class="fa fa-angle-double-right"></i></a>
@@ -191,12 +186,12 @@ https://templatemo.com/tm-557-grad-school
             </div>
           </div>
           <div class="item">
-            <img src="assets/images/courses-05.jpg" alt="">
+            <img src="{% static 'assets/images/courses-05.jpg' %}" alt="">
             <div class="down-content">
               <h4>Business Ethics</h4>
               <p>Pellentesque ultricies diam magna, auctor cursus lectus pretium nec. Maecenas finibus lobortis enim.</p>
               <div class="author-image">
-                <img src="assets/images/author-05.png" alt="">
+                <img src="{% static 'assets/images/author-05.png' %}" alt="">
               </div>
               <div class="text-button-pay">
                 <a href="#">Pay <i class="fa fa-angle-double-right"></i></a>
@@ -204,12 +199,12 @@ https://templatemo.com/tm-557-grad-school
             </div>
           </div>
           <div class="item">
-            <img src="assets/images/courses-01.jpg" alt="">
+            <img src="{% static 'assets/images/courses-01.jpg' %}" alt="">
             <div class="down-content">
               <h4>Photography</h4>
               <p>Quisque cursus augue ut velit dictum, quis volutpat enim blandit. Maecenas a lectus ac ipsum porta.</p>
               <div class="author-image">
-                <img src="assets/images/author-01.png" alt="">
+                <img src="{% static 'assets/images/author-01.png' %}" alt="">
               </div>
               <div class="text-button-free">
                 <a href="#">Free <i class="fa fa-angle-double-right"></i></a>
@@ -217,12 +212,12 @@ https://templatemo.com/tm-557-grad-school
             </div>
           </div>
           <div class="item">
-            <img src="assets/images/courses-02.jpg" alt="">
+            <img src="{% static 'assets/images/courses-02.jpg' %}" alt="">
             <div class="down-content">
               <h4>Web Development</h4>
               <p>Pellentesque ultricies diam magna, auctor cursus lectus pretium nec. Maecenas finibus lobortis enim.</p>
               <div class="author-image">
-                <img src="assets/images/author-02.png" alt="">
+                <img src="{% static 'assets/images/author-02.png' %}" alt="">
               </div>
               <div class="text-button-free">
                 <a href="#">Free <i class="fa fa-angle-double-right"></i></a>
@@ -230,12 +225,12 @@ https://templatemo.com/tm-557-grad-school
             </div>
           </div>
           <div class="item">
-            <img src="assets/images/courses-03.jpg" alt="">
+            <img src="{% static 'assets/images/courses-03.jpg' %}" alt="">
             <div class="down-content">
               <h4>Learn HTML CSS</h4>
               <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
               <div class="author-image">
-                <img src="assets/images/author-03.png" alt="">
+                <img src="{% static 'assets/images/author-03.png' %}" alt="">
               </div>
               <div class="text-button-pay">
                 <a href="#">Pay <i class="fa fa-angle-double-right"></i></a>
@@ -243,12 +238,12 @@ https://templatemo.com/tm-557-grad-school
             </div>
           </div>
           <div class="item">
-            <img src="assets/images/courses-04.jpg" alt="">
+            <img src="{% static 'assets/images/courses-04.jpg' %}" alt="">
             <div class="down-content">
               <h4>Social Media</h4>
               <p>Pellentesque ultricies diam magna, auctor cursus lectus pretium nec. Maecenas finibus lobortis enim.</p>
               <div class="author-image">
-                <img src="assets/images/author-04.png" alt="">
+                <img src="{% static 'assets/images/author-04.png' %}" alt="">
               </div>
               <div class="text-button-pay">
                 <a href="#">Pay <i class="fa fa-angle-double-right"></i></a>
@@ -256,12 +251,12 @@ https://templatemo.com/tm-557-grad-school
             </div>
           </div>
           <div class="item">
-            <img src="assets/images/courses-05.jpg" alt="">
+            <img src="{% static 'assets/images/courses-05.jpg' %}" alt="">
             <div class="down-content">
               <h4>Digital Arts</h4>
               <p>Quisque cursus augue ut velit dictum, quis volutpat enim blandit. Maecenas a lectus ac ipsum porta.</p>
               <div class="author-image">
-                <img src="assets/images/author-05.png" alt="">
+                <img src="{% static 'assets/images/author-05.png' %}" alt="">
               </div>
               <div class="text-button-free">
                 <a href="#">Free <i class="fa fa-angle-double-right"></i></a>
@@ -269,18 +264,18 @@ https://templatemo.com/tm-557-grad-school
             </div>
           </div>
           <div class="item">
-            <img src="assets/images/courses-01.jpg" alt="">
+            <img src="{% static 'assets/images/courses-01.jpg' %}" alt="">
             <div class="down-content">
               <h4>Media Streaming</h4>
               <p>Pellentesque ultricies diam magna, auctor cursus lectus pretium nec. Maecenas finibus lobortis enim.</p>
               <div class="author-image">
-                <img src="assets/images/author-01.png" alt="">
+                <img src="{% static 'assets/images/author-01.png' %}" alt="">
               </div>
               <div class="text-button-pay">
                 <a href="#">Pay <i class="fa fa-angle-double-right"></i></a>
               </div>
             </div>
-          </div>-->
+          </div>
         </div>
       </div>
     </div>
@@ -291,16 +286,16 @@ https://templatemo.com/tm-557-grad-school
       <div class="row">
         <div class="col-md-12">
           <div class="section-heading">
-            <h2>My Libraries</h2>
+            <h2>Why choose Grad School?</h2>
           </div>
         </div>
         <div class="col-md-12">
           <div id='tabs'>
-        <!--    <ul>
-              <li><a href='#tabs-1'></a></li>
-            <li><a href='#tabs-2'>Top Management</a></li>
+            <ul>
+              <li><a href='#tabs-1'>Best Education</a></li>
+              <li><a href='#tabs-2'>Top Management</a></li>
               <li><a href='#tabs-3'>Quality Meeting</a></li>
-            </ul>-->
+            </ul>
             <section class='tabs-content'>
               <article id='tabs-1'>
                 <div class="row">
@@ -308,7 +303,7 @@ https://templatemo.com/tm-557-grad-school
                     <img src="{% static 'assets/images/choose-us-image-01.png' %}" alt="">
                   </div>
                   <div class="col-md-6">
-                    <h4>Business staff</h4>
+                    <h4>Best Education</h4>
                     <p>Grad School is free educational HTML template with Bootstrap 4.5.2 CSS layout. Feel free to use it for educational or commercial purposes. You may want to make <a href="https://paypal.me/templatemo" target="_parent" rel="sponsored">a little donation</a> to TemplateMo. Please tell your friends about us. Thank you.</p>
                   </div>
                 </div>
@@ -503,7 +498,7 @@ https://templatemo.com/tm-557-grad-school
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static '/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
     <script src="{% static 'assets/js/isotope.min.js' %}"></script>
     <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
