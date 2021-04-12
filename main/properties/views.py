@@ -18,6 +18,7 @@ def news_list(request):
     return render(request,"news.html",context)
 def libraries(request):
     return render(request,'libraries.html')
+
 def retrieve_article(request,id):
     article_query=Property.objects.filter(id=id).values()
     article=article_query[0]
@@ -26,6 +27,11 @@ def retrieve_article(request,id):
     'object_list':article_query
     }
     return render(request,'article.html',context)
+
+def subm(request):
+    return render(request,'subm.html')
+def topics(request):
+    return render(request,'topics.html')
 
 def scrape(request):
     pass

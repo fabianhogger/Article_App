@@ -21,6 +21,8 @@ urlpatterns = [
     path('scrape',views.train,name='scrape'),
     path('libraries',views.libraries,name='libraries'),
     path('article/<int:id>/',views.retrieve_article,name='article'),
+    path('subm',views.subm,name='subm'),
+    path('topics',views.topics,name='topics'),
     path('get_similar',views.get_similar,name='get_similar')
 
 ]

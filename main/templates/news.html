@@ -35,14 +35,14 @@ https://templatemo.com/tm-557-grad-school
   <!--header-->
   <header class="main-header clearfix" role="header">
     <div class="logo">
-      <a href="#"><em>Scraped</em> News</a>
+      <a href="http://127.0.0.1:8000/"><em>Scraped</em> News</a>
     </div>
     <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
     <nav id="menu" class="main-nav" role="navigation">
       <ul class="main-menu">
         <li><a href="#section1">Home</a></li>
-        <li><a href="#section4">Topics</a></li>
-         <li><a href="#section5">Video</a></li>
+        <li><a href="{% url 'topics' %}" class='external'>Topics</a></li>
+        <li><a href="{% url 'subm' %}"  class='external'>Submit</a></li>
         <li><a href="{% url 'libraries' %}" class='external'>Libraries</a></li>
         <li><a href="https://templatemo.com" class="external">Account</a></li>
         <li class="has-submenu"><a href="#section2">About Us</a>
