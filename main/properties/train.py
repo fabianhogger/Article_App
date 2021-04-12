@@ -44,7 +44,7 @@ class train_defs():
         """after removing some articles we have to save the ids and their order
         to retrieve them later"""
         print("List of ids",res[0])
-        with open('list_ids50.pkl', 'wb') as f:
+        with open('list_ids15.pkl', 'wb') as f:
             pickle.dump(res[0], f)
         data = res[1]
         data = [re.sub('\S*@\S*\s?', '', sent) for sent in data]
@@ -82,11 +82,11 @@ class train_defs():
         #texts=pickle.dump(data_lemmatized,dump_texts)
         #Create a model
         lda_model = gensim.models.ldamodel.LdaModel(
-               corpus=corpus, id2word=diction, num_topics=50, random_state=100,
+               corpus=corpus, id2word=diction, num_topics=15, random_state=100,
                update_every=1, chunksize=100, passes=10, alpha='auto'
             )
-        lda_model.save('model50bodies')
-        open_file = open('corpus50bodies', "wb")
+        lda_model.save('model15bodies')
+        open_file = open('corpus15bodies', "wb")
         pickle.dump(corpus, open_file)
         Perplexity=lda_model.log_perplexity(corpus)
         cm = CoherenceModel(model=lda_model, texts=data_lemmatized,dictionary=diction, coherence='c_v')

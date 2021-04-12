@@ -66,7 +66,7 @@ class clean():
 
     def get_similarity(lda, query_vector):
         corpus=0
-        with open('properties/lda/lda_50_articles_wlist/corpus50bodies', 'rb') as f:
+        with open('properties/lda/lda_15_articles_wlist/corpus15bodies', 'rb') as f:
             corpus = pickle.load(f)
         index = similarities.MatrixSimilarity(lda[corpus])
         sims = index[query_vector]

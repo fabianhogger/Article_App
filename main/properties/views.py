@@ -16,6 +16,16 @@ def news_list(request):
     'object_list':headlines
     }
     return render(request,"news.html",context)
+def libraries(request):
+    return render(request,'libraries.html')
+def retrieve_article(request,id):
+    article_query=Property.objects.filter(id=id).values()
+    article=article_query[0]
+    print(article)
+    context={
+    'object_list':article_query
+    }
+    return render(request,'article.html',context)
 
 def scrape(request):
     pass
@@ -24,30 +34,33 @@ def train(request):
     train_defs.start(list(corpus))
     return redirect("news")
 def get_similar(request):
-    lda=gensim.models.ldamodel.LdaModel.load('properties/lda/lda_50_articles_wlist/model50bodies')
+    lda=gensim.models.ldamodel.LdaModel.load('properties/lda/lda_15_articles_wlist/model15bodies')
+    all_ids=Property.objects.values_list('id' ,flat=True)
+    print(all_ids)
     for j in range(230,233):
-        queryobject=Property.objects.filter(id=j).values()
-        dic=queryobject[0]
-        body=[]
-        body.append(dic['body'])
-        clean_body=clean.clean_text(body)
-        vector1=lda[clean_body[0]]
-        sims=clean.get_similarity(lda,vector1)
-        #sims=clean.get_jensen_shannon(lda,vector1)
-        sims = sorted(enumerate(sims), key=lambda item: -item[1])
-        tens=sims[:10]
-        with open('properties/lda/lda_50_articles_wlist/list_ids50.pkl', 'rb') as f:
-            ids = pickle.load(f)
-        ids=list(ids)
-        articles=[]
-        for i in range(10):
-            index=tens[i][0]
-            id_=ids[index]
-            queryobject_article=Property.objects.filter(id=id_).values()
-            similar_article=queryobject_article[0]#getting the dictionary from the object
-            articles.append(similar_article['name'])
-        print('initial article',dic['name'])
-        print(articles)
+        if j in all_ids:
+            queryobject=Property.objects.filter(id=j).values()
+            dic=queryobject[0]
+            body=[]
+            body.append(dic['body'])
+            clean_body=clean.clean_text(body)
+            vector1=lda[clean_body[0]]
+            sims=clean.get_similarity(lda,vector1)
+            #sims=clean.get_jensen_shannon(lda,vector1)
+            sims = sorted(enumerate(sims), key=lambda item: -item[1])
+            tens=sims[:10]
+            with open('properties/lda/lda_15_articles_wlist/list_ids15.pkl', 'rb') as f:
+                ids = pickle.load(f)
+            ids=list(ids)
+            articles=[]
+            for i in range(10):
+                index=tens[i][0]
+                id_=ids[index]
+                queryobject_article=Property.objects.filter(id=id_).values()
+                similar_article=queryobject_article[0]#getting the dictionary from the object
+                articles.append(similar_article['name'])
+            print('initial article',dic['name'])
+            print(articles)
     return redirect("news")
 
 

@@ -19,5 +19,8 @@ from . import views
 urlpatterns = [
     path('',views.news_list,name='news'),
     path('scrape',views.train,name='scrape'),
+    path('libraries',views.libraries,name='libraries'),
+    path('article/<int:id>/',views.retrieve_article,name='article'),
     path('get_similar',views.get_similar,name='get_similar')
+
 ]
