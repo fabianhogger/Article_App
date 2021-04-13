@@ -30,6 +30,13 @@ def retrieve_article(request,id):
 
 def subm(request):
     return render(request,'subm.html')
+def submit(request):
+    if request.method=='POST':
+        print(request.POST['url'],request.POST['title'],request.POST['body'])
+        return render(request,'subm.html')
+    else:
+        print('ERROR WITH FORM')
+        return render(request,'subm.html')
 def topics(request):
     return render(request,'topics.html')
 

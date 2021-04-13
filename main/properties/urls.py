@@ -23,6 +23,7 @@ urlpatterns = [
     path('article/<int:id>/',views.retrieve_article,name='article'),
     path('subm',views.subm,name='subm'),
     path('topics',views.topics,name='topics'),
+    path('submition',views.submit,name='submit'),
     path('get_similar',views.get_similar,name='get_similar')
 
 ]
