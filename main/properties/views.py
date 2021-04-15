@@ -19,8 +19,8 @@ def news_list(request):
 def libraries(request):
     return render(request,'libraries.html')
 
-def retrieve_article(request,id):
-    article_query=Property.objects.filter(id=id).values()
+def retrieve_article(request,name):
+    article_query=Property.objects.filter(name=name).values()
     article=article_query[0]
     print(article)
     context={
