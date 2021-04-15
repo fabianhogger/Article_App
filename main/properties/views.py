@@ -43,7 +43,7 @@ def submit(request):
         dom = etree.HTML(str(soup))
         print(dom.xpath('//title/text()')[0])
         print(dom.xpath('//p/text()'))
-        
+        print(dom.xpath("//img/@src")[0])
         return render(request,'subm.html')
     else:
         print('ERROR WITH FORM')
