@@ -4,11 +4,13 @@ from properties.models import Property
 from properties.train import train_defs
 from properties.preprocess import clean
 
+import pickle
 import gensim
 import gensim.corpora as corpora
 from gensim import models, similarities
-
-import pickle
+from lxml import etree
+import requests
+from bs4 import BeautifulSoup as BSoup
 def news_list(request):
     print("news_list called")
     headlines=Property.objects.all()[:10]
@@ -33,6 +35,15 @@ def subm(request):
 def submit(request):
     if request.method=='POST':
         print(request.POST['url'],request.POST['title'],request.POST['body'])
+        url=request.POST['url']
+        session=requests.Session()
+        session.headers={"User-Agent": "Googlebot/2.1 (+http://www.google.com/bot.html)"}
+        content=session.get(url,verify=True).content
+        soup=BSoup(content,"html.parser")
+        dom = etree.HTML(str(soup))
+        print(dom.xpath('//title/text()')[0])
+        print(dom.xpath('//p/text()'))
+        
         return render(request,'subm.html')
     else:
         print('ERROR WITH FORM')
