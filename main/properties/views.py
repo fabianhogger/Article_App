@@ -11,6 +11,11 @@ from gensim import models, similarities
 from lxml import etree
 import requests
 from bs4 import BeautifulSoup as BSoup
+from properties.models import Property
+
+from django.core.files import File
+from django.core.files.temp import NamedTemporaryFile
+from urllib.request import urlopen
 def news_list(request):
     print("news_list called")
     headlines=Property.objects.all()[:10]
@@ -24,7 +29,7 @@ def libraries(request):
 def retrieve_article(request,name):
     article_query=Property.objects.filter(name=name).values()
     article=article_query[0]
-    print(article)
+    #print(article)
     context={
     'object_list':article_query
     }
@@ -43,7 +48,15 @@ def submit(request):
         dom = etree.HTML(str(soup))
         print(dom.xpath('//title/text()')[0])
         print(dom.xpath('//p/text()'))
-        print(dom.xpath("//img/@src")[0])
+        img_url=dom.xpath("//img/@src")[0]
+        new_article=Property(name=dom.xpath('//title/text()')[0],body=' '.join(dom.xpath('//p/text()')),url=url,image_url=img_url)
+        new_article.save()
+        img_temp = NamedTemporaryFile()
+        img_temp.write(urlopen(img_url).read())
+        img_temp.flush()
+        new_article.image_file.save("image_%s" % new_article.pk, File(img_temp))
+
+        new_article.save()
         return render(request,'subm.html')
     else:
         print('ERROR WITH FORM')

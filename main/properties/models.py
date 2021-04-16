@@ -7,21 +7,23 @@ class Property(models.Model):
     name=models.CharField(max_length=100,default="")
     url=models.CharField(max_length=100,default="")
     body=models.CharField(max_length=10000,default="")
+    image_file = models.ImageField(upload_to='media', default='default.jpg')
+    image_url = models.URLField(default='www.noimage.com')
 
+    """def save(self, *args, **kwargs):
+        get_remote_image(self)
+        super().save(*args, **kwargs)  # Call the "real" save() method.
+"""
     def __str__(self):
         return self.code
 
-"""    code = models.CharField(unique=True, max_length=255, null=False)
-    price = models.CharField(max_length=255, null=False)
-    location = models.CharField(max_length=255, null=False)
-    district = models.CharField(max_length=255, null=False)
-    category = models.CharField(max_length=255, null=False)
-    status = models.CharField(max_length=255, null=False)
-    bedrooms = models.CharField(max_length=255, null=False)
-    bathrooms = models.CharField(max_length=255, null=False)
-    agent = models.CharField(max_length=255)
-    agent_contact = PhoneField(blank=True, help_text='Contact phone number')
-    agent_email = models.EmailField(max_length = 255)
-    agent_company = models.CharField(max_length=255)
-    date = models.DateTimeField(default=timezone.now)
+"""def get_remote_image(self):
+    if self.image_url and not self.image_file:
+        result = urllib.urlretrieve(self.image_url)
+        self.image_file.save(
+                os.path.basename(self.image_url),
+                File(open(result[0]))
+                )
+        print('shieeett niga uploat')
+        self.save()
 """
