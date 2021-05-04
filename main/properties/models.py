@@ -1,29 +1,17 @@
 from django.db import models
 from django.utils import timezone
 from phone_field import PhoneField
-
+from django.db.models import IntegerField, Model
+from django.contrib.postgres.fields import ArrayField
 
 class Property(models.Model):
     name=models.CharField(max_length=100,default="")
-    url=models.CharField(max_length=100,default="")
+    url=models.CharField(max_length=200,default="")
     body=models.CharField(max_length=10000,default="")
-    image_file = models.ImageField(upload_to='media', default='default.jpg')
-    image_url = models.URLField(default='www.noimage.com')
+    image_file = models.ImageField(max_length=700,upload_to='media', default='default.jpg')
+    image_url = models.URLField(max_length=700,default='www.noimage.com')
+    #Here we store for each article the ids of the article similar to it
+    similar_ids=ArrayField(models.IntegerField(), default=list,blank=True)
 
-    """def save(self, *args, **kwargs):
-        get_remote_image(self)
-        super().save(*args, **kwargs)  # Call the "real" save() method.
-"""
     def __str__(self):
-        return self.code
-
-"""def get_remote_image(self):
-    if self.image_url and not self.image_file:
-        result = urllib.urlretrieve(self.image_url)
-        self.image_file.save(
-                os.path.basename(self.image_url),
-                File(open(result[0]))
-                )
-        print('shieeett niga uploat')
-        self.save()
-"""
+        return self.name

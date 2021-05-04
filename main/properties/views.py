@@ -61,6 +61,34 @@ def submit(request):
     else:
         print('ERROR WITH FORM')
         return render(request,'subm.html')
+def images(request):
+    all_urls=Property.objects.values_list('url', flat=True).filter(image_file='default.jpg')
+    print(len(all_urls))
+    for url in all_urls:
+        print(url)
+        session=requests.Session()
+        session.headers={"User-Agent": "Googlebot/2.1 (+http://www.google.com/bot.html)"}
+        content=session.get(url,verify=True).content
+        soup=BSoup(content,"html.parser")
+        dom = etree.HTML(str(soup))
+        image_url=dom.xpath("//img/@src")[0]
+        if len(image_url)<700:
+            if image_url[0]=='/':
+                if  'bbc' in url:
+                    image_url=requests.compat.urljoin('https://www.bbc.com/', image_url)
+                else:
+                    image_url=requests.compat.urljoin('https://www.aljazeera.com/', image_url)
+            queryobject=Property.objects.filter(url=url).update(image_url=image_url)
+            img_temp = NamedTemporaryFile()
+            img_temp.write(urlopen(image_url).read())
+            img_temp.flush()
+            object=Property.objects.filter(url=url)
+            for obj in object:
+                print(obj.image_file)
+                obj.image_file.save("image_%s" % obj.pk, File(img_temp))
+                print(obj.image_file)
+                obj.save()
+    return render(request,'news.html')
 def topics(request):
     return render(request,'topics.html')
 
@@ -72,33 +100,35 @@ def train(request):
     return redirect("news")
 def get_similar(request):
     lda=gensim.models.ldamodel.LdaModel.load('properties/lda/lda_15_articles_wlist/model15bodies')
-    all_ids=Property.objects.values_list('id' ,flat=True)
+    all_ids=Property.objects.values_list('id' ,flat=True).order_by('id')
     print(all_ids)
-    for j in range(230,233):
-        if j in all_ids:
-            queryobject=Property.objects.filter(id=j).values()
-            dic=queryobject[0]
-            body=[]
-            body.append(dic['body'])
-            clean_body=clean.clean_text(body)
-            vector1=lda[clean_body[0]]
-            sims=clean.get_similarity(lda,vector1)
-            #sims=clean.get_jensen_shannon(lda,vector1)
-            sims = sorted(enumerate(sims), key=lambda item: -item[1])
-            tens=sims[:10]
-            with open('properties/lda/lda_15_articles_wlist/list_ids15.pkl', 'rb') as f:
-                ids = pickle.load(f)
-            ids=list(ids)
-            articles=[]
-            for i in range(10):
-                index=tens[i][0]
-                id_=ids[index]
-                queryobject_article=Property.objects.filter(id=id_).values()
-                similar_article=queryobject_article[0]#getting the dictionary from the object
-                articles.append(similar_article['name'])
-            print('initial article',dic['name'])
-            print(articles)
-    return redirect("news")
+    with open('properties/lda/lda_15_articles_wlist/list_ids15.pkl', 'rb') as f:
+        ids = pickle.load(f)
+    ids=list(ids)
+    print(ids)
+    for j in ids:
+        queryobject=Property.objects.filter(id=j).values()
+        dic=queryobject[0]
+        body=[]
+        body.append(dic['body'])
+        clean_body=clean.clean_text(body)
+        vector1=lda[clean_body[0]]
+        sims=clean.get_similarity(lda,vector1)
+        #sims=clean.get_jensen_shannon(lda,vector1)
+        sims = sorted(enumerate(sims), key=lambda item: -item[1])
+        tens=sims[:10]
+        print(tens)
+        articles=[]
+        for i in range(10):
+            index=tens[i][0]
+            id_=ids[index]
+            articles.append(id_)
+            #    queryobject_article=Property.objects.filter(id=id_).values()
+            #    similar_article=queryobject_article[0]#getting the dictionary from the object
+            #    articles.append(similar_article['name'])
+            #print('initial article',dic['name'])
+        print(articles)
+    return render("news")
 
 
 """
