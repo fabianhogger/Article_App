@@ -112,23 +112,23 @@ def get_similar(request):
         body=[]
         body.append(dic['body'])
         clean_body=clean.clean_text(body)
+        #print(clean_body[0])
         vector1=lda[clean_body[0]]
         sims=clean.get_similarity(lda,vector1)
         #sims=clean.get_jensen_shannon(lda,vector1)
         sims = sorted(enumerate(sims), key=lambda item: -item[1])
         tens=sims[:10]
-        print(tens)
+        #print(tens)
         articles=[]
         for i in range(10):
             index=tens[i][0]
             id_=ids[index]
             articles.append(id_)
-            #    queryobject_article=Property.objects.filter(id=id_).values()
-            #    similar_article=queryobject_article[0]#getting the dictionary from the object
-            #    articles.append(similar_article['name'])
-            #print('initial article',dic['name'])
-        print(articles)
-    return render("news")
+        print('articles',articles)
+        print('type',type(articles[0]))
+        Property.objects.filter(id=j).update(similar_ids=articles)
+
+    return render(request,'news.html')
 
 
 """
