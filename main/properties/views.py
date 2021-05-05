@@ -35,8 +35,9 @@ def retrieve_article(request,name):
         sim_article=Property.objects.values_list('name','image_file').filter(id=sim_id)
         similar.append(sim_article[0])
     print(similar)
+    print(type(main_article))
     context={
-    'object_list':article_query
+    'object_list':article_query,'similar':similar
     }
     return render(request,'article.html',context)
 
