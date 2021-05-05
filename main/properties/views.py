@@ -28,8 +28,13 @@ def libraries(request):
 
 def retrieve_article(request,name):
     article_query=Property.objects.filter(name=name).values()
-    article=article_query[0]
-    #print(article)
+    main_article=article_query[0]
+    similar_ids=main_article['similar_ids']
+    similar=[]
+    for sim_id in similar_ids:
+        sim_article=Property.objects.values_list('name','image_file').filter(id=sim_id)
+        similar.append(sim_article[0])
+    print(similar)
     context={
     'object_list':article_query
     }
@@ -89,6 +94,7 @@ def images(request):
                 print(obj.image_file)
                 obj.save()
     return render(request,'news.html')
+
 def topics(request):
     return render(request,'topics.html')
 
