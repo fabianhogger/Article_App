@@ -28,17 +28,13 @@ def libraries(request):
 
 def retrieve_article(request,name):
     article_query=Property.objects.filter(name=name).values()
-    main_article=article_query[0]
-    similar_ids=main_article['similar_ids']
+    context=article_query[0]
+    similar_ids=context['similar_ids']
     similar=[]
     for sim_id in similar_ids:
         sim_article=Property.objects.values_list('name','image_file').filter(id=sim_id)
         similar.append(sim_article[0])
-    print(similar)
-    print(type(main_article))
-    context={
-    'object_list':article_query,'similar':similar
-    }
+    context['similar']=similar
     return render(request,'article.html',context)
 
 def subm(request):
