@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-{% for object in object_list%}
+
 <html lang="en">
 
   <head>
@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <title>{{object.name}}</title>
+    <title>{{name}}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -61,15 +61,15 @@ https://templatemo.com/tm-557-grad-school
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section main-banner" id="top" data-section="section1">
     <  <video autoplay muted loop id="bg-video">
-          <source src="{% static 'assets/images/courses-04.png'%}"  />
+          <source src="{{MEDIA_URL}}{{object.image_file}}"  />
       </video>-->
 
       <div class="video-overlay header-text">
           <div class="caption">
-              <h6>{{object.name}}</h6>
+              <h6>{{name}}</h6>
               <h></h2>
-            <!--  <div class="main-button">
-                  <div class="scroll-to-section"><a href="#section2">Discover more</a></div>
+              <!--<div class="main-button">
+                  <div class="scroll-to-section"><a href="">Discover more</a></div>
               </div>-->
           </div>
       </div>
@@ -131,14 +131,16 @@ https://templatemo.com/tm-557-grad-school
       <div class="col-md-6 align-self-center">
         <div class="left-content">
 
-          <h4>{{object.name}}</h4>
-          <p>{{object.body}}</p>
-          <span> Source : {{object.url}}</span>
+          <h4>{{name}}</h4>
+          <p>{{body}}</p>
+          <span> Source : {{url}}</span>
           </div>
       </div>
       <div class="col-md-6">
       </div>
       </section>
+
+
   <section class="section courses" data-section="section4">
     <div class="container-fluid">
       <div class="row">
@@ -148,10 +150,11 @@ https://templatemo.com/tm-557-grad-school
           </div>
         </div>
         <div class="owl-carousel owl-theme">
+          {% for art in similar%}
           <div class="item">
-            <img src="{% static 'assets/images/courses-01.jpg' %}" alt="Course #1">
+            <img src="{{MEDIA_URL}}{{art.1}}" alt="Course #1">
             <div class="down-content">
-              <h4>Digital Marketing</h4>
+              <h4>{{art.0}}</h4>
               <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
               <div class="author-image">
                 <img src="{% static 'assets/images/author-01.png' %}" alt="Author 1">
@@ -161,7 +164,8 @@ https://templatemo.com/tm-557-grad-school
               </div>
             </div>
           </div>
-          <div class="item">
+          {% endfor%}
+        <!--  <div class="item">
             <img src="{% static 'assets/images/courses-02.jpg' %}" alt="Course #2">
             <div class="down-content">
               <h4>Business World</h4>
@@ -293,7 +297,8 @@ https://templatemo.com/tm-557-grad-school
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
+
   </section>
 
 
@@ -374,4 +379,3 @@ https://templatemo.com/tm-557-grad-school
     </script>
 </body>
 </html>
-{%endfor%}
