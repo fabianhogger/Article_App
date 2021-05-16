@@ -43,8 +43,16 @@ https://templatemo.com/tm-557-grad-school
         <li><a href="#section1">Home</a></li>
         <li><a href="{% url 'topics' %}" class='external'>Topics</a></li>
         <li><a href="{% url 'subm' %}"  class='external'>Submit</a></li>
-        <li><a href="{% url 'get_similar' %}" class='external'>Libraries</a></li>
-        <li><a href="https://templatemo.com" class="external">Account</a></li>
+        <li><a href="{% url 'libraries' %}" class='external'>Libraries</a></li>
+        <li><a href="has-submenu">Account</a>
+          <ul class="sub-menu">
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+          </ul>
+        </li>
         <li class="has-submenu"><a href="#section2">About Us</a>
           <ul class="sub-menu">
             <li><a href="#section2">Who we are?</a></li>
