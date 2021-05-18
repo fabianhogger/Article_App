@@ -4,8 +4,10 @@
 
 
 {% block content %}
+
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section main-banner" id="top" data-section="section1">
+
     <  <video autoplay muted loop id="bg-video">
           <source src="{{MEDIA_URL}}{{object.image_file}}"  />
       </video>-->
@@ -20,70 +22,22 @@
           </div>
       </div>
   </section>
-  <!-- ***** Main Banner Area End ***** -->
 
-
-<!--  <section class="features">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-12">
-          <div class="features-post">
-            <div class="features-content">
-              <div class="content-show">
-                <h4><i class="fa fa-pencil"></i>Trending</h4>
-              </div>
-              <div class="content-hide">
-                <p>Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet. Donec maximus elementum ex. Cras convallis ex rhoncus, laoreet libero eu, vehicula libero.</p>
-                <p class="hidden-sm">Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet.</p>
-                <div class="scroll-to-section"><a href="#section2">More Info.</a></div>
-            </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12">
-          <div class="features-post second-features">
-            <div class="features-content">
-              <div class="content-show">
-                <h4><i class="fa fa-graduation-cap"></i>Most Viewed</h4>
-              </div>
-              <div class="content-hide">
-                <p>Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet. Donec maximus elementum ex. Cras convallis ex rhoncus, laoreet libero eu, vehicula libero.</p>
-                <p class="hidden-sm">Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet.</p>
-                <div class="scroll-to-section"><a href="#section3">Details</a></div>
-            </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-12">
-          <div class="features-post third-features">
-            <div class="features-content">
-              <div class="content-show">
-                <h4><i class="fa fa-book"></i>Latest</h4>
-              </div>
-              <div class="content-hide">
-                <p>Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet. Donec maximus elementum ex. Cras convallis ex rhoncus, laoreet libero eu, vehicula libero.</p>
-                <p class="hidden-sm">Curabitur id eros vehicula, tincidunt libero eu, lobortis mi. In mollis eros a posuere imperdiet.</p>
-                <div class="scroll-to-section"><a href="#section4">Read More</a></div>
-            </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>-->
-  <section class="section video">
-    <div class="container">
+  <section class="tabs-content">
+    <article id='tabs-1'>
     <div class="row">
-      <div class="col-md-6 align-self-center">
-        <div class="left-content">
-
+      <div class="col-md-6 ">
           <h4>{{name}}</h4>
           <p>{{body}}</p>
           <span> Source : {{url}}</span>
-          </div>
       </div>
-      <div class="col-md-6">
-      </div>
+        <div class="col-md-6 ">
+          <div class="row">
+          <img src="{{MEDIA_URL}}{{similar.0.1}}"  alt="">
+          <h4>{{similar.0.0}}</h4>
+        </div>
+        </div>
+      </article>
       </section>
 
 
