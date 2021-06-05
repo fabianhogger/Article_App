@@ -18,12 +18,14 @@ from django.urls import path,include
 from . import views
 urlpatterns = [
     path('',views.news_list,name='news'),
+    path('news',views.news_list,name='news'),
     path('scrape',views.train,name='scrape'),
     path('libraries',views.libraries,name='libraries'),
     path('article/<str:name>/',views.retrieve_article,name='article'),
     path('subm',views.subm,name='subm'),
     path('topics',views.topics,name='topics'),
     path('submition',views.submit,name='submit'),
+    path('images',views.images,name='images'),
     path('get_similar',views.get_similar,name='get_similar')
 
 ]
