@@ -25,9 +25,11 @@ def news_list(request):
     return render(request,"news.html",context)
 
 def libraries(request):
-    mylibs=Library.objects.values_list('title',flat=True).filter(user=request.user).order_by('title')
-    print(mylibs)
-    return render(request,'libraries.html')
+    mylibs=list(Library.objects.values_list('title',flat=True).filter(user=request.user).order_by('title'))
+    context={}
+    context['library_names']=mylibs
+    print(context)
+    return render(request,'libraries.html',context)
 def create_library(request):
     print("did thing")
     if request.method=='POST':
@@ -38,7 +40,11 @@ def create_library(request):
         if name != "":
             new_library=Library(title=name,user=request.user)
             new_library.save()
-    return render(request,'libraries.html')
+    mylibs=list(Library.objects.values_list('title',flat=True).filter(user=request.user).order_by('title'))
+    context={}
+    context['library_names']=mylibs
+    print(context)
+    return render(request,'libraries.html',context)
 
 def retrieve_article(request,name):
     article_query=Property.objects.filter(name=name).values()

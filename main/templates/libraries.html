@@ -4,21 +4,7 @@
 
 {% block content %}
   <!-- ***** Main Banner Area Start ***** -->
-  <section class="section main-banner" id="top" data-section="section1">
-      <video autoplay muted loop id="bg-video">
-          <source src="{% static 'assets/images/course-video.mp4'%}" type="video/mp4" />
-      </video>
 
-      <div class="video-overlay header-text">
-          <div class="caption">
-              <h6>Graduate School of Management</h6>
-              <h2><em>Your</em> Classroom</h2>
-              <div class="main-button">
-                  <div class="scroll-to-section"><a href="#section2">Discover more</a></div>
-              </div>
-          </div>
-      </div>
-  </section>
   <!-- ***** Main Banner Area End ***** -->
 
   <section class="section video" data-section="section5">
@@ -27,6 +13,11 @@
         <div class="col-md-6 align-self-center">
           <div class="left-content">
             <span>      </span>
+            <br><br>
+            <br><br>
+            <br><br>
+            <br><br>
+            <br><br>
             <h4>Create new Libraries<em> or view existing ones</em></h4>
           Click below to create and name a  new Library.
             <br><br>You can add articles to the library by going to the article page and clicking add to library and the choosing the Library</p>
@@ -47,6 +38,17 @@
                   </div>
                 </div>
               </form>
+              <table style="width:100%">
+                  <tr>
+                    <th>LIBRARIES</th>
+                  </tr>
+                  {% for name in library_names%}
+                  <tr>
+                    <td><a style="color: #f5f5f5; text-decoration: none;">{{name}}</a></td>
+                  </tr>
+                    {% endfor %}
+
+                </table>
           </div>
         </div>
         <div class="col-md-6">
