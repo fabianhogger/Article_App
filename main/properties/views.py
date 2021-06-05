@@ -25,7 +25,19 @@ def news_list(request):
     return render(request,"news.html",context)
 
 def libraries(request):
-    mylibs=Library.objects.values_list('title',flat=True).filter(user=request.user.id).order_by('title')
+    mylibs=Library.objects.values_list('title',flat=True).filter(user=request.user).order_by('title')
+    print(mylibs)
+    return render(request,'libraries.html')
+def create_library(request):
+    print("did thing")
+    if request.method=='POST':
+        name=request.POST['name']
+        print("NEW LIBRARY NAME ",name)
+        print("user id ",request.user.id)
+
+        if name != "":
+            new_library=Library(title=name,user=request.user)
+            new_library.save()
     return render(request,'libraries.html')
 
 def retrieve_article(request,name):

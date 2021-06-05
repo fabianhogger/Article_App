@@ -31,7 +31,22 @@
           Click below to create and name a  new Library.
             <br><br>You can add articles to the library by going to the article page and clicking add to library and the choosing the Library</p>
             <div class="main-button"><a ONCLICK="ShowAndHide()" >Create Library</a></div>
-            <DIV ID="SectionName" STYLE="display:none">Text to be shown and hidden</DIV>
+            <br><br>
+            <form ID="SectionName" STYLE="display:none" action="create_library" method="post">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-7">
+                    <fieldset>
+                      <input name="name" type="text" class="form-control" id="name" placeholder="Write library name here" required="">
+                    </fieldset>
+                  </div>
+                  <div class="col-md-12">
+                    <fieldset>
+                        <div class="main-button"><button type="submit" id="form-submit" class="button">Submit</button></div>
+                    </fieldset>
+                  </div>
+                </div>
+              </form>
           </div>
         </div>
         <div class="col-md-6">
