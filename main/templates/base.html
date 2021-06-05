@@ -30,8 +30,6 @@ https://templatemo.com/tm-557-grad-school
   </head>
 
 <body>
-
-
   <!--header-->
   <header class="main-header clearfix" role="header">
     <div class="logo">
@@ -40,7 +38,7 @@ https://templatemo.com/tm-557-grad-school
     <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
     <nav id="menu" class="main-nav" role="navigation">
       <ul class="main-menu">
-        <li><a href="#section1">Home</a></li>
+        <li><a href="{% url 'news' %}" class='external'>Home</a></li>
         <li><a href="{% url 'topics' %}" class='external'>Topics</a></li>
         <li><a href="{% url 'subm' %}"  class='external'>Submit</a></li>
         <li><a href="{% url 'libraries' %}" class='external'>Libraries</a></li>
@@ -68,15 +66,15 @@ https://templatemo.com/tm-557-grad-school
     </nav>
   </header>
   {% block content %}
-    {% endblock content %}
+  {% endblock content %}
 
-  </body>
-</footer>
+
+
 
 <!-- Scripts -->
 <!-- Bootstrap core JavaScript -->
   <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
 
   <script src="{% static 'assets/js/isotope.min.js' %}"></script>
   <script src="{% static 'assets/js/owl-carousel.js' %}"></script>
@@ -135,5 +133,5 @@ https://templatemo.com/tm-557-grad-school
         checkSection();
       });
   </script>
-
+</body>
   </html>
