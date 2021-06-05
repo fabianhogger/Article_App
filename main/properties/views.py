@@ -11,7 +11,7 @@ from gensim import models, similarities
 from lxml import etree
 import requests
 from bs4 import BeautifulSoup as BSoup
-from properties.models import Property
+from properties.models import Property,Library
 
 from django.core.files import File
 from django.core.files.temp import NamedTemporaryFile
@@ -23,7 +23,9 @@ def news_list(request):
     'object_list':headlines
     }
     return render(request,"news.html",context)
+
 def libraries(request):
+    mylibs=Library.objects.values_list('title',flat=True).filter(user=request.user.id).order_by('title')
     return render(request,'libraries.html')
 
 def retrieve_article(request,name):
@@ -104,33 +106,29 @@ def train(request):
 def get_similar(request):
     lda=gensim.models.ldamodel.LdaModel.load('properties/lda/lda_15_articles_wlist/model15bodies')
     all_ids=Property.objects.values_list('id' ,flat=True).order_by('id')
-    print(all_ids)
+    #print(all_ids)
     with open('properties/lda/lda_15_articles_wlist/list_ids15.pkl', 'rb') as f:
         ids = pickle.load(f)
     ids=list(ids)
     print(ids)
-    for j in ids:
+    for j in all_ids:
         queryobject=Property.objects.filter(id=j).values()
         dic=queryobject[0]
-        body=[]
-        body.append(dic['body'])
-        clean_body=clean.clean_text(body)
-        #print(clean_body[0])
-        vector1=lda[clean_body[0]]
-        sims=clean.get_similarity(lda,vector1)
-        #sims=clean.get_jensen_shannon(lda,vector1)
-        sims = sorted(enumerate(sims), key=lambda item: -item[1])
-        tens=sims[:10]
-        #print(tens)
-        articles=[]
-        for i in range(10):
-            index=tens[i][0]
-            id_=ids[index]
-            articles.append(id_)
-        print('articles',articles)
-        print('type',type(articles[0]))
-        Property.objects.filter(id=j).update(similar_ids=articles)
-
+        if  not dic['similar_ids']:
+            body=[]
+            body.append(dic['body'])
+            clean_body=clean.clean_text(body)
+            vector1=lda[clean_body[0]]
+            sims=clean.get_similarity(lda,vector1)
+            #sims=clean.get_jensen_shannon(lda,vector1)
+            sims = sorted(enumerate(sims), key=lambda item: -item[1])
+            tens=sims[:10]
+            articles=[]
+            for i in range(10):
+                index=tens[i][0]
+                id_=ids[index]
+                articles.append(id_)
+            Property.objects.filter(id=j).update(similar_ids=articles)
     return render(request,'news.html')
 
 
