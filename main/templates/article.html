@@ -8,9 +8,9 @@
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section main-banner" id="top" data-section="section1">
 
-    <  <video autoplay muted loop id="bg-video">
+      <video autoplay muted loop id="bg-video">
           <source src="{{MEDIA_URL}}{{object.image_file}}"  />
-      </video>-->
+      </video>
 
       <div class="video-overlay header-text">
           <div class="caption">
@@ -26,17 +26,30 @@
   <section class="tabs-content">
     <article id='tabs-1'>
     <div class="row">
-      <div class="col-md-6 ">
+      <div class="col-md-6">
           <h4>{{name}}</h4>
           <p>{{body}}</p>
           <span> Source : {{url}}</span>
       </div>
         <div class="col-md-6 ">
           <div class="row">
-          <img src="{{MEDIA_URL}}{{similar.0.1}}"  alt="">
+          <a  href="http://127.0.0.1:8000/article/{{similar.0.0}}"> <img src="{{MEDIA_URL}}{{similar.0.1}}"  alt=""></a>
           <h4>{{similar.0.0}}</h4>
         </div>
         </div>
+        </div>
+        <div class="main-button"><a ONCLICK="ShowAndHide()" >Add to Library</a></div>
+          <table ID="SectionName" STYLE="display:none" >
+              <tr>
+                <th></th>
+              </tr>
+              {% for name in library_names%}
+              <tr>
+                <td><a style="color: #000000; text-decoration: none;">{{name}}</a></td>
+              </tr>
+                {% endfor %}
+
+            </table>
       </article>
       </section>
 
@@ -80,4 +93,14 @@
       </div>
     </div>
   </footer>
+  <SCRIPT>
+function ShowAndHide() {
+    var x = document.getElementById('SectionName');
+    if (x.style.display == 'none') {
+        x.style.display = 'block';
+    } else {
+        x.style.display = 'none';
+    }
+}
+</SCRIPT>
   {% endblock content %}
