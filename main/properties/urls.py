@@ -21,6 +21,7 @@ urlpatterns = [
     path('news',views.news_list,name='news'),
     path('scrape',views.train,name='scrape'),
     path('libraries',views.libraries,name='libraries'),
+    path('library/<str:id>',views.open_library,name='library'),
     path('create_library',views.create_library,name='create_library'),
     path('article/<str:name>/',views.retrieve_article,name='article'),
     path('subm',views.subm,name='subm'),

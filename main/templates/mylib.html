@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<section class="section video" data-section="section5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 align-self-center">
+        <div class="left-content">
+          <span>      </span>
+          <br><br>
+          <br><br>
+          <br><br>
+          <br><br>
+          <br><br>
+          <h4>Create new Libraries<em> or view existing ones</em></h4>
+        Click below to create and name a  new Library.
+          <br><br>You can add articles to the library by going to the article page and clicking add to library and the choosing the Library</p>
+          <div class="main-button"><a ONCLICK="ShowAndHide()" >Create Library</a></div>
+          <br><br>
+          <form ID="SectionName" STYLE="display:none" action="create_library" method="post">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-7">
+                  <fieldset>
+                    <input name="name" type="text" class="form-control" id="name" placeholder="Write library name here" required="">
+                  </fieldset>
+                </div>
+                <div class="col-md-12">
+                  <fieldset>
+                      <div class="main-button"><button type="submit" id="form-submit" class="button">Submit</button></div>
+                  </fieldset>
+                </div>
+              </div>
+            </form>
+            <table style="width:100%">
+                <tr>
+                  <th>LIBRARIES</th>
+                </tr>
+                {% for name in library_names%}
+                <tr>
+                  <td><a style="color: #f5f5f5; text-decoration: none;">{{name}}</a></td>
+                </tr>
+                  {% endfor %}
+
+              </table>
+        </div>
+      </div>
+      <div class="col-md-6">
+          <p>
+          <br><br>
+            <br><br>
+            <br><br>
+            <br><br>
+              </p>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p><i class="fa fa-copyright"></i> Copyright 2020 by Grad School
+
+         | Design: <a href="https://templatemo.com" rel="sponsored" target="_parent">TemplateMo</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% endblock content %}

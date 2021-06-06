@@ -25,11 +25,10 @@ def news_list(request):
     return render(request,"news.html",context)
 
 def libraries(request):
-    mylibs=list(Library.objects.values_list('title',flat=True).filter(user=request.user).order_by('title'))
-    context={}
-    context['library_names']=mylibs
-    print(context)
+    mylibs=list(Library.objects.values_list('id','title').filter(user=request.user).order_by('title'))
+    context={'library_names':mylibs}
     return render(request,'libraries.html',context)
+
 def create_library(request):
     print("did thing")
     if request.method=='POST':
@@ -40,12 +39,13 @@ def create_library(request):
         if name != "":
             new_library=Library(title=name,user=request.user)
             new_library.save()
-    mylibs=list(Library.objects.values_list('title',flat=True).filter(user=request.user).order_by('title'))
-    context={}
-    context['library_names']=mylibs
-    print(context)
+    mylibs=list(Library.objects.values_list('id','title').filter(user=request.user).order_by('title'))
+    context={'library_names':mylibs}
     return render(request,'libraries.html',context)
 
+def open_library(request,id):
+    print(id)
+    return render(request,'mylib.html')
 def retrieve_article(request,name):
     article_query=Property.objects.filter(name=name).values()
     context=article_query[0]
@@ -55,6 +55,8 @@ def retrieve_article(request,name):
         sim_article=Property.objects.values_list('name','image_file').filter(id=sim_id)
         similar.append(sim_article[0])
     context['similar']=similar
+    mylibs=list(Library.objects.values_list('title',flat=True).filter(user=request.user).order_by('title'))
+    context['library_names']=mylibs
     return render(request,'article.html',context)
 
 def subm(request):
