@@ -44,7 +44,8 @@ def create_library(request):
     return render(request,'libraries.html',context)
 
 def open_library(request,id):
-    print(id)
+    library_instance=Library.objects.filter(user=request.user,id=id)
+    print(library_instance[0])
     return render(request,'mylib.html')
 def retrieve_article(request,name):
     article_query=Property.objects.filter(name=name).values()
