@@ -47,6 +47,15 @@ def open_library(request,id):
     library_instance=Library.objects.filter(user=request.user,id=id)
     print(library_instance[0])
     return render(request,'mylib.html')
+def add_to_lib(request,name,article):
+    #get article id list and update it
+    library_query=list(Library.objects.values_list('article_ids',flat=True).filter(user=request.user,title=name))
+    #if library_query is None:
+    #    print('exists')
+    lib=library_query
+    print(lib,type(lib))
+
+    return render(request,'article.html')
 def retrieve_article(request,name):
     article_query=Property.objects.filter(name=name).values()
     context=article_query[0]
@@ -149,7 +158,7 @@ def get_similar(request):
                 index=tens[i][0]
                 id_=ids[index]
                 articles.append(id_)
-            Property.objects.filter(id=j).update(similar_ids=articles)
+                Property.objects.filter(id=j).update(similar_ids=articles)
     return render(request,'news.html')
 
 
