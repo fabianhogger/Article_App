@@ -35,7 +35,12 @@
         {% for object in object_list %}
           <div class="item">
 
-            <a  href="http://127.0.0.1:8000/article/{{object.name}}"> <img src="{{MEDIA_URL}}{{object.image_file}}" alt="Course #1">
+            <a  href="http://127.0.0.1:8000/article/{{object.name}}">
+              {%if object.image_url == "www.noimage.com" %}
+                <img src="{{MEDIA_URL}}{{object.image_file}}" alt="Course #1">
+               {% else %}
+                 <img src="{{object.image_url}}" alt="Course #1">
+                 {% endif %}
             </a>
             <div class="down-content">
               <h4>{{object.name}}</h4>
