@@ -18,7 +18,7 @@ from django.core.files.temp import NamedTemporaryFile
 from urllib.request import urlopen
 def news_list(request):
     print("news_list called")
-    headlines=Property.objects.all()[:10]
+    headlines=Property.objects.all()[10:30]
     context={
     'object_list':headlines
     }
@@ -62,7 +62,7 @@ def retrieve_article(request,name):
     similar_ids=context['similar_ids']
     similar=[]
     for sim_id in similar_ids:
-        sim_article=Property.objects.values_list('name','image_file').filter(id=sim_id)
+        sim_article=Property.objects.values_list('name','image_url').filter(id=sim_id)
         similar.append(sim_article[0])
     context['similar']=similar
     mylibs=list(Library.objects.values_list('title',flat=True).filter(user=request.user).order_by('title'))

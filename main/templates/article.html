@@ -43,9 +43,9 @@
               <tr>
                 <th></th>
               </tr>
-              {% for name in library_names%}
+              {% for lib in library_names%}
               <tr>
-                <td><a style="color: #000000; text-decoration: none;">{{name}}</a></td>
+                <td><a href="http://127.0.0.1:8000/add_to_lib/{{lib}}/{{name}}"style="color: #000000; text-decoration: none;">{{lib}}</a></td>
               </tr>
                 {% endfor %}
 
@@ -65,7 +65,11 @@
         <div class="owl-carousel owl-theme">
           {% for art in similar%}
           <div class="item">
-              <a  href="http://127.0.0.1:8000/article/{{art.0}}"><img src="{{MEDIA_URL}}{{art.1}}" alt="Course #1"></a>
+              <a  href="http://127.0.0.1:8000/article/{{art.0}}">  {%if art.1 == "www.noimage.com" %}
+                  <img src="/media/media_1" alt="Course #1">
+                 {% else %}
+                   <img src="{{art.1}}" alt="Course #1">
+                   {% endif %}</a>
             <div class="down-content">
               <h4>{{art.0}}</h4>
               <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
