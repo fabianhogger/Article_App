@@ -18,7 +18,7 @@ from django.core.files.temp import NamedTemporaryFile
 from urllib.request import urlopen
 def news_list(request):
     print("news_list called")
-    headlines=Property.objects.all()[10:30]
+    headlines=Property.objects.all()[0:10]
     context={
     'object_list':headlines
     }
@@ -50,13 +50,12 @@ def open_library(request,id):
 def add_to_lib(request,name,article):
     #get article id list and update it
     library_query=list(Library.objects.values_list('article_ids',flat=True).filter(user=request.user,title=name))
-    #if library_query is None:
-    #    print('exists')
     lib=library_query
     print(lib,type(lib))
-
     return render(request,'article.html')
+
 def retrieve_article(request,name):
+    update_viewcount(name)
     article_query=Property.objects.filter(name=name).values()
     context=article_query[0]
     similar_ids=context['similar_ids']
@@ -65,9 +64,14 @@ def retrieve_article(request,name):
         sim_article=Property.objects.values_list('name','image_url').filter(id=sim_id)
         similar.append(sim_article[0])
     context['similar']=similar
-    mylibs=list(Library.objects.values_list('title',flat=True).filter(user=request.user).order_by('title'))
-    context['library_names']=mylibs
+    if request.user.is_authenticated:
+        mylibs=list(Library.objects.values_list('title',flat=True).filter(user=request.user).order_by('title'))
+        context['library_names']=mylibs
     return render(request,'article.html',context)
+
+def update_viewcount(name):
+    article=Property.objects.filter(name=name)
+    article[0]
 
 def subm(request):
     return render(request,'subm.html')
@@ -161,11 +165,5 @@ def get_similar(request):
                 Property.objects.filter(id=j).update(similar_ids=articles)
     return render(request,'news.html')
 
-
-"""
-def update_lda(article_body):
-        pass
-    cleaned=clean(article_body)
-    lda=load_lda()
-    lda.update(cleaned)
-"""
+def look_for_countries():
+    countries=["Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","CÃ´te d'Ivoire","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo (Congo-Brazzaville)","Costa Rica","Croatia","Cuba","Cyprus","Czechia (Czech Republic)","Democratic Republic of the Congo","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Holy See","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine State","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"]
