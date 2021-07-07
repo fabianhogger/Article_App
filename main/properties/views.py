@@ -25,33 +25,38 @@ def news_list(request):
     return render(request,"news.html",context)
 
 def libraries(request):
-    mylibs=list(Library.objects.values_list('id','title').filter(user=request.user).order_by('title'))
-    context={'library_names':mylibs}
+    context=None
+    if request.user.is_authenticated:
+        mylibs=list(Library.objects.values_list('id','title').filter(user=request.user).order_by('title'))
+        context={'library_names':mylibs}
     return render(request,'libraries.html',context)
 
 def create_library(request):
-    print("did thing")
-    if request.method=='POST':
-        name=request.POST['name']
-        print("NEW LIBRARY NAME ",name)
-        print("user id ",request.user.id)
+    if request.user.is_authenticated:
+        if request.method=='POST':
+            name=request.POST['name']
+            print("NEW LIBRARY NAME ",name)
+            print("user id ",request.user.id)
 
-        if name != "":
-            new_library=Library(title=name,user=request.user)
-            new_library.save()
-    mylibs=list(Library.objects.values_list('id','title').filter(user=request.user).order_by('title'))
-    context={'library_names':mylibs}
+            if name != "":
+                new_library=Library(title=name,user=request.user)
+                new_library.save()
+        mylibs=list(Library.objects.values_list('id','title').filter(user=request.user).order_by('title'))
+        context={'library_names':mylibs}
     return render(request,'libraries.html',context)
 
 def open_library(request,id):
-    library_instance=Library.objects.filter(user=request.user,id=id)
-    print(library_instance[0])
+    if request.user.is_authenticated:
+        library_instance=Library.objects.filter(user=request.user,id=id)
+        print(library_instance[0])
     return render(request,'mylib.html')
+
 def add_to_lib(request,name,article):
     #get article id list and update it
-    library_query=list(Library.objects.values_list('article_ids',flat=True).filter(user=request.user,title=name))
-    lib=library_query
-    print(lib,type(lib))
+    if request.user.is_authenticated:
+        library_query=list(Library.objects.values_list('article_ids',flat=True).filter(user=request.user,title=name))
+        lib=library_query
+        print(lib,type(lib))
     return render(request,'article.html')
 
 def retrieve_article(request,name):
