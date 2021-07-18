@@ -12,7 +12,7 @@ class Property(models.Model):
     image_url = models.URLField(max_length=700,default='www.noimage.com')
     #Here we store for each article the ids of the article similar to it
     similar_ids=ArrayField(models.IntegerField(), default=list,blank=True)
-
+    views=models.IntegerField(default=0)
     def __str__(self):
         return self.name
 """
@@ -24,3 +24,28 @@ class Library(models.Model):
     article_ids=ArrayField(models.IntegerField(), default=list,blank=True)
     def __str__(self):
         return "%s %s" % (self.user,self.title)
+
+class Entity(models.Model):
+    """docstring for Entity."""
+    name=models.CharField(max_length=128)
+    type=models.CharField(max_length=10)
+    articles = models.ManyToManyField(Property, through='Sentiment')
+    def __init__(self, arg):
+        super(Entity, self).__init__()
+        self.arg = arg
+
+class Sentiment(models.Model):
+    """docstring for Sentiment."""
+    article=models.ForeignKey(Property, on_delete=models.CASCADE)
+    entity=models.ForeignKey(Entity, on_delete=models.CASCADE)
+    sentiment=models.BooleanField()
+    def __init__(self, arg):
+        super(Sentiment, self).__init__()
+        self.arg = arg
+
+class Wikipedia_url(models.Model):
+    entity=models.ManyToManyField(Entity)
+    url=models.CharField(max_length=500)
+    def __init__(self, arg):
+        super(Wikipedia_url, self).__init__()
+        self.arg = arg
