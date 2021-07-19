@@ -27,7 +27,7 @@ class Library(models.Model):
 
 class Entity(models.Model):
     """docstring for Entity."""
-    name=models.CharField(max_length=128)
+    name=models.CharField(max_length=128,unique=True)
     class Ent_Type(models.TextChoices):
         PERSON='PERSON'
         GEOPOLITICAL_ENTITY='GPE'
@@ -44,9 +44,10 @@ class Sentiment(models.Model):
     article=models.ForeignKey(Property, on_delete=models.CASCADE)
     entity=models.ForeignKey(Entity, on_delete=models.CASCADE)
     sentiment=models.BooleanField()
-    def __init__(self, arg):
-        super(Sentiment, self).__init__()
-        self.arg = arg
+    class Meta:
+        constraints=[
+            models.UniqueConstraint(fields=['article', 'entity'], name='only_one_result_for_article -entity')
+        ]
 
 class Wikipedia_url(models.Model):
     entity=models.ManyToManyField(Entity)

@@ -185,7 +185,7 @@ def named_entity_recognition(name):
     #print(types)
     for ent in entities.keys():
             #print(type(ent))
-            new=Entity.objects.create(name=ent,type=types[ent])
-            print(new)
+            #returns tuple with object and boolean created
+            new_entity=Entity.objects.get_or_create(name=ent,type=types[ent])
             sentiment=get_sentiment(entities[ent])
-            Sentiment.objects.create(article=Article_instance,entity=new,sentiment=sentiment)
+            sent_inst=Sentiment.objects.get_or_create(article=Article_instance,entity=new_entity[0],sentiment=sentiment)
