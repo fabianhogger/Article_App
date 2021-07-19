@@ -28,11 +28,16 @@ class Library(models.Model):
 class Entity(models.Model):
     """docstring for Entity."""
     name=models.CharField(max_length=128)
-    type=models.CharField(max_length=10)
+    class Ent_Type(models.TextChoices):
+        PERSON='PERSON'
+        GEOPOLITICAL_ENTITY='GPE'
+        ORGANIZATION='ORG'
+        GEOGRAPHICAL_ENTITY='GEO'
+    type=models.CharField(max_length=10,choices=Ent_Type.choices,default=Ent_Type.PERSON)
     articles = models.ManyToManyField(Property, through='Sentiment')
-    def __init__(self, arg):
+"""    def __init__(self, arg):
         super(Entity, self).__init__()
-        self.arg = arg
+        self.arg = arg"""
 
 class Sentiment(models.Model):
     """docstring for Sentiment."""

@@ -1,9 +1,9 @@
 from django.shortcuts import render,redirect
 from scraper.management.commands import crawl
 from properties.models import Property
-from properties.train import train_defs
-from properties.preprocess import clean
-
+from properties.trainlda import train_defs
+from properties.preprocesslda import clean
+from properties.extract_entities import process_for_ner
 import pickle
 import gensim
 import gensim.corpora as corpora
@@ -11,13 +11,13 @@ from gensim import models, similarities
 from lxml import etree
 import requests
 from bs4 import BeautifulSoup as BSoup
-from properties.models import Property,Library
+from properties.models import Property,Library,Entity,Sentiment
 
 from django.core.files import File
 from django.core.files.temp import NamedTemporaryFile
 from urllib.request import urlopen
 def news_list(request):
-    print("news_list called")
+    #print("news_list called")
     headlines=Property.objects.all()[0:10]
     context={
     'object_list':headlines
@@ -56,10 +56,11 @@ def add_to_lib(request,name,article):
     if request.user.is_authenticated:
         library_query=list(Library.objects.values_list('article_ids',flat=True).filter(user=request.user,title=name))
         lib=library_query
-        print(lib,type(lib))
+        #print(lib,type(lib))
     return render(request,'article.html')
 
 def retrieve_article(request,name):
+    named_entity_recognition(name)
     update_viewcount(name)
     article_query=Property.objects.filter(name=name).values()
     context=article_query[0]
@@ -82,7 +83,7 @@ def subm(request):
     return render(request,'subm.html')
 def submit(request):
     if request.method=='POST':
-        print(request.POST['url'],request.POST['title'],request.POST['body'])
+        #print(request.POST['url'],request.POST['title'],request.POST['body'])
         url=request.POST['url']
         session=requests.Session()
         session.headers={"User-Agent": "Googlebot/2.1 (+http://www.google.com/bot.html)"}
@@ -90,25 +91,25 @@ def submit(request):
         soup=BSoup(content,"html.parser")
         dom = etree.HTML(str(soup))
         print(dom.xpath('//title/text()')[0])
-        print(dom.xpath('//p/text()'))
+        #print(dom.xpath('//p/text()'))
         img_url=dom.xpath("//img/@src")[0]
         new_article=Property(name=dom.xpath('//title/text()')[0],body=' '.join(dom.xpath('//p/text()')),url=url,image_url=img_url)
         new_article.save()
-        img_temp = NamedTemporaryFile()
-        img_temp.write(urlopen(img_url).read())
-        img_temp.flush()
-        new_article.image_file.save("image_%s" % new_article.pk, File(img_temp))
-
-        new_article.save()
+        named_entity_recognition(new_article.name)
+        #img_temp = NamedTemporaryFile()
+        #img_temp.write(urlopen(img_url).read())
+        #img_temp.flush()
+        #new_article.image_file.save("image_%s" % new_article.pk, File(img_temp))
+        #new_article.save()
         return render(request,'subm.html')
     else:
         print('ERROR WITH FORM')
         return render(request,'subm.html')
 def images(request):
     all_urls=Property.objects.values_list('url', flat=True).filter(image_file='default.jpg')
-    print(len(all_urls))
+    #print(len(all_urls))
     for url in all_urls:
-        print(url)
+        #print(url)
         session=requests.Session()
         session.headers={"User-Agent": "Googlebot/2.1 (+http://www.google.com/bot.html)"}
         content=session.get(url,verify=True).content
@@ -149,7 +150,7 @@ def get_similar(request):
     with open('properties/lda/lda_15_articles_wlist/list_ids15.pkl', 'rb') as f:
         ids = pickle.load(f)
     ids=list(ids)
-    print(ids)
+    #print(ids)
     for j in all_ids:
         queryobject=Property.objects.filter(id=j).values()
         dic=queryobject[0]
@@ -170,5 +171,11 @@ def get_similar(request):
                 Property.objects.filter(id=j).update(similar_ids=articles)
     return render(request,'news.html')
 
-def look_for_countries():
-    countries=["Afghanistan","Albania","Algeria","Andorra","Angola","Antigua and Barbuda","Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina","Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","CÃ´te d'Ivoire","Cabo Verde","Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia","Comoros","Congo (Congo-Brazzaville)","Costa Rica","Croatia","Cuba","Cyprus","Czechia (Czech Republic)","Democratic Republic of the Congo","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Eswatini","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Holy See","Honduras","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan","Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar","Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea","North Macedonia","Norway","Oman","Pakistan","Palau","Palestine State","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda","Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria","Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia","Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"]
+def named_entity_recognition(name):
+    text_body =Property.objects.filter(name=name).values_list('body',flat=True)
+    print(text_body[0])
+    entities,types=process_for_ner(text_body[0])
+    print(types)
+    for ent in entities.keys():
+            print(type(ent))
+            new=Entity.objects.create(name=ent,type=types[ent])
