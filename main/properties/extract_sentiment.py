@@ -39,6 +39,6 @@ def get_sentiment(sentences):
     classes = (predictions>0.25)
     #print(classes)
     if sum(classes==True)>len(classes)/2:
-        return 1
+        return True
     else:
-        return 0
+        return False

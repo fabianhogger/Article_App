@@ -67,7 +67,7 @@ def add_to_lib(request,name,article):
 
 def retrieve_article(request,name):
     named_entity_recognition(name)
-    update_viewcount(name)
+    #update_viewcount(name)
     article_query=Property.objects.filter(name=name).values()
     context=article_query[0]
     similar_ids=context['similar_ids']
@@ -179,11 +179,13 @@ def get_similar(request):
 
 def named_entity_recognition(name):
     text_body =Property.objects.filter(name=name).values_list('body',flat=True)
+    Article_instance = Property.objects.get(name=name)
     #print(text_body[0])
     entities,types=process_for_ner(text_body[0])
     #print(types)
     for ent in entities.keys():
             #print(type(ent))
-            #new=Entity.objects.create(name=ent,type=types[ent])
+            new=Entity.objects.create(name=ent,type=types[ent])
+            print(new)
             sentiment=get_sentiment(entities[ent])
-            print(sentiment)
+            Sentiment.objects.create(article=Article_instance,entity=new,sentiment=sentiment)
