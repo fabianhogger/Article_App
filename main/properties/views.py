@@ -7,7 +7,7 @@ from django.core.files.temp import NamedTemporaryFile
 from django.shortcuts import render,redirect
 from urllib.request import urlopen
 from scraper.management.commands import crawl
-from properties.models import Property,Library,Entity,Sentiment
+from properties.models import Property,Library,Entity,Sentiment,Wikipedia_url
 
 from properties.trainlda import train_defs
 from properties.preprocesslda import clean
@@ -181,11 +181,15 @@ def named_entity_recognition(name):
     text_body =Property.objects.filter(name=name).values_list('body',flat=True)
     Article_instance = Property.objects.get(name=name)
     #print(text_body[0])
-    entities,types=process_for_ner(text_body[0])
+    entities,types,urls=process_for_ner(text_body[0])
     #print(types)
     for ent in entities.keys():
             #print(type(ent))
             #returns tuple with object and boolean created
             new_entity=Entity.objects.get_or_create(name=ent,type=types[ent])
             sentiment=get_sentiment(entities[ent])
-            sent_inst=Sentiment.objects.get_or_create(article=Article_instance,entity=new_entity[0],sentiment=sentiment)
+            Sentiment.objects.get_or_create(article=Article_instance,entity=new_entity[0],sentiment=sentiment)
+            for url in urls[ent]:
+                if url is not None:
+                    wiki=Wikipedia_url.objects.get_or_create(url=url)
+                    wiki[0].entity.add(new_entity[0])
