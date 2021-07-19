@@ -8,8 +8,7 @@ import pickle
 from gensim import models, similarities
 import numpy as np
 import scipy
-stop_words = stopwords.words('english')
-nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
+
 def jensen_shannon_distance(p, q):
     """
     method to compute the Jenson-Shannon Distance
@@ -47,8 +46,10 @@ class clean():
         #print('DATA AFTER FIRST PART  ',data)
         data_words = list(sent_to_words(data))
         def remove_stopwords(texts):
+            stop_words = stopwords.words('english')
             return [[word for word in simple_preprocess(str(doc)) if word not in stop_words] for doc in texts]
         def lemmatization(texts, allowed_postags=['NOUN', 'ADJ', 'VERB', 'ADV']):
+            nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
             texts_out = []
             for sent in texts:
                 doc = nlp(" ".join(sent))
@@ -59,12 +60,13 @@ class clean():
            'NOUN', 'ADJ', 'VERB', 'ADV'
         ])
         #print('data_lemmatized',data_lemmatized)
-        dict = corpora.Dictionary.load('properties/lda/lda_50_articles/model50bodies.id2word')
+        dict = corpora.Dictionary.load('properties/lda/lda_15_articles_wlist/model15bodies.id2word')
         converted = [dict.doc2bow(text) for text in data_lemmatized]
         #print('data ready ',converted)
         return converted
 
     def get_similarity(lda, query_vector):
+        print("reached")
         corpus=0
         with open('properties/lda/lda_15_articles_wlist/corpus15bodies', 'rb') as f:
             corpus = pickle.load(f)
