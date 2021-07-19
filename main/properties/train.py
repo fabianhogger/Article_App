@@ -8,10 +8,10 @@ import spacy
 import gensim.corpora as corpora
 #data cleaning
 from gensim.models.coherencemodel import CoherenceModel
-
+"""
 stop_words = stopwords.words('english')
 nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
-stop_words.extend(['from', 'subject', 're', 'edu', 'use'])
+stop_words.extend(['from', 'subject', 're', 'edu', 'use'])"""
 def sent_to_words(sentences):
     for sentence in sentences:
         yield(gensim.utils.simple_preprocess(str(sentence), deacc=True))
