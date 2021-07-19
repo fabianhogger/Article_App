@@ -1,21 +1,27 @@
-from django.shortcuts import render,redirect
-from scraper.management.commands import crawl
-from properties.models import Property
-from properties.trainlda import train_defs
-from properties.preprocesslda import clean
-from properties.extract_entities import process_for_ner
+import requests
 import pickle
 import gensim
-import gensim.corpora as corpora
-from gensim import models, similarities
-from lxml import etree
-import requests
-from bs4 import BeautifulSoup as BSoup
-from properties.models import Property,Library,Entity,Sentiment
 
 from django.core.files import File
 from django.core.files.temp import NamedTemporaryFile
+from django.shortcuts import render,redirect
 from urllib.request import urlopen
+from scraper.management.commands import crawl
+from properties.models import Property,Library,Entity,Sentiment
+
+from properties.trainlda import train_defs
+from properties.preprocesslda import clean
+from properties.extract_entities import process_for_ner
+from properties.extract_sentiment import get_sentiment
+
+
+import gensim.corpora as corpora
+from gensim import models, similarities
+from lxml import etree
+
+from bs4 import BeautifulSoup as BSoup
+
+
 def news_list(request):
     #print("news_list called")
     headlines=Property.objects.all()[0:10]
@@ -173,9 +179,11 @@ def get_similar(request):
 
 def named_entity_recognition(name):
     text_body =Property.objects.filter(name=name).values_list('body',flat=True)
-    print(text_body[0])
+    #print(text_body[0])
     entities,types=process_for_ner(text_body[0])
-    print(types)
+    #print(types)
     for ent in entities.keys():
-            print(type(ent))
-            new=Entity.objects.create(name=ent,type=types[ent])
+            #print(type(ent))
+            #new=Entity.objects.create(name=ent,type=types[ent])
+            sentiment=get_sentiment(entities[ent])
+            print(sentiment)
