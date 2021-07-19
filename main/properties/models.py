@@ -51,7 +51,4 @@ class Sentiment(models.Model):
 
 class Wikipedia_url(models.Model):
     entity=models.ManyToManyField(Entity)
-    url=models.CharField(max_length=500)
-    def __init__(self, arg):
-        super(Wikipedia_url, self).__init__()
-        self.arg = arg
+    url=models.CharField(max_length=500,unique=True)
