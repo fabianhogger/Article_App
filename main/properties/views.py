@@ -52,21 +52,25 @@ def create_library(request):
     return render(request,'libraries.html',context)
 
 def open_library(request,id):
+    context={}
     if request.user.is_authenticated:
-        library_instance=Library.objects.filter(user=request.user,id=id)
-        print(library_instance[0])
-    return render(request,'mylib.html')
+        opened_lib=Library.objects.get(user=request.user,id=id)
+        articles=list(opened_lib.article_ids.all())
+        context={'article_names':articles}
+    return render(request,'mylib.html',context)
 
-def add_to_lib(request,name,article):
+def add_to_lib(request,name,id):
     #get article id list and update it
     if request.user.is_authenticated:
-        library_query=list(Library.objects.values_list('article_ids',flat=True).filter(user=request.user,title=name))
-        lib=library_query
-        #print(lib,type(lib))
+        mylib=Library.objects.get(user=request.user,title=name)
+        Article=Property.objects.get(id=id)
+        mylib.article_ids.add(Article)
+        mylib.save()
+        print(mylib)
     return render(request,'article.html')
 
 def retrieve_article(request,name):
-    named_entity_recognition(name)
+    #named_entity_recognition(name)
     #update_viewcount(name)
     article_query=Property.objects.filter(name=name).values()
     context=article_query[0]
@@ -79,6 +83,7 @@ def retrieve_article(request,name):
     if request.user.is_authenticated:
         mylibs=list(Library.objects.values_list('title',flat=True).filter(user=request.user).order_by('title'))
         context['library_names']=mylibs
+        print(context)
     return render(request,'article.html',context)
 
 def update_viewcount(name):

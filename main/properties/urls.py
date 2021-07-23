@@ -23,6 +23,7 @@ urlpatterns = [
     path('libraries',views.libraries,name='libraries'),
     path('library/<str:id>',views.open_library,name='library'),
     path('create_library',views.create_library,name='create_library'),
+    path('add_to_lib/<str:name>/<int:id>',views.add_to_lib,name='add_art_to_lib'),
     path('article/<str:name>/',views.retrieve_article,name='article'),
     path('subm',views.subm,name='subm'),
     path('topics',views.topics,name='topics'),

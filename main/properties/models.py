@@ -21,7 +21,7 @@ the library stores the article ids
 class Library(models.Model):
     title=models.CharField(max_length=30,default="new_library")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    article_ids=ArrayField(models.IntegerField(), default=list,blank=True)
+    article_ids=models.ManyToManyField(Property)
     def __str__(self):
         return "%s %s" % (self.user,self.title)
 
