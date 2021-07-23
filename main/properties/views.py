@@ -69,10 +69,10 @@ def add_to_lib(request,name,id):
         print(mylib)
     return render(request,'article.html')
 
-def retrieve_article(request,name):
+def retrieve_article(request,id):
     #named_entity_recognition(name)
     #update_viewcount(name)
-    article_query=Property.objects.filter(name=name).values()
+    article_query=Property.objects.filter(id=id).values()
     context=article_query[0]
     similar_ids=context['similar_ids']
     similar=[]
