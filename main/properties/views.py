@@ -71,7 +71,7 @@ def add_to_lib(request,name,id):
 
 def retrieve_article(request,id):
     #named_entity_recognition(name)
-    #update_viewcount(name)
+    update_viewcount(id)
     article_query=Property.objects.filter(id=id).values()
     context=article_query[0]
     similar_ids=context['similar_ids']
@@ -83,12 +83,13 @@ def retrieve_article(request,id):
     if request.user.is_authenticated:
         mylibs=list(Library.objects.values_list('title',flat=True).filter(user=request.user).order_by('title'))
         context['library_names']=mylibs
-        print(context)
+        #print(context)
     return render(request,'article.html',context)
 
-def update_viewcount(name):
-    article=Property.objects.filter(name=name)
-    article[0]
+def update_viewcount(id):
+    article_views=Property.objects.values_list('views',flat=True).filter(id=id)
+    article_views=article_views[0]+1
+    Property.objects.filter(id=id).update(views=article_views)
 
 def subm(request):
     return render(request,'subm.html')
@@ -182,9 +183,9 @@ def get_similar(request):
                 Property.objects.filter(id=j).update(similar_ids=articles)
     return render(request,'news.html')
 
-def named_entity_recognition(name):
-    text_body =Property.objects.filter(name=name).values_list('body',flat=True)
-    Article_instance = Property.objects.get(name=name)
+def named_entity_recognition(id):
+    text_body =Property.objects.filter(id=id).values_list('body',flat=True)
+    Article_instance = Property.objects.get(id=id)
     #print(text_body[0])
     entities,types,urls=process_for_ner(text_body[0])
     #print(types)
