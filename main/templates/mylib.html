@@ -14,27 +14,10 @@
           <br><br>
           <br><br>
           <br><br>
-          <h4>Create new Libraries<em> or view existing ones</em></h4>
-        Click below to create and name a  new Library.
+          <h4>You are viewing library named <em>{{library.title}}</em></h4>
+        Click below to view any article
           <br><br>You can add articles to the library by going to the article page and clicking add to library and the choosing the Library</p>
-          <div class="main-button"><a ONCLICK="ShowAndHide()" >Create Library</a></div>
-          <br><br>
-          <form ID="SectionName" STYLE="display:none" action="create_library" method="post">
-            {% csrf_token %}
-            <div class="row">
-              <div class="col-md-7">
-                  <fieldset>
-                    <input name="name" type="text" class="form-control" id="name" placeholder="Write library name here" required="">
-                  </fieldset>
-                </div>
-                <div class="col-md-12">
-                  <fieldset>
-                      <div class="main-button"><button type="submit" id="form-submit" class="button">Submit</button></div>
-                  </fieldset>
-                </div>
-              </div>
-            </form>
-            <table style="width:100%">
+              <table style="width:100%">
                 <tr>
                   <th>Articles</th>
                 </tr>
@@ -57,6 +40,23 @@
       </div>
     </div>
   </div>
+  <div class="main-button"><a ONCLICK="ShowAndHide()" >Delete Library</a></div>
+  <br><br>
+  <form ID="SectionName" STYLE="display:none" action="delete_library" method="post">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-md-7">
+          <fieldset>
+            <input name="name" type="text" class="form-control" id="name" placeholder="Write library name here" required="">
+          </fieldset>
+        </div>
+        <div class="col-md-12">
+          <fieldset>
+              <div class="main-button"><button type="submit" id="form-submit" class="button">Submit</button></div>
+          </fieldset>
+        </div>
+      </div>
+    </form>
 </section>
 <footer>
   <div class="container">
