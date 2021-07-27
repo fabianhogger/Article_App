@@ -40,17 +40,9 @@
                 </tr>
                 {% for name in article_names%}
                 <tr>
-                  <td><a style="color: #f5f5f5; text-decoration: none;">{{name}}</a></td>
+                  <td><a href="http://127.0.0.1:8000/article/{{name.id}}" style="color: #f5f5f5; text-decoration: none;">{{name}}</a></td>
                 </tr>
                   {% endfor %}
-                  <tr>
-                    <th>images</th>
-                  </tr>
-                  {% for name in library_names%}
-                  <tr>
-                    <td><a style="color: #f5f5f5; text-decoration: none;">{{name}}</a></td>
-                  </tr>
-                    {% endfor %}
 
               </table>
         </div>

@@ -67,10 +67,10 @@ def add_to_lib(request,name,id):
         mylib.article_ids.add(Article)
         mylib.save()
         print(mylib)
-    return render(request,'article.html')
+    return retrieve_article(request,id)
 
 def retrieve_article(request,id):
-    #named_entity_recognition(name)
+    #scan_all_entities()
     update_viewcount(id)
     article_query=Property.objects.filter(id=id).values()
     context=article_query[0]
@@ -107,12 +107,7 @@ def submit(request):
         img_url=dom.xpath("//img/@src")[0]
         new_article=Property(name=dom.xpath('//title/text()')[0],body=' '.join(dom.xpath('//p/text()')),url=url,image_url=img_url)
         new_article.save()
-        named_entity_recognition(new_article.name)
-        #img_temp = NamedTemporaryFile()
-        #img_temp.write(urlopen(img_url).read())
-        #img_temp.flush()
-        #new_article.image_file.save("image_%s" % new_article.pk, File(img_temp))
-        #new_article.save()
+        named_entity_recognition(new_article.id)
         return render(request,'subm.html')
     else:
         print('ERROR WITH FORM')
@@ -182,20 +177,26 @@ def get_similar(request):
                 articles.append(id_)
                 Property.objects.filter(id=j).update(similar_ids=articles)
     return render(request,'news.html')
-
+def scan_all_entities():
+    already=[87,4,51,96,52,1748,67,132,1050,1741,1750,39,92,605,513,93,89,541,1051,69,292,50,102,14,22,59,1776,1745,65,16,75,577,630,11,1704,99,805,1758,534,41,46,1773,808,53,32,214,7,658,649,358,100,1753,48,12,532,85,72,57,24,81,77,519,1769,1124,49,1763,508,671,37,901,20,1,18,55,813,1752,58,809,8]
+    ids=list(Property.objects.values_list('id',flat=True))
+    ids=[id for id in ids if id not in already]
+    for id in ids:
+        named_entity_recognition(id)
+        print('Done ', id)
 def named_entity_recognition(id):
     text_body =Property.objects.filter(id=id).values_list('body',flat=True)
     Article_instance = Property.objects.get(id=id)
-    #print(text_body[0])
     entities,types,urls=process_for_ner(text_body[0])
-    #print(types)
     for ent in entities.keys():
-            #print(type(ent))
             #returns tuple with object and boolean created
-            new_entity=Entity.objects.get_or_create(name=ent,type=types[ent])
-            sentiment=get_sentiment(entities[ent])
-            Sentiment.objects.get_or_create(article=Article_instance,entity=new_entity[0],sentiment=sentiment)
-            for url in urls[ent]:
-                if url is not None:
-                    wiki=Wikipedia_url.objects.get_or_create(url=url)
-                    wiki[0].entity.add(new_entity[0])
+            try:
+                new_entity=Entity.objects.get_or_create(name=ent,type=types[ent])
+                sentiment=get_sentiment(entities[ent])
+                Sentiment.objects.get_or_create(article=Article_instance,entity=new_entity[0],sentiment=sentiment)
+                for url in urls[ent]:
+                    if url is not None:
+                        wiki=Wikipedia_url.objects.get_or_create(url=url)
+                        wiki[0].entity.add(new_entity[0])
+            except:
+                pass
