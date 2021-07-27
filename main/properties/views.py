@@ -56,7 +56,8 @@ def open_library(request,id):
     if request.user.is_authenticated:
         opened_lib=Library.objects.get(user=request.user,id=id)
         articles=list(opened_lib.article_ids.all())
-        context={'article_names':articles}
+        context['article_names']=articles
+        context['library']=opened_lib
     return render(request,'mylib.html',context)
 
 def add_to_lib(request,name,id):
@@ -68,6 +69,10 @@ def add_to_lib(request,name,id):
         mylib.save()
         print(mylib)
     return retrieve_article(request,id)
+def delete_library(request,id):
+    if request.user.is_authenticated:
+        mylib=Library.objects.filter(user=request.user,id=id).delete()
+    return libraries(request)
 
 def retrieve_article(request,id):
     #scan_all_entities()
