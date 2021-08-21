@@ -1,7 +1,6 @@
 import requests
 import pickle
 import gensim
-
 from django.core.files import File
 from django.core.files.temp import NamedTemporaryFile
 from django.shortcuts import render,redirect
@@ -121,11 +120,35 @@ def submit(request):
             new_article=Property(name=request.POST['title'],body=request.POST['body'],url=request.POST['url'],image_url=request.POST['image_url'])
             print("SAVING ARTICLEEEEEEEE")
             new_article.save()
+            similar=find_similar(request.POST['body'])
+            Property.objects.filter(id=new_article.id).update(similar_ids=similar)
             named_entity_recognition(new_article.id)
             return render(request,'subm.html')
     else:
         print('ERROR WITH FORM')
         return render(request,'subm.html')
+
+def find_similar(bod):
+    lda=gensim.models.ldamodel.LdaModel.load('properties/lda/lda_15_articles_wlist/model15bodies')
+    all_ids=Property.objects.values_list('id' ,flat=True).order_by('id')
+    with open('properties/lda/lda_15_articles_wlist/list_ids15.pkl', 'rb') as f:
+        ids = pickle.load(f)
+    ids=list(ids)
+    body=[]
+    body.append(bod)
+    clean_body=clean.clean_text(body)
+    vector1=lda[clean_body[0]]
+    sims=clean.get_similarity(lda,vector1)
+    #sims=clean.get_jensen_shannon(lda,vector1)
+    sims = sorted(enumerate(sims), key=lambda item: -item[1])
+    tens=sims[:10]
+    articles=[]
+    for i in range(10):
+        index=tens[i][0]
+        id_=ids[index]
+        articles.append(id_)
+    #Property.objects.filter(id=j).update(similar_ids=articles)
+    return articles
 def images(request):
     all_urls=Property.objects.values_list('url', flat=True).filter(image_file='default.jpg')
     #print(len(all_urls))
@@ -166,6 +189,9 @@ def train(request):
     corpus=Property.objects.values_list('id','body').order_by('id')
     train_defs.start(list(corpus))
     return redirect("news")
+
+
+
 def get_similar(request):
     lda=gensim.models.ldamodel.LdaModel.load('properties/lda/lda_15_articles_wlist/model15bodies')
     all_ids=Property.objects.values_list('id' ,flat=True).order_by('id')
@@ -191,7 +217,7 @@ def get_similar(request):
                 index=tens[i][0]
                 id_=ids[index]
                 articles.append(id_)
-                Property.objects.filter(id=j).update(similar_ids=articles)
+            Property.objects.filter(id=j).update(similar_ids=articles)
     return render(request,'news.html')
 def scan_all_entities():
     already=[87,4,51,96,52,1748,67,132,1050,1741,1750,39,92,605,513,93,89,541,1051,69,292,50,102,14,22,59,1776,1745,65,16,75,577,630,11,1704,99,805,1758,534,41,46,1773,808,53,32,214,7,658,649,358,100,1753,48,12,532,85,72,57,24,81,77,519,1769,1124,49,1763,508,671,37,901,20,1,18,55,813,1752,58,809,8]
