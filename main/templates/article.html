@@ -23,35 +23,32 @@
       </div>
   </section>
 
-  <section class="tabs-content">
-    <article id='tabs-1'>
-    <div class="row">
-      <div class="col-md-6">
-          <h4>{{name}}</h4>
-          <p>{{body}}</p>
-          <span> Source : {{url}}</span>
-      </div>
-        <div class="col-md-6 ">
-          <div class="row">
-          <a  href="http://127.0.0.1:8000/article/{{similar.0.0}}"> <img src="{{MEDIA_URL}}{{similar.0.1}}"  alt=""></a>
-          <h4>{{similar.0.0}}</h4>
-        </div>
-        </div>
-        </div>
-        <div class="main-button"><a ONCLICK="ShowAndHide()" >Add to Library</a></div>
-          <table ID="SectionName" STYLE="display:none" >
-              <tr>
-                <th></th>
-              </tr>
-              {% for lib in library_names%}
-              <tr>
-                <th><a href="http://127.0.0.1:8000/add_to_lib/{{lib}}/{{id}}"style="color: #000000; text-decoration: none;">{{lib}}</a></th>
-              </tr>
-                {% endfor %}
+  <section class="section video" data-section="section5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 align-self-center">
+          <div class="left-content">
 
-            </table>
-      </article>
-      </section>
+            <h4><em>{{name}}</em></h4>
+            <p> {{body}}
+            <br><br>Source : {{url}}</p>
+            <div class="main-button"><a ONCLICK="ShowAndHide()" >Add to Library</a></div>
+              <table ID="SectionName" STYLE="display:none" >
+                  <tr>
+                    <th></th>
+                  </tr>
+                  {% for lib in library_names%}
+                  <tr>
+                    <th><a href="http://127.0.0.1:8000/add_to_lib/{{lib}}/{{id}}"style="color: #000000; text-decoration: none;">{{lib}}</a></th>
+                  </tr>
+                    {% endfor %}
+
+                </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
   <section class="section courses" data-section="section4">
@@ -65,10 +62,12 @@
         <div class="owl-carousel owl-theme">
           {% for art in similar%}
           <div class="item">
-              <a  href="http://127.0.0.1:8000/article/{{art.0}}">  {%if art.1 == "www.noimage.com" %}
-                  <img src="/media/media_1" alt="Course #1">
+              {%if art.1 == "www.noimage.com" %}
+              <a  href="http://127.0.0.1:8000/article/{{art.0}}">
+                  <img src="{{MEDIA_URL}}default.jpg" alt="wrong ">
                  {% else %}
-                   <img src="{{art.1}}" alt="Course #1">
+                   <a  href="http://127.0.0.1:8000/article/{{art.0}}">
+                   <img src="{{art.1}}" alt=" ">
                    {% endif %}</a>
             <div class="down-content">
               <h4>{{art.0}}</h4>
