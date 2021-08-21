@@ -3,6 +3,24 @@
 
 
 {% block content %}
+<style>
+#myProgress {
+  width: 50%;
+  background-color: #ddd;
+ visibility: hidden;
+}
+
+#myBar {
+  width: 1%;
+  height: 30px;
+  background-color: #a4aa04;
+   visibility: hidden;
+
+}
+#Demo{
+    color: white;
+}
+</style>
   <!-- ***** Main Banner Area Start ***** -->
   <section class="section contact" data-section="section6">
     <div class="container">
@@ -69,15 +87,28 @@
                 </div>
                 <div class="col-md-12">
                   <fieldset>
-                    <button type="submit" id="form-submit" class="button">SUBMIT</button>
+                    <button type="submit" id="form-submit" onclick="ShowAndHideBar()" oclass="button">SUBMIT</button>
                   </fieldset>
                 </div>
               </div>
+              <div class="col-md-12">
+              <div id="myProgress" display="none" >
+            <div id="myBar" display="none"></div>
+          </div>
+          <p id="Demo"></p>
+          </div>
             </form>
             {% endif %}
         </div>
+
+        <div class="col-md-12">
+        <div id="myProgress" display="none" >
+      <div id="myBar" display="none"></div>
+    </div>
+    </div>
         </div>
     </div>
+
   </section>
 
 
@@ -96,5 +127,54 @@
       </div>
     </div>
   </footer>
+  <script>
+var i = 0;
+function move() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("myBar");
+    var width = 1;
+    var id = setInterval(frame, 10);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+      } else {
+        width=width+i/2;
+        elem.style.width = width + "%";
+        if (width>=0) {
+          document.getElementById("Demo").innerHTML = "Analysing Text";
+        }
+        if (width>=10) {
+          document.getElementById("Demo").innerHTML = "Finding similar articles..";
+        }
+        if (width>=40) {
+          document.getElementById("Demo").innerHTML = "Extracting Entities..";
+        }
+        if (width>=70) {
+          document.getElementById("Demo").innerHTML = "Associating Entities with Wikipedia entries.. ";
+        }
+        if (width>=90) {
+          document.getElementById("Demo").innerHTML = "Done";
+        }
+
+      }
+    }
+  }
+}
+
+function ShowAndHideBar() {
+  var x = document.getElementById('myBar');
+  if (x.style.visibility == 'visible') {
+      x.style.visibility = 'hidden';
+  } else {
+      x.style.visibility = 'visible';
+      y= document.getElementById('myBar');
+      y.style.visibility = 'visible';
+      move()
+  }
+}
+
+</script>
 
   {% endblock content %}
