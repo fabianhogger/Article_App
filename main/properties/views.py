@@ -23,8 +23,11 @@ from bs4 import BeautifulSoup as BSoup
 
 def news_list(request):
     #print("news_list called")
-    headlines=Property.objects.all()[2280:]
+    headlines=Property.objects.all().order_by('date')[2350:]
+    Topvideo=Property.objects.all().order_by('views')[:1]
+    print(Topvideo[0])
     context={
+    'Topvideo':Topvideo,
     'object_list':headlines
     }
     return render(request,"news.html",context)

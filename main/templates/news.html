@@ -3,7 +3,7 @@
 
 
 {% block content %}
-  <!-- ***** Main Banner Area Start ***** -->
+  <!-- ***** Main Banner Area Start *****
   <section class="section main-banner" id="top" data-section="section1">
       <video autoplay muted loop id="bg-video">
           <source src="{% static 'assets/images/course-video.mp4' %}" type="video/mp4" />
@@ -14,11 +14,32 @@
               <h6>Top Story</h6>
               <h2><em>Story</em> Title</h2>
               <div class="main-button">
-                  <div class="scroll-to-section"><a href="{% url 'images' %}">Download images</a></div>
+                  <div class="scroll-to-section"><a href="{% url 'get_similar' %}">compute similar articles</a></div>
               </div>
           </div>
       </div>
-  </section>
+  </section>-->
+{%for top in Topvideo%}
+    <section class="section coming-soon" data-section="section3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7 col-xs-12">
+            <div class="continer centerIt">
+                <a  href="http://127.0.0.1:8000/article/{{top.id}}">
+              <div>
+                <h4> <em>{{top.name}}</em> </h4>
+              </div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+
+{%endfor%}
   <!-- ***** Main Banner Area End ***** -->
 
 
@@ -28,7 +49,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="section-heading">
-            <h2>Related Stories</h2>
+            <h2>Latest Stories</h2>
           </div>
         </div>
         <div class="owl-carousel owl-theme">
@@ -44,9 +65,9 @@
             </a>
             <div class="down-content">
               <h4>{{object.name}}</h4>
-              <p>You can get free images and videos for your websites by visiting Unsplash, Pixabay, and Pexels.</p>
+              <p>{{objet.body}}</p>
               <div class="author-image">
-                <img src="{% static 'assets/images/author-01.png' %}" alt="Author 1">
+              <!--  <img src="{% static 'assets/images/author-01.png' %}" alt="Author 1">-->
               </div>
               <div class="text-button-pay">
                 <a href="http://127.0.0.1:8000/article/{{object.id}}">View <i class="fa fa-angle-double-right"></i></a>
