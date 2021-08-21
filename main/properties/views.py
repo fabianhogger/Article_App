@@ -24,7 +24,7 @@ from bs4 import BeautifulSoup as BSoup
 
 def news_list(request):
     #print("news_list called")
-    headlines=Property.objects.all()[0:10]
+    headlines=Property.objects.all()[2280:]
     context={
     'object_list':headlines
     }
@@ -99,21 +99,30 @@ def update_viewcount(id):
 def subm(request):
     return render(request,'subm.html')
 def submit(request):
-    if request.method=='POST':
-        #print(request.POST['url'],request.POST['title'],request.POST['body'])
+    print(request.POST)
+    if request.method=='POST' and request.POST.get('title') is None:
+        print("entered URL SUBMIT")
         url=request.POST['url']
         session=requests.Session()
         session.headers={"User-Agent": "Googlebot/2.1 (+http://www.google.com/bot.html)"}
         content=session.get(url,verify=True).content
         soup=BSoup(content,"html.parser")
         dom = etree.HTML(str(soup))
-        print(dom.xpath('//title/text()')[0])
+        #print(dom.xpath('//title/text()')[0])
         #print(dom.xpath('//p/text()'))
         img_url=dom.xpath("//img/@src")[0]
-        new_article=Property(name=dom.xpath('//title/text()')[0],body=' '.join(dom.xpath('//p/text()')),url=url,image_url=img_url)
-        new_article.save()
-        named_entity_recognition(new_article.id)
-        return render(request,'subm.html')
+        context={'name':dom.xpath('//title/text()')[0],'body':' '.join(dom.xpath('//p/text()')),'url':url,'image_url':dom.xpath("//img/@src")[0]}
+        return render(request,'subm.html',context)
+        #new_article=Property(name=dom.xpath('//title/text()')[0],body=' '.join(dom.xpath('//p/text()')),url=url,image_url=img_url)
+        #new_article.save()
+        #named_entity_recognition(new_article.id)
+        #return render(request,'subm.html')
+    elif request.POST.get('title'):
+            new_article=Property(name=request.POST['title'],body=request.POST['body'],url=request.POST['url'],image_url=request.POST['image_url'])
+            print("SAVING ARTICLEEEEEEEE")
+            new_article.save()
+            named_entity_recognition(new_article.id)
+            return render(request,'subm.html')
     else:
         print('ERROR WITH FORM')
         return render(request,'subm.html')
@@ -147,7 +156,9 @@ def images(request):
     return render(request,'news.html')
 
 def topics(request):
-    return render(request,'topics.html')
+    entities= Entity.objects.values_list('name','type').order_by('articles')
+    context={"entities":entities}
+    return render(request,'topics.html',context)
 
 def scrape(request):
     pass

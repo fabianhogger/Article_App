@@ -17,7 +17,7 @@
         <!-- Do you need a working HTML contact-form script?
 
                     Please visit https://templatemo.com/contact page -->
-
+          {% if  not name%}
           <form id="contact" action="submition" method="post">
             {% csrf_token %}
             <div class="row">
@@ -26,7 +26,7 @@
                     <input name="url" type="text" class="form-control" id="name" placeholder="Url" required="">
                   </fieldset>
                 </div>
-                <div class="col-md-10">
+                <!--<div class="col-md-10">
                   <fieldset>
                     <input name="title" type="text" class="form-control" id="email" placeholder="Title" required="">
                   </fieldset>
@@ -35,7 +35,7 @@
                 <fieldset>
                   <textarea name="body" rows="6" class="form-control" id="message" placeholder="Body" required=""></textarea>
                 </fieldset>
-              </div>
+              </div>-->
               <div class="col-md-12">
                 <fieldset>
                   <button type="submit" id="form-submit" class="button">Submit</button>
@@ -43,10 +43,43 @@
               </div>
             </div>
           </form>
+            {% elif name %}
+            <form id="contact2" action="submition" method="post">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-md-7">
+                    <fieldset>
+                      <textarea name="url" type="text" class="form-control" id="name" placeholder="Url" required="">{{url}}</textarea>
+                    </fieldset>
+                  </div>
+                  <div class="col-md-7">
+                      <fieldset>
+                        <textarea name="image_url" type="text" class="form-control" id="name" placeholder="Url" required="">{{image_url}}</textarea>
+                      </fieldset>
+                    </div>
+                  <div class="col-md-10">
+                    <fieldset>
+                      <textarea name="title" type="text" class="form-control" id="email" placeholder="{{name}}" required="">{{name}}</textarea>
+                    </fieldset>
+                  </div>
+                <div class="col-md-12">
+                  <fieldset>
+                    <textarea name="body" rows="6" class="form-control" id="message" placeholder="" required="">{{body}}</textarea>
+                  </fieldset>
+                </div>
+                <div class="col-md-12">
+                  <fieldset>
+                    <button type="submit" id="form-submit" class="button">SUBMIT</button>
+                  </fieldset>
+                </div>
+              </div>
+            </form>
+            {% endif %}
         </div>
         </div>
     </div>
   </section>
+
 
 
 
