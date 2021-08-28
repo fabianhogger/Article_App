@@ -187,9 +187,10 @@ def topics(request):
     cursor.execute(query, ['localhost'])
     data= cursor.fetchall()
     print(data)
+    print(type(data[0]))
     ##entities= Entity.objects.values_list('name','type').order_by('articles')
-    #context={"entities":entities}
-    return render(request,'topics.html')
+    context={"entities":data}
+    return render(request,'topics.html',context)
 
 def scrape(request):
     pass
