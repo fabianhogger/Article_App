@@ -19,16 +19,16 @@ from gensim import models, similarities
 from lxml import etree
 
 from bs4 import BeautifulSoup as BSoup
-
+from django.db import connection
 
 def news_list(request):
     #print("news_list called")
-    headlines=Property.objects.all().order_by('date')[2350:]
-    Topvideo=Property.objects.all().order_by('views')[:1]
+    headlines=Property.objects.all().order_by('date')[3760:]
+    Topvideo=Property.objects.all().order_by('-views')[:1]
     print(Topvideo[0])
     context={
     'Topvideo':Topvideo,
-    'object_list':headlines
+    'object_list':headlines,
     }
     return render(request,"news.html",context)
 
@@ -182,9 +182,14 @@ def images(request):
     return render(request,'news.html')
 
 def topics(request):
-    entities= Entity.objects.values_list('name','type').order_by('articles')
-    context={"entities":entities}
-    return render(request,'topics.html',context)
+    cursor=connection.cursor()
+    query="select count(*)-count(*) filter (where t1.sentiment),count(*) filter (where t1.sentiment),t2.name,t2.type from properties_sentiment as t1,properties_entity as t2 where t1.entity_id = t2.id and t2.type like 'GPE' group by t2.name,t2.type order by count(t1.sentiment) DESC"
+    cursor.execute(query, ['localhost'])
+    data= cursor.fetchall()
+    print(data)
+    ##entities= Entity.objects.values_list('name','type').order_by('articles')
+    #context={"entities":entities}
+    return render(request,'topics.html')
 
 def scrape(request):
     pass
@@ -193,8 +198,8 @@ def train(request):
     train_defs.start(list(corpus))
     return redirect("news")
 
-
-
+def whoweare(request):
+    return render(request,"Whoweare.html")
 def get_similar(request):
     lda=gensim.models.ldamodel.LdaModel.load('properties/lda/lda_15_articles_wlist/model15bodies')
     all_ids=Property.objects.values_list('id' ,flat=True).order_by('id')
