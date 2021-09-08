@@ -30,12 +30,14 @@
               </thead>
               <tbody>
                 {% for name in people%}
+                <a href="{ent_articles/143}">
                   <tr>
                       <td>{{name.0}}</td>
                       <td>{{name.1}}</td>
                       <td>{{name.2}}</td>
                     <!--  <td>{{name.3}}</td>-->
                   </tr>
+                  </a>
                       {% endfor %}
               </tbody>
           </table>
@@ -61,6 +63,27 @@
               </tbody>
           </table>
           <a ONCLICK="ShowAndHide('places')"><h4>Places</h4></a>
+              </table>
+              <table STYLE="display:none">
+              <thead>
+                  <tr>
+                      <th >Neg </th>
+                      <th>  Pos </th>
+                      <th>  Place</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for name in places%}
+                  <tr>
+                      <td>{{name.0}}</td>
+                      <td>{{name.1}}</td>
+                      <td>{{name.2}}</td>
+                    <!--  <td>{{name.3}}</td>-->
+                  </tr>
+                      {% endfor %}
+              </tbody>
+          </table>
+          <a ONCLICK="ShowAndHide('places')"><h4>Sources</h4></a>
               </table>
               <table STYLE="display:none">
               <thead>

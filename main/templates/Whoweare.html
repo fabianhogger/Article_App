@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<section class="section video" data-section="section5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 align-self-center">
+        <div class="left-content">
+          <span>      </span>
+          <br><br>
+          <br><br>
+          <br><br>
+          <br><br>
+          <br><br>
+          <h4>Who we are <em></em></h4>
+        This application was created for people to view and archive articles and to be able explore interesting data extracted.
+        <br><br>
+        Once you have signed up you can create your own Libraries and store articles inside them.
+        If you like an article and want to to add it to our database you can do so by navigating to our submit page and simply pasting the url and hitting submit.
+
+        </div>
+      </div>
+      <div class="col-md-6">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 align-self-center">
+        <div class="left-content">
+          <span>      </span>
+          <br><br>
+          <br><br>
+          <h4>How we do it <em></em></h4>
+        When articles are submitted to the application they are passed through two processes.
+        <br><br>
+        The first process performs an entity recognition on the body of the article and than sentiment analysis for each entity.
+        Entity Recognition is a technique that identifies people,organisations,places etc. inside articles.
+        Sentiment analysis is the classification of a body of text regarding its sentiment or tone.
+        <br><br>
+        The second process finds related articles with the use of what is called a topic model,an algorithm created with the intention of finding underlying topics in a body of texts. 
+        </div>
+      </div>
+      <div class="col-md-6">
+          <p>
+          <br><br>
+            <br><br>
+            <br><br>
+            <br><br>
+              </p>
+      </div>
+    </div>
+  </div>
+  <section class="section video" data-section="section5">
+
+
+</section>
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p><i class="fa fa-copyright"></i> Copyright 2020 by Grad School
+
+         | Design: <a href="https://templatemo.com" rel="sponsored" target="_parent">TemplateMo</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% endblock content %}

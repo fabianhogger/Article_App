@@ -5,24 +5,12 @@
 
 {% block content %}
 
-  <!-- ***** Main Banner Area Start ***** -->
-  <section class="section main-banner" id="top" data-section="section1">
-
-      <video autoplay muted loop id="bg-video">
-          <source src="{{MEDIA_URL}}{{object.image_file}}"  />
-      </video>
-
-      <div class="video-overlay header-text">
-          <div class="caption">
-              <h6>{{name}}</h6>
-              <h></h2>
-              <!--<div class="main-button">
-                  <div class="scroll-to-section"><a href="">Discover more</a></div>
-              </div>-->
-          </div>
+<section class="section why-us">
+  <div>
+    <p><br><br><br><br><br>
+      </p>
       </div>
-  </section>
-
+</section>
   <section class="section video" data-section="section5">
     <div class="container">
       <div class="row">
@@ -39,13 +27,19 @@
                   </tr>
                   {% for lib in library_names%}
                   <tr>
-                    <th><a href="http://127.0.0.1:8000/add_to_lib/{{lib}}/{{id}}"style="color: #000000; text-decoration: none;">{{lib}}</a></th>
+                    <th><a href="http://127.0.0.1:8000/add_to_lib/{{lib}}/{{id}}"style="color: #fff8f0; text-decoration: none;">{{lib}}</a></th>
                   </tr>
                     {% endfor %}
 
                 </table>
           </div>
+
         </div>
+          <div class="col-md-6 align-self-center">
+            <div class="right-content">
+                 <img src="{{image_url}}" alt=" " width="400" height="300">
+              </div>
+            </div>
       </div>
     </div>
   </section>
@@ -66,7 +60,7 @@
               <a  href="http://127.0.0.1:8000/article/{{art.0}}">
                   <img src="{{MEDIA_URL}}default.jpg" alt="wrong ">
                  {% else %}
-                   <a  href="http://127.0.0.1:8000/article/{{art.0}}">
+                   <a  href="http://127.0.0.1:8000/article/{{art.2}}">
                    <img src="{{art.1}}" alt=" ">
                    {% endif %}</a>
             <div class="down-content">
