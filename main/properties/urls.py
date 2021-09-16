@@ -28,7 +28,9 @@ urlpatterns = [
     path('article/<int:id>/',views.retrieve_article,name='article'),
     path('subm',views.subm,name='subm'),
     path('topics',views.topics,name='topics'),
+    path('view_entity_data/<int:ent_id>',views.view_entity_data,name='ent_articles'),
     path('submition',views.submit,name='submit'),
+    path('whoweare',views.whoweare,name='whoweare'),
     path('images',views.images,name='images'),
     path('get_similar',views.get_similar,name='get_similar')
 

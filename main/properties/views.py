@@ -20,15 +20,20 @@ from lxml import etree
 
 from bs4 import BeautifulSoup as BSoup
 from django.db import connection
-
+import re
 def news_list(request):
     #print("news_list called")
-    headlines=Property.objects.all().order_by('date')[3760:]
+    headlines=Property.objects.order_by('date')[:30]
+    print(headlines)
+    headl=[]
+    for item in headlines:
+        if item.image_url!="www.noimage.com":
+            headl.append(item)
     Topvideo=Property.objects.all().order_by('-views')[:1]
     print(Topvideo[0])
     context={
     'Topvideo':Topvideo,
-    'object_list':headlines,
+    'object_list':headl,
     }
     return render(request,"news.html",context)
 
@@ -84,7 +89,7 @@ def retrieve_article(request,id):
     similar_ids=context['similar_ids']
     similar=[]
     for sim_id in similar_ids:
-        sim_article=Property.objects.values_list('name','image_url').filter(id=sim_id)
+        sim_article=Property.objects.values_list('name','image_url','id').filter(id=sim_id)
         similar.append(sim_article[0])
     context['similar']=similar
     if request.user.is_authenticated:
@@ -113,7 +118,9 @@ def submit(request):
         #print(dom.xpath('//title/text()')[0])
         #print(dom.xpath('//p/text()'))
         img_url=dom.xpath("//img/@src")[0]
-        context={'name':dom.xpath('//title/text()')[0],'body':' '.join(dom.xpath('//p/text()')),'url':url,'image_url':dom.xpath("//img/@src")[0]}
+        source = re.sub(".com(.*)",'', url)
+        source = re.sub("(.*)www.",'', source)
+        context={'name':dom.xpath('//title/text()')[0],'body':' '.join(dom.xpath('//p/text()')),'url':url,'image_url':dom.xpath("//img/@src")[0],'source':source}
         return render(request,'subm.html',context)
         #new_article=Property(name=dom.xpath('//title/text()')[0],body=' '.join(dom.xpath('//p/text()')),url=url,image_url=img_url)
         #new_article.save()
@@ -126,7 +133,15 @@ def submit(request):
             similar=find_similar(request.POST['body'])
             Property.objects.filter(id=new_article.id).update(similar_ids=similar)
             named_entity_recognition(new_article.id)
-            return render(request,'subm.html')
+            #retrieve computed entities
+            cursor=connection.cursor()
+            query="select t1.entity_id,t2.name from properties_sentiment as t1,properties_entity as t2 where article_id={} and t1.entity_id=t2.id".format(new_article.id)
+            cursor.execute(query,['localhost'])
+            entities=cursor.fetchall()
+            #entities=[item[1] for item in entities]
+            print(entities)
+            context={'entities':entities}
+            return render(request,'subm.html',context)
     else:
         print('ERROR WITH FORM')
         return render(request,'subm.html')
@@ -196,6 +211,7 @@ def topics(request):
     context={"people":people[:50],"places":places[:50],"orgs":orgs[:50]}
     return render(request,'topics.html',context)
 
+
 def scrape(request):
     pass
 def train(request):
@@ -206,6 +222,17 @@ def train(request):
 def whoweare(request):
     return render(request,"Whoweare.html")
 def get_similar(request):
+    '''
+    all_ids=Property.objets.values_list('id','url' ).order_by('id')
+    for j  in range(len(all_ids)):
+        tu=all_ids[j]
+        x = re.sub(".com(.*)",'', tu[1])
+        print(x)
+        x = re.sub("(.*)www.",'', x)
+        print(x)
+        Property.objects.filter(id=tu[0]).update(source=x)
+    #    queryobject=Property.objects.get(id=j).values(
+    '''
     lda=gensim.models.ldamodel.LdaModel.load('properties/lda/lda_15_articles_wlist/model15bodies')
     all_ids=Property.objects.values_list('id' ,flat=True).order_by('id')
     #print(all_ids)
@@ -231,6 +258,7 @@ def get_similar(request):
                 id_=ids[index]
                 articles.append(id_)
             Property.objects.filter(id=j).update(similar_ids=articles)
+
     return render(request,'news.html')
 def scan_all_entities():
     already=[87,4,51,96,52,1748,67,132,1050,1741,1750,39,92,605,513,93,89,541,1051,69,292,50,102,14,22,59,1776,1745,65,16,75,577,630,11,1704,99,805,1758,534,41,46,1773,808,53,32,214,7,658,649,358,100,1753,48,12,532,85,72,57,24,81,77,519,1769,1124,49,1763,508,671,37,901,20,1,18,55,813,1752,58,809,8]
@@ -255,3 +283,14 @@ def named_entity_recognition(id):
                         wiki[0].entity.add(new_entity[0])
             except:
                 pass
+def view_entity_data(request,ent_id):
+    cursor=connection.cursor()
+    entity_data="select t1.id,t1.name,t2.sentiment,t1.source from properties_property as t1,properties_sentiment as t2,properties_entity as t3 where t2.article_id=t1.id and t2.entity_id={id} and t3.id={id}".format(id=ent_id)
+    cursor.execute(entity_data, ['localhost'])
+    entity_data= cursor.fetchall()
+    ent="select name from properties_entity where id={id}".format(id=ent_id)
+    cursor.execute(ent, ['localhost'])
+    entity=cursor.fetchall()
+    context={"entity_data":entity_data,"entity_name":entity}
+    print(entity)
+    return render(request,'entity.html',context)
