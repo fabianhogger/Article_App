@@ -34,8 +34,7 @@
                   <tr>
                       <td>{{name.0}}</td>
                       <td>{{name.1}}</td>
-                      <td>{{name.2}}</td>
-                    <!--  <td>{{name.3}}</td>-->
+                      <td><a href="http://127.0.0.1:8000/view_entity_data/{{name.3}}" style="color: #f5f5f5; text-decoration: none;">{{name.2}}</a></td>
                   </tr>
                   </a>
                       {% endfor %}
@@ -56,15 +55,15 @@
                   <tr>
                       <td>{{name.0}}</td>
                       <td>{{name.1}}</td>
-                      <td>{{name.2}}</td>
+                      <td> <a href="http://127.0.0.1:8000/view_entity_data/{{name.3}}" style="color: #f5f5f5; text-decoration: none;">{{name.2}}</a></td>
                     <!--  <td>{{name.3}}</td>-->
                   </tr>
                       {% endfor %}
               </tbody>
           </table>
-          <a ONCLICK="ShowAndHide('places')"><h4>Places</h4></a>
+          <a ONCLICK="ShowAndHide('places');ShowAndHide('places1')"><h4>Places</h4></a>
               </table>
-              <table STYLE="display:none">
+              <table id="places1" STYLE="display:none">
               <thead>
                   <tr>
                       <th >Neg </th>
@@ -77,33 +76,49 @@
                   <tr>
                       <td>{{name.0}}</td>
                       <td>{{name.1}}</td>
-                      <td>{{name.2}}</td>
+                      <td> <a href="http://127.0.0.1:8000/view_entity_data/{{name.3}}" style="color: #f5f5f5; text-decoration: none;">{{name.2}}</a></td>
                     <!--  <td>{{name.3}}</td>-->
                   </tr>
                       {% endfor %}
               </tbody>
           </table>
-          <a ONCLICK="ShowAndHide('places')"><h4>Sources</h4></a>
-              </table>
-              <table STYLE="display:none">
+          <a ONCLICK="ShowAndHide('sources');ShowAndHide('sources1')"><h4>Sources</h4></a>
+              <table id="sources" STYLE="display:none">
               <thead>
                   <tr>
                       <th >Neg </th>
                       <th>  Pos </th>
-                      <th>  Place</th>
+                      <th>  Entity</th>
+                      <th>  Source </th>
                   </tr>
               </thead>
               <tbody>
-                {% for name in places%}
+                {% for name in sources%}
                   <tr>
                       <td>{{name.0}}</td>
                       <td>{{name.1}}</td>
-                      <td>{{name.2}}</td>
-                    <!--  <td>{{name.3}}</td>-->
+                      <td> <a href="http://127.0.0.1:8000/view_entity_data/{{name.3}}" style="color: #f5f5f5; text-decoration: none;"> {{name.2}}</a></td>
+                      <td>{{name.4}}</td>
                   </tr>
                       {% endfor %}
               </tbody>
           </table>
+          <table id="sources1" STYLE="display:none">
+          <thead>
+              <tr>
+                  <th > Articles </th>
+                  <th>  Source </th>
+              </tr>
+          </thead>
+          <tbody>
+            {% for name in src_count%}
+              <tr>
+                  <td>{{name.0}}</td>
+                  <td>{{name.1}}</td>
+              </tr>
+                  {% endfor %}
+          </tbody>
+      </table>
                   </div>
       </div>
   <div class="col-md-6">

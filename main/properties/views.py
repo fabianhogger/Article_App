@@ -207,8 +207,14 @@ def topics(request):
     orgs="select count(*)-count(*) filter (where t1.sentiment),count(*) filter (where t1.sentiment),t2.name,t2.id from properties_sentiment as t1,properties_entity as t2 where t1.entity_id = t2.id and t2.type like 'ORG' group by t2.id,t2.name,t2.type order by count(t1.sentiment) DESC"
     cursor.execute(orgs, ['localhost'])
     orgs= cursor.fetchall()
+    sources="select count(*)-count(*) filter (where t1.sentiment),count(*) filter (where t1.sentiment),t2.name,t2.id,t3.source from properties_sentiment as t1,properties_entity as t2,properties_property as t3 where t3.id=t1.article_id and t1.entity_id = t2.id and t2.type like 'ORG' group by t2.id,t2.name,t2.type,t3.source order by count(t1.sentiment) DESC"
+    cursor.execute(sources, ['localhost'])
+    sources= cursor.fetchall()
+    src_count="select count(id),source from properties_property group by source order by count(id) DESC"
+    cursor.execute(src_count, ['localhost'])
+    src_count= cursor.fetchall()
     ##entities= Entity.objects.values_list('name','type').order_by('articles')
-    context={"people":people[:50],"places":places[:50],"orgs":orgs[:50]}
+    context={"people":people[:50],"places":places[:50],"orgs":orgs[:50],"sources":sources[:30],"src_count":src_count}
     return render(request,'topics.html',context)
 
 
