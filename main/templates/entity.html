@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<section class="section video" data-section="section5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 align-self-center">
+        <div class="left-content">
+          <span>      </span>
+          <br><br>
+          <br><br>
+          <br><br>
+
+          <h1> View interesting data</h1>
+          <br><br>
+          <br><br>
+          <br><br>
+
+
+          <a ONCLICK="ShowAndHide('entity_data')"><h4>Entity Page</h4></a>
+              <table id="entity_data"  STYLE="display:none" >
+              <thead>
+                  <tr>
+                      <th > Title </th>
+                      <th>  Sentiment  </th>
+                      <th>   source </th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for name in entity_data %}
+                <tr>
+                      <td><a href="http://127.0.0.1:8000/article/{{name.0}}" style="color: #f5f5f5; text-decoration: none;">{{name.1}}</a></td>
+                      {% if name.2 is False %}
+                      <td>Negative</td>
+                      {% else  %}
+                      <td>Positive</td>
+                      {% endif %}
+                      <td>{{name.3}}</td>
+                    <!--  <td>{{name.3}}</td>-->
+                  </tr>
+                  </a>
+                      {% endfor %}
+              </tbody>
+          </table>
+          </div>
+      </div>
+  <div class="col-md-6">
+          <p>
+          <br><br>
+            <br><br>
+            <br><br>
+            <br><br>
+              </p>
+              <br><br>-->
+              <br><br>
+              <br><br>
+              <br><br>
+              <br><br>        <br><br>
+                      <br><br>
+                      <br><br>
+                      <br><br>
+                      <br><br>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="places" STYLE="display:none">
+<iframe title="Geographic locations &amp;amp; mentions" aria-label="Map" id="datawrapper-chart-QqaUx" src="https://datawrapper.dwcdn.net/QqaUx/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="385">
+</iframe><script type="text/javascript">!function(){"use strict";window.addEventListener("message",(function(e){if(void 0!==e.data["datawrapper-height"]){var t=document.querySelectorAll("iframe");for(var a in e.data["datawrapper-height"])for(var r=0;r<t.length;r++){if(t[r].contentWindow===e.source)t[r].style.height=e.data["datawrapper-height"][a]+"px"}}}))}();
+</script>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p><i class="fa fa-copyright"></i> Copyright 2020 by Grad School
+
+         | Design: <a href="https://templatemo.com" rel="sponsored" target="_parent">TemplateMo</a></p>
+      </div>
+    </div>
+  </div>
+<SCRIPT>
+function ShowAndHide(name) {
+  var x = document.getElementById(name);
+  if (x.style.display == 'none') {
+      x.style.display = 'block';
+  } else {
+      x.style.display = 'none';
+  }
+}
+</SCRIPT>
+
+{% endblock content %}
