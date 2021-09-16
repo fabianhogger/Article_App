@@ -198,13 +198,13 @@ def images(request):
 
 def topics(request):
     cursor=connection.cursor()
-    places="select count(*)-count(*) filter (where t1.sentiment),count(*) filter (where t1.sentiment),t2.name from properties_sentiment as t1,properties_entity as t2 where t1.entity_id = t2.id and t2.type like 'GPE' group by t2.name,t2.type order by count(t1.sentiment) DESC"
+    places="select count(*)-count(*) filter (where t1.sentiment),count(*) filter (where t1.sentiment),t2.name,t2.id from properties_sentiment as t1,properties_entity as t2 where t1.entity_id = t2.id and t2.type like 'GPE' group by t2.id,t2.name,t2.type order by count(t1.sentiment) DESC"
     cursor.execute(places, ['localhost'])
     places= cursor.fetchall()
-    people="select count(*)-count(*) filter (where t1.sentiment),count(*) filter (where t1.sentiment),t2.name from properties_sentiment as t1,properties_entity as t2 where t1.entity_id = t2.id and t2.type like 'PERSON' group by t2.name,t2.type order by count(t1.sentiment) DESC"
+    people="select count(*)-count(*) filter (where t1.sentiment),count(*) filter (where t1.sentiment),t2.name,t2.id from properties_sentiment as t1,properties_entity as t2 where t1.entity_id = t2.id and t2.type like 'PERSON' group by t2.id,t2.name,t2.type order by count(t1.sentiment) DESC"
     cursor.execute(people, ['localhost'])
     people= cursor.fetchall()
-    orgs="select count(*)-count(*) filter (where t1.sentiment),count(*) filter (where t1.sentiment),t2.name from properties_sentiment as t1,properties_entity as t2 where t1.entity_id = t2.id and t2.type like 'ORG' group by t2.name,t2.type order by count(t1.sentiment) DESC"
+    orgs="select count(*)-count(*) filter (where t1.sentiment),count(*) filter (where t1.sentiment),t2.name,t2.id from properties_sentiment as t1,properties_entity as t2 where t1.entity_id = t2.id and t2.type like 'ORG' group by t2.id,t2.name,t2.type order by count(t1.sentiment) DESC"
     cursor.execute(orgs, ['localhost'])
     orgs= cursor.fetchall()
     ##entities= Entity.objects.values_list('name','type').order_by('articles')
