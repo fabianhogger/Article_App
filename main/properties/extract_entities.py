@@ -36,6 +36,7 @@ def process_for_ner(doc):
     #for each entity we calculate the Levensthein ratio with the other entities
     all_candidates=[]
     entity_types={}
+    entity_urls={}
     for ent in entities:
         ratio=[]
         #print(ent[0])
@@ -53,16 +54,28 @@ def process_for_ner(doc):
             entity_types[candidates[0]]=ent[1]
     for candidates in all_candidates:
         #here we gather all wikipedia links related to this page
-        #urls=[get_wikipedia_url(candidate) for candidate in candidates]
+        urls=[get_wikipedia_url(candidate) for candidate in candidates]
+        entity_urls[candidates[0]]=urls
         #make list of lists of sentences for each candidate
         sentences=[find_sents(doc,candidate) for candidate in candidates]
         #turn it into regular list and remove duplicates
         all_sentences=list(set([item for sublist in sentences for item in sublist]))
         #Create a dictionary associating each final key with the sentences to be later used to get the sentiment score
         ent_sentences[candidates[0]]=all_sentences
-    return ent_sentences,entity_types
+    return ent_sentences,entity_types,entity_urls
 
 #for ent in ent_sentences.keys():
 #    sentiment=get_sentiment(ent_sentences[ent])
 #    new_Entity=Entity.objects.create(name=ent,type=type)
 #    new_Sentiment=Sentiment.objects.create(article=article_id,entity=new_Entity,sentiment=sentiment)
+
+
+#εισαγωγη
+#σκοπος χωρις τεχνικα
+#θεωρια για την τεχνολογια
+#Βιβλιοθηκες
+#4περιγραφη της εφαρμογης
+    #βασεις πινακες
+    #frontend
+    #σημαντικα μερη του κώδικα(view functions)
+#Συμπεράσματα,μελλοντικες επεκτάσεις

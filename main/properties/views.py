@@ -21,10 +21,11 @@ from lxml import etree
 from bs4 import BeautifulSoup as BSoup
 from django.db import connection
 import re
+
 def news_list(request):
     #print("news_list called")
     headlines=Property.objects.order_by('date')[:30]
-    print(headlines)
+    #print(headlines)
     headl=[]
     for item in headlines:
         if item.image_url!="www.noimage.com":
@@ -228,17 +229,6 @@ def train(request):
 def whoweare(request):
     return render(request,"Whoweare.html")
 def get_similar(request):
-    '''
-    all_ids=Property.objets.values_list('id','url' ).order_by('id')
-    for j  in range(len(all_ids)):
-        tu=all_ids[j]
-        x = re.sub(".com(.*)",'', tu[1])
-        print(x)
-        x = re.sub("(.*)www.",'', x)
-        print(x)
-        Property.objects.filter(id=tu[0]).update(source=x)
-    #    queryobject=Property.objects.get(id=j).values(
-    '''
     lda=gensim.models.ldamodel.LdaModel.load('properties/lda/lda_15_articles_wlist/model15bodies')
     all_ids=Property.objects.values_list('id' ,flat=True).order_by('id')
     #print(all_ids)
@@ -264,8 +254,8 @@ def get_similar(request):
                 id_=ids[index]
                 articles.append(id_)
             Property.objects.filter(id=j).update(similar_ids=articles)
-
     return render(request,'news.html')
+
 def scan_all_entities():
     already=[87,4,51,96,52,1748,67,132,1050,1741,1750,39,92,605,513,93,89,541,1051,69,292,50,102,14,22,59,1776,1745,65,16,75,577,630,11,1704,99,805,1758,534,41,46,1773,808,53,32,214,7,658,649,358,100,1753,48,12,532,85,72,57,24,81,77,519,1769,1124,49,1763,508,671,37,901,20,1,18,55,813,1752,58,809,8]
     ids=list(Property.objects.values_list('id',flat=True))

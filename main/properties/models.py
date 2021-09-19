@@ -5,14 +5,16 @@ from django.db.models import IntegerField, Model
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.auth.models import User
 class Property(models.Model):
-    name=models.CharField(max_length=100,default="")
-    url=models.CharField(max_length=200,default="")
-    body=models.CharField(max_length=10000,default="")
+    name=models.CharField(max_length=500,default="")
+    url=models.CharField(max_length=500,default="")
+    body=models.CharField(max_length=20000,default="")
     image_file = models.ImageField(max_length=700,upload_to='media', default='default.jpg')
-    image_url = models.URLField(max_length=700,default='www.noimage.com')
+    image_url = models.URLField(max_length=1000,default='www.noimage.com')
     #Here we store for each article the ids of the article similar to it
     similar_ids=ArrayField(models.IntegerField(), default=list,blank=True)
     views=models.IntegerField(default=0)
+    date=models.DateField(auto_now_add=True)
+    source=models.CharField(max_length=50,default="")
     def __str__(self):
         return self.name
 """
