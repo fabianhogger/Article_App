@@ -33,13 +33,13 @@ https://templatemo.com/tm-557-grad-school
   <!--header-->
   <header class="main-header clearfix" role="header">
     <div class="logo">
-      <a href="http://127.0.0.1:8000/"><em>Scraped</em> News</a>
+      <a href="http://127.0.0.1:8000/"><em>News</em> Archive</a>
     </div>
     <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
     <nav id="menu" class="main-nav" role="navigation">
       <ul class="main-menu">
         <li><a href="{% url 'news' %}" class='external'>Home</a></li>
-        <li><a href="{% url 'topics' %}" class='external'>Topics</a></li>
+        <li><a href="{% url 'topics' %}" class='external'>Mined Data</a></li>
         <li><a href="{% url 'subm' %}"  class='external'>Submit</a></li>
         <li><a href="{% url 'libraries' %}" class='external'>Libraries</a></li>
         <li class="has-submenu"><a href="#section1" >Account</a>
@@ -54,15 +54,8 @@ https://templatemo.com/tm-557-grad-school
             {% endif %}
           </ul>
         </li>
-        <li class="has-submenu"><a href="#section2">About Us</a>
-          <ul class="sub-menu">
-            <li><a href="#section2">Who we are?</a></li>
-            <li><a href="#section3">What we do?</a></li>
-            <li><a href="#section3">How it works?</a></li>
-            <li><a href="https://templatemo.com/about" rel="sponsored" class="external">external url</a></li>
+          <li><a href="{% url 'whoweare' %}" class='external'>About Us</a></li>
           </ul>
-        </li>
-      </ul>
     </nav>
   </header>
   {% block content %}

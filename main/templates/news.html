@@ -22,18 +22,24 @@
 {%for top in Topvideo%}
     <section class="section coming-soon" data-section="section3">
       <div class="container">
+        <div class="col-md-6 align-self-center">
+          <div class="right-content">
+               <img src="{{top.image_url}}" alt=" " width="300" height="200">
+            </div>
+          </div>
         <div class="row">
           <div class="col-md-7 col-xs-12">
             <div class="continer centerIt">
                 <a  href="http://127.0.0.1:8000/article/{{top.id}}">
               <div>
-                <h4> <em>{{top.name}}</em> </h4>
+                <h4> Most viewed Article:  <em>{{top.name}}</em> </h4>
               </div>
               </a>
             </div>
           </div>
 
         </div>
+
       </div>
     </section>
 
@@ -58,9 +64,9 @@
 
             <a  href="http://127.0.0.1:8000/article/{{object.id}}">
               {%if object.image_url == "www.noimage.com" %}
-                <img src="{{MEDIA_URL}}{{object.image_file}}" alt="Course #1">
+                <img src="{{MEDIA_URL}}default.jpg" alt="Course #1">
                {% else %}
-                 <img src="{{object.image_url}}" alt="Course #1">
+                 <img src="{{object.image_url}}" onerror="this.onerror=null;this.src='{{MEDIA_URL}}/default.jpg';"  alt="Course #3">
                  {% endif %}
             </a>
             <div class="down-content">
