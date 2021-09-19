@@ -11,5 +11,6 @@ class PropertiesSpider(SitemapSpider):
     sitemap_urls = ['https://www.bbc.com/sitemaps/https-index-com-news.xml']
 #    custom_settings = { 'CLOSESPIDER_PAGECOUNT': 10,'ROBOTSTXT_OBEY' : True, }
     def parse(self, response):
-        #image=response.xpath("//span[@class='hero-image']/picture/img").xpath('@src').extract_first()
-        yield ScraperItem( name= response.xpath("//title/text()").get(), url= response.url,body=response.xpath('//p/text()').getall())
+        if 'Afghanistan'  or 'Taliban' in response.xpath("//title/text()").get() :
+            #image=response.xpath("//span[@class='hero-image']/picture/img").xpath('@src').extract_first()
+            yield ScraperItem( name= response.xpath("//title/text()").get(), url= response.url,body=response.xpath('//p/text()').getall())

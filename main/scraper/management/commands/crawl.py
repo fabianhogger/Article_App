@@ -3,8 +3,8 @@ from scrapy.crawler import CrawlerProcess
 from scrapy.settings import Settings
 
 from scraper.scraper import settings as my_settings
+from scraper.scraper.spiders.alja_news import AljaNewsSpider
 from scraper.scraper.spiders.properties_spider import PropertiesSpider
-
 
 class Command(BaseCommand):
     help = 'Release spider'
@@ -15,5 +15,5 @@ class Command(BaseCommand):
 
         process = CrawlerProcess(settings=crawler_settings)
 
-        process.crawl(PropertiesSpider)
+        process.crawl(AljaNewsSpider)
         process.start()

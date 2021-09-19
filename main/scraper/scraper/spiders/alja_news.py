@@ -8,7 +8,7 @@ from django.db import models
 class AljaNewsSpider(SitemapSpider):
     name = 'alja_news'
     allowed_domains=['aljazeera.com']
-    sitemap_urls = ['https://www.aljazeera.com/sitemap.xml']
+    sitemap_urls = ['https://www.aljazeera.com/sitemap.xml?yyyy=2021&mm=08&dd=13']
 #    custom_settings = { 'CLOSESPIDER_PAGECOUNT': 10,'ROBOTSTXT_OBEY' : True, }
     def parse(self, response):
         #image=response.xpath("//span[@class='hero-image']/picture/img").xpath('@src').extract_first()
