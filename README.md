@@ -226,8 +226,12 @@ The scrapy project is connected to my django app and the
 Data is stored to a Django postgresql database.
 ## Website
 
-After gathering the articles I created a small website where you can view some article titles and click a button that starts training an lda model.
-![website](images/website.png)
+
+![website](images/frontpage.png)
+![website](images/submit1.png)
+![website](images/sunmit2.png)
+![website](images/librariescreate.png)
+![website](images/librariesfp.png)
 
 ## Links
 
