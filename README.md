@@ -228,12 +228,30 @@ The scrapy project is connected to my django app and the
 Data is stored to a Django postgresql database.
 ## Website
 
+### Main Page
 
+>The user enters the main page and has the option to read any of the latest articles or navigate the menu
 ![website](images/frontpage.png)
+
+### Submit Page
+
+>To submit an article the user goes to the submit page and inserts the url
 ![website](images/submit1.png)
-![website](images/sunmit2.png)
+
+>the app scrapes the url and show the data for the user to process and approve
+
+![website](images/submit2.png)
+### Libraries
+
+>the user can create libraries and add and remove articles
 ![website](images/librariescreate.png)
+
+>all users libraries
+
 ![website](images/librariesfp.png)
+
+### Data
+
 
 ## Links
 
