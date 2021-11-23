@@ -252,7 +252,24 @@ Data is stored to a Django postgresql database.
 
 ### Data
 
+>In the mined data page the user can see all the entities found in the articles and see where they are mentioned and the sentiment of the text
+![website](images/mined_data.png)
 
+>Clicking on organisations brings all the organisations mentioned 
+![website](images/organisations.png)
+
+>Places shows a visualisation of all the places mentioned in all the articles
+![website](images/places.png)
+
+>People show the names of famous people and politicians mentioned in the submitted articles
+![website](images/people.png)
+
+>Clicking on Joe Biden show the articles he is mentioned in and the sentiment of the article towards him
+![website](images/joebiden.png)
+### User Forms
+>Users can register and login/logout
+![website](images/register_form.png)
+![website](images/login_form.png)
 ## Links
 
 
