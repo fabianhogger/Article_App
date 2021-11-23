@@ -1,8 +1,10 @@
 # Article App
 
-Example Article app using django.
+Article app using django.
 Scraped Articles from BBC and Aljazeera using a crawler with the help of the library scrapy.
 Trained a LDA model on around 2000 articles for the  purpose of topic modelling using the gensim module.
+more details https://docs.google.com/document/d/16Ip6HuSPFbrUHOcCwJEBUI1Lj5dlAobBUQus-cWEElg/edit?usp=sharing
+Sentinment analysis part of the project : https://github.com/fabianhoegger/NLP-Data-Exploration
 
 ## Latent Dirichlet Allocation (LDA)
 
