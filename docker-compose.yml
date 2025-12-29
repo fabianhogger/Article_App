@@ -10,7 +10,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=1776
     ports:
-      - "5432:5432"
+      - "5433:5432"  # Map to 5433 on host to avoid conflict with local PostgreSQL
 
   web:
     build: .
