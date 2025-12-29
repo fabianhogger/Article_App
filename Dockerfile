@@ -23,7 +23,6 @@ RUN apt-get update && apt-get install -y \
 # Install Python dependencies
 COPY requirements.txt /app/
 RUN pip install --upgrade pip setuptools wheel && \
-    pip install numpy==1.19.5 && \
     pip install -r requirements.txt
 
 # Download required NLTK and spaCy data

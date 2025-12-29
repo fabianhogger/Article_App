@@ -1,32 +1,32 @@
 # Django and web framework dependencies
-Django==3.1.7
-psycopg2-binary==2.9.1
+Django>=3.1,<4.0
+psycopg2-binary>=2.8
 
 # Web scraping
-scrapy==2.5.0
-scrapy-djangoitem==1.1.1
-beautifulsoup4==4.9.3
-lxml==4.6.3
-requests==2.25.1
+scrapy>=2.5,<3.0
+scrapy-djangoitem>=1.1
+beautifulsoup4>=4.9
+lxml>=4.6
+requests>=2.25
 
-# Data processing (install first for dependencies)
-numpy==1.19.5
-scipy==1.5.4
-pandas==1.2.5
+# Data processing
+numpy>=1.19,<1.24
+scipy>=1.5
+pandas>=1.2
 
 # NLP and Machine Learning
-gensim==4.1.2
-nltk==3.6.2
-spacy==3.1.7
-tensorflow==2.6.0
-scikit-learn==0.24.2
+gensim>=4.0,<5.0
+nltk>=3.6
+spacy>=3.0,<4.0
+tensorflow>=2.6,<3.0
+scikit-learn>=0.24
 
 # Visualization
-matplotlib==3.4.2
-wordcloud==1.8.1
-pyLDAvis==3.3.1
+matplotlib>=3.3
+wordcloud>=1.8
+pyLDAvis>=3.2
 
 # Utilities
-django-phone-field==1.8.1
-word2number==1.1
-Pillow==8.3.0
+django-phone-field>=1.8
+word2number>=1.1
+Pillow>=8.0
