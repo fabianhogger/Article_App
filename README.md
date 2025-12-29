@@ -1,10 +1,189 @@
 # Article App
 
-Article app using django.
-Scraped Articles from BBC and Aljazeera using a crawler with the help of the library scrapy.
-Trained a LDA model on around 2000 articles for the  purpose of topic modelling using the gensim module.
-more details https://docs.google.com/document/d/16Ip6HuSPFbrUHOcCwJEBUI1Lj5dlAobBUQus-cWEElg/edit?usp=sharing
-Sentinment analysis part of the project : https://github.com/fabianhoegger/NLP-Data-Exploration
+A Django-based web application for news article aggregation, analysis, and topic modeling using Natural Language Processing (NLP) techniques.
+
+## Overview
+
+This application scrapes news articles from BBC and Al Jazeera, performs advanced NLP analysis including topic modeling with Latent Dirichlet Allocation (LDA), entity recognition, and sentiment analysis. Users can submit articles, organize them into libraries, and discover similar content based on semantic similarity.
+
+More details: https://docs.google.com/document/d/16Ip6HuSPFbrUHOcCwJEBUI1Lj5dlAobBUQus-cWEElg/edit?usp=sharing
+
+Sentiment analysis part of the project: https://github.com/fabianhoegger/NLP-Data-Exploration
+
+## How It Works
+
+### Architecture
+
+The application is built with the following components:
+
+1. **Django Web Framework**: Serves as the backend framework handling HTTP requests, database operations, and business logic
+2. **PostgreSQL Database**: Stores articles, entities, sentiment data, and user libraries
+3. **Scrapy Web Scraper**: Automated crawler that extracts articles from BBC and Al Jazeera sitemaps
+4. **NLP Pipeline**: Processes article text through multiple stages:
+   - **Text Preprocessing**: Tokenization, stopword removal, lemmatization using NLTK and spaCy
+   - **Topic Modeling**: LDA model trained on 2000+ articles using Gensim
+   - **Entity Extraction**: Named Entity Recognition (NER) to identify people, organizations, and locations
+   - **Sentiment Analysis**: Neural network-based sentiment classification using TensorFlow/Keras
+
+### Key Features
+
+1. **Article Scraping & Submission**
+   - Automated scraping from BBC and Al Jazeera via Scrapy spiders
+   - Manual article submission by URL with automatic content extraction
+   - Article preview before adding to database
+
+2. **Topic Modeling with LDA**
+   - Trained on 1835-2450 articles with 5-100 topic configurations
+   - Uses Gensim library for model training and inference
+   - Interactive visualization with pyLDAvis
+   - Document similarity using cosine similarity on topic vectors
+
+3. **Entity Recognition & Sentiment**
+   - Extracts named entities (people, organizations, locations)
+   - Analyzes sentiment towards specific entities within articles
+   - Geographic visualization of mentioned places
+   - Entity-centric article browsing
+
+4. **User Libraries**
+   - Personal collections for organizing articles
+   - Add/remove articles to custom libraries
+   - User authentication and authorization
+
+5. **Article Discovery**
+   - Find similar articles based on topic vectors
+   - Browse by entities mentioned
+   - View most popular articles by view count
+
+### Technology Stack
+
+- **Backend**: Django 3.1, Python 3.9
+- **Database**: PostgreSQL 13
+- **NLP/ML**: Gensim, NLTK, spaCy, TensorFlow/Keras, scikit-learn
+- **Web Scraping**: Scrapy, BeautifulSoup, lxml
+- **Visualization**: Matplotlib, WordCloud, pyLDAvis
+- **Frontend**: Django Templates, HTML/CSS
+
+## Docker Setup
+
+### Prerequisites
+
+- Docker installed on your system
+- Docker Compose installed
+
+### Running with Docker Compose (Recommended)
+
+The easiest way to run the application is using Docker Compose, which will set up both the Django app and PostgreSQL database:
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/fabianhoegger/Article_App.git
+   cd Article_App
+   ```
+
+2. **Build and start the containers**
+   ```bash
+   docker-compose up --build
+   ```
+
+3. **Access the application**
+
+   Open your browser and navigate to: `http://localhost:8000`
+
+4. **Stop the application**
+   ```bash
+   docker-compose down
+   ```
+
+5. **Stop and remove all data (including database)**
+   ```bash
+   docker-compose down -v
+   ```
+
+### Running with Docker Only
+
+If you already have a PostgreSQL database running, you can build and run just the Django container:
+
+1. **Build the Docker image**
+   ```bash
+   docker build -t article-app .
+   ```
+
+2. **Run the container**
+   ```bash
+   docker run -p 8000:8000 \
+     -e DATABASE_HOST=your_db_host \
+     -e DATABASE_PORT=5432 \
+     -e DATABASE_NAME=articles \
+     -e DATABASE_USER=postgres \
+     -e DATABASE_PASSWORD=your_password \
+     article-app
+   ```
+
+3. **Access the application**
+
+   Open your browser and navigate to: `http://localhost:8000`
+
+### Environment Variables
+
+The following environment variables can be configured:
+
+- `DATABASE_HOST`: PostgreSQL host (default: localhost, use 'db' for docker-compose)
+- `DATABASE_PORT`: PostgreSQL port (default: 5432)
+- `DATABASE_NAME`: Database name (default: articles)
+- `DATABASE_USER`: Database user (default: postgres)
+- `DATABASE_PASSWORD`: Database password (default: 1776)
+
+### Initial Setup
+
+After the first run, you may want to:
+
+1. **Create a superuser**
+   ```bash
+   docker-compose exec web python manage.py createsuperuser
+   ```
+
+2. **Access the admin panel**
+
+   Navigate to `http://localhost:8000/admin` and login with your superuser credentials
+
+## Local Development Setup (Without Docker)
+
+### Prerequisites
+
+- Python 3.9+
+- PostgreSQL 13+
+
+### Installation
+
+1. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Download NLP models**
+   ```bash
+   python -m nltk.downloader stopwords punkt vader_lexicon
+   python -m spacy download en_core_web_sm
+   ```
+
+3. **Configure database**
+
+   Update `main/main/settings.py` with your PostgreSQL credentials or set environment variables
+
+4. **Run migrations**
+   ```bash
+   cd main
+   python manage.py migrate
+   ```
+
+5. **Start the development server**
+   ```bash
+   python manage.py runserver
+   ```
+
+6. **Access the application**
+
+   Open your browser and navigate to: `http://localhost:8000`
 
 ## Latent Dirichlet Allocation (LDA)
 
