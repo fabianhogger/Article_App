@@ -89,6 +89,8 @@ The easiest way to run the application is using Docker Compose, which will set u
 
    Open your browser and navigate to: `http://localhost:8000`
 
+   **Note**: The containerized PostgreSQL database will be accessible on port `5433` (not 5432) to avoid conflicts with any local PostgreSQL installation.
+
 4. **Stop the application**
    ```bash
    docker-compose down
