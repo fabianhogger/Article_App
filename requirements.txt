@@ -27,6 +27,6 @@ wordcloud==1.8.1
 pyLDAvis==3.3.1
 
 # Utilities
-phone-field==1.8.1
+django-phone-field==1.8.1
 word2number==1.1
 Pillow==8.3.0
